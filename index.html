@@ -1067,11 +1067,12 @@ function render(){
     }
     return true;
   };
+  const matchFav = ([n]) => n.toLowerCase().includes(q);   // Lemmikud: žanrifiltrit ei arvesta
 
   const sortEt = (a, b) => a[0].localeCompare(b[0], 'et');
 
   favGrid.innerHTML = '';
-  const favList = allStations().filter(([n]) => favs.includes(n)).filter(match).sort(sortEt);
+  const favList = allStations().filter(([n]) => favs.includes(n)).filter(matchFav).sort(sortEt);
   favList.forEach(s => favGrid.appendChild(makeCard(s)));
   favCount.textContent = favs.length;
   favSection.hidden = favs.length === 0;
