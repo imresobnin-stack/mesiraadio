@@ -1,0 +1,35 @@
+name: Jaamade tervisekontroll
+
+on:
+  schedule:
+    - cron: '0 5 * * *'    # iga päev kell 05:00 UTC (u. 07:00/08:00 Eesti aja järgi)
+  workflow_dispatch: {}     # "Run workflow" nupp GitHubi Actions vahekaardil
+
+permissions:
+  contents: write
+
+concurrency:
+  group: station-healthcheck
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Kontrolli jaamu
+        run: python3 scripts/check_stations.py
+
+      - name: Salvesta status.json
+        run: |
+          git config user.name "mesiraadio-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add status.json
+          if git diff --staged --quiet; then
+            echo "Muutusi pole, ei committi."
+          else
+            git commit -m "Jaamade tervisekontroll: $(date -u +%Y-%m-%d)"
+            git push
+          fi
