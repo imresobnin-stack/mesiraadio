@@ -12,16 +12,6 @@ alles pärast mitut järjestikust päeva (FAIL_THRESHOLD). See vähendab
 vale-alarme, aga tähendab ka, et päris tõrge jõuab lehele nähtavale
 mõne päevaga, mitte kohe.
 
-Lisaks üritab skript elusatelt jaamadelt küsida praegu mängiva loo nime
-otse serveri poolt (vt probe_icecast_track) — see töötab ainult
-tavaliste Icecast2-serverite vaikimisi status-json.xsl otspunktiga.
-AzuraCast/Shoutcast/Radiojar/radio.co jt kasutavad teistsugust formaati
-ja jäävad lihtsalt vaikimisi (ei viska viga, "track" väli puudub).
-Need 8 jaama, millel on juba brauseris LIVE metaandmete pollimine
-(vt NOWPLAYING index.html-is), näitavad seal endiselt reaalajas
-uuenevat lugu — see status.json väli on lisaks, mitte asendus, ja
-annab "viimati teada" pealkirja ka jaamadele, mida NOWPLAYING ei kata.
-
 Käivitamine: python3 scripts/check_stations.py
 Eeldab, et see jookseb repo juurkataloogist (kus index.html/world.html asuvad).
 """
@@ -31,7 +21,6 @@ import sys
 import datetime
 import urllib.request
 import urllib.error
-import urllib.parse
 import concurrent.futures as cf
 
 FILES = [("index.html", 2), ("world.html", 5)]
@@ -90,38 +79,6 @@ def load_previous():
         return {}
 
 
-def probe_icecast_track(url):
-    """Proovib leida praegu mängiva loo nime tavalise Icecast2-serveri
-    vaikimisi status-json.xsl otspunktist. Töötab ainult osal jaamadel —
-    teistel lihtsalt ei leia midagi ja tagastab None, ilma veata."""
-    try:
-        parsed = urllib.parse.urlsplit(url)
-        base = f"{parsed.scheme}://{parsed.netloc}"
-        req = urllib.request.Request(
-            base + "/status-json.xsl",
-            headers={"User-Agent": UA},
-        )
-        with urllib.request.urlopen(req, timeout=6) as resp:
-            raw = resp.read(200_000)
-        data = json.loads(raw.decode("utf-8", "ignore"))
-        sources = (data.get("icestats") or {}).get("source")
-        if not sources:
-            return None
-        if isinstance(sources, dict):
-            sources = [sources]
-        mount = parsed.path
-        chosen = next((s for s in sources if (s.get("listenurl") or "").endswith(mount)), None)
-        if chosen is None and len(sources) == 1:
-            chosen = sources[0]
-        if chosen is None:
-            return None
-        title = chosen.get("title") or chosen.get("yp_currently_playing")
-        title = (title or "").strip()
-        return title or None
-    except Exception:
-        return None
-
-
 def main():
     stations = []
     seen = set()
@@ -143,15 +100,6 @@ def main():
         for name, ok in ex.map(check, stations):
             raw[name] = ok
 
-    # loo nime otsime ainult jaamadelt, mis parasjagu elus on
-    alive = [(n, u) for n, u in stations if raw.get(n)]
-    tracks = {}
-    with cf.ThreadPoolExecutor(max_workers=WORKERS) as ex:
-        found = ex.map(lambda nu: probe_icecast_track(nu[1]), alive)
-        for (name, _url), track in zip(alive, found):
-            if track:
-                tracks[name] = track
-
     results = {}
     newly_flagged, recovered = [], []
     for name, ok in raw.items():
@@ -167,10 +115,7 @@ def main():
         if prev_flagged and not flagged:
             recovered.append(name)
 
-        entry = {"ok": not flagged, "fail_streak": streak}
-        if name in tracks:
-            entry["track"] = tracks[name]
-        results[name] = entry
+        results[name] = {"ok": not flagged, "fail_streak": streak}
 
     out = {
         "checked_at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -181,7 +126,6 @@ def main():
 
     live_fails = [n for n, ok in raw.items() if not ok]
     print(f"Kontrollitud {len(stations)} jaama. Selle korra tõrkeid: {len(live_fails)}.")
-    print(f"Loo nimi leiti {len(tracks)} jaamalt (status-json.xsl).")
     if newly_flagged:
         print(f"UUED 'maas' märgid ({FAIL_THRESHOLD}+ päeva järjest ebaõnnestunud):")
         for n in newly_flagged:
