@@ -60,7 +60,7 @@ body{
 }
 h1,h2,h3,.btn,.chip{font-family:'Baloo 2',cursive}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
-#genreChips{margin:10px 0 16px}
+
 .chip{
   border:3px solid var(--ink);border-radius:999px;background:var(--paper);color:var(--ink);
   font-weight:700;font-size:.85rem;padding:6px 14px;cursor:pointer;
@@ -105,7 +105,7 @@ header{position:relative;z-index:2;padding:26px 20px 6px;max-width:960px;margin:
 
 /* ---------- sektsioonid ---------- */
 main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:22px 20px 0}
-.section-head{display:flex;align-items:center;gap:10px;margin:22px 0 12px}
+.section-head{display:flex;align-items:center;flex-wrap:wrap;row-gap:10px;gap:10px;margin:22px 0 12px}
 .section-head h2{font-size:1.25rem;font-weight:800}
 .count-pill{background:var(--ink);color:var(--page-bg);font-family:'Baloo 2',cursive;font-weight:700;font-size:.8rem;border-radius:999px;padding:2px 12px}
 
@@ -694,19 +694,19 @@ body.dark .card.offline .offline-tag{color:#F0A99E}
   </section>
 
   <div class="section-head">
-    <h2>Kõik kanalid</h2>
+    <h2 id="allHeading">Kõik kanalid</h2>
     <span class="count-pill" id="allCount">0</span>
+    <div class="chips" id="genreChips">
+      <button class="chip on" data-g="">Kõik</button>
+      <button class="chip" data-g="pop">Pop</button>
+      <button class="chip" data-g="dance">Tants</button>
+      <button class="chip" data-g="alleaa">Alleaa</button>
+      <button class="chip" data-g="jutt">Jutt</button>
+      <button class="chip" data-g="rock">Rock</button>
+      <button class="chip" data-g="retro">Retro</button>
+      <button class="chip" data-g="classical">Klassika</button>
+    </div>
     <button class="btn add-btn" id="toggleAllBtn" type="button" aria-expanded="true" aria-controls="allGrid">Peida kanalid</button>
-  </div>
-  <div class="chips" id="genreChips">
-    <button class="chip on" data-g="">Kõik</button>
-    <button class="chip" data-g="pop">Pop</button>
-    <button class="chip" data-g="dance">Tants</button>
-    <button class="chip" data-g="alleaa">Alleaa</button>
-    <button class="chip" data-g="jutt">Jutt</button>
-    <button class="chip" data-g="rock">Rock</button>
-    <button class="chip" data-g="retro">Retro</button>
-    <button class="chip" data-g="classical">Klassika</button>
   </div>
   <div class="grid" id="allGrid"></div>
 
@@ -871,7 +871,7 @@ const STATIONS = [
 ];
 
 /* ---------- žanrid ja ikoonid (Phosphor Icons, MIT) ---------- */
-const GENRE = {"vikerraadio": "talk", "raadio tallinn": "pop", "raadio 2": "pop", "r2 eesti": "folk", "r2 millennium": "retro", "r2 pop": "pop", "r2 rap": "dance", "r2 altpop": "rock", "r2 chill": "dance", "r2 rock": "rock", "klassikaraadio": "classical", "klara jazz": "jazz", "klara nostalgia": "retro", "klara meditatsioon": "classical", "klara klassika": "classical", "raadio 4": "talk", "elmar": "folk", "elmari kuld": "folk", "elmari tantsuõhtu": "folk", "elmari ballaadid": "folk", "kuku": "talk", "äripäev": "talk", "doubleclap": "dance", "legendaarne": "retro", "ida raadio": "dance", "hps bassline": "dance", "hardcore predictor": "dance", "nrj fm": "pop", "xfm": "rock", "big fm": "pop", "retro fm": "retro", "retro fm disco": "retro", "retro fm eestikas": "retro", "retro fm love": "retro", "sunlight fm": "pop", "hitmix": "pop", "hits radio": "pop", "ring fm": "pop", "tre raadio": "pop", "ruut fm": "pop", "rock fm": "rock", "rock fm metal": "rock", "sooviraadio": "folk", "meie raadio": "folk", "raadio kadi": "pop", "raadio remix": "dance", "võmba fm": "folk", "sky plus": "pop", "sky plus dnb": "dance", "sky radio": "pop", "power hit radio": "pop", "myhits": "pop", "myhits dance": "dance", "myhits rock": "rock", "circle k": "pop", "star fm": "pop", "star fm eesti": "folk", "kiss fm": "pop", "kiss eurovision": "pop", "kiss pride": "pop", "finest fm": "pop", "taifuun fm": "pop", "happyu": "pop", "estonian party radio": "folk", "xl raadio": "folk", "raadio duo": "pop", "duo gold": "retro", "duo hitmix": "pop", "duo rock": "rock", "duo party": "dance", "duo softmix": "pop", "duo country": "pop", "duo christmas": "pop", "raadio kidzone": "kids", "relax fm": "dance", "relax cafe": "dance", "relax international": "dance", "relax instrumental": "dance", "relax spa": "dance", "chat raadio": "talk", "hits show": "pop", "raadio x": "rock", "tagatuba fm": "rock", "raadio 7": "faith", "pereraadio tallinn": "faith", "pereraadio tartu": "faith", "pereraadio kuressaare": "faith", "radio eli": "faith", "semeinoje radio": "faith", "nikradofem": "pop", "radio azathoth revival": "rock", "rahvaraadio": "folk", "raadio 11": "pop"};
+const GENRE = {"vikerraadio": "talk", "raadio tallinn": "pop", "raadio 2": "pop", "r2 eesti": "folk", "r2 millennium": "retro", "r2 pop": "pop", "r2 rap": "dance", "r2 altpop": "rock", "r2 chill": "dance", "r2 rock": "rock", "klassikaraadio": "classical", "klara jazz": "jazz", "klara nostalgia": "retro", "klara meditatsioon": "classical", "klara klassika": "classical", "raadio 4": "talk", "elmar": "folk", "elmari kuld": "folk", "elmari tantsuõhtu": "folk", "elmari ballaadid": "folk", "kuku": "talk", "äripäev": "talk", "doubleclap": "dance", "legendaarne": "retro", "ida raadio": "dance", "hps bassline": "dance", "hardcore predictor": "dance", "nrj fm": "pop", "xfm": "rock", "big fm": "pop", "retro fm": "retro", "retro fm disco": "retro", "retro fm eestikas": "retro", "retro fm love": "retro", "sunlight fm": "pop", "hitmix": "pop", "hits radio": "pop", "ring fm": "pop", "tre raadio": "pop", "ruut fm": "pop", "rock fm": "rock", "rock fm metal": "rock", "sooviraadio": "folk", "meie raadio": "folk", "raadio kadi": "pop", "raadio remix": "dance", "võmba fm": "folk", "sky plus": "pop", "sky plus dnb": "dance", "sky radio": "pop", "power hit radio": "pop", "myhits": "pop", "myhits dance": "dance", "myhits rock": "rock", "circle k": "pop", "star fm": "pop", "star fm eesti": "folk", "kiss fm": "pop", "kiss eurovision": "pop", "kiss pride": "pop", "finest fm": "pop", "taifuun fm": "pop", "happyu": "pop", "estonian party radio": "folk", "xl raadio": "folk", "raadio duo": "pop", "duo gold": "retro", "duo hitmix": "pop", "duo rock": "rock", "duo party": "dance", "duo softmix": "pop", "duo country": "pop", "duo christmas": "pop", "raadio kidzone": "kids", "relax fm": "retro", "relax cafe": "retro", "relax international": "retro", "relax instrumental": "retro", "relax spa": "retro", "chat raadio": "talk", "hits show": "pop", "raadio x": "rock", "tagatuba fm": "rock", "raadio 7": "faith", "pereraadio tallinn": "faith", "pereraadio tartu": "faith", "pereraadio kuressaare": "faith", "radio eli": "faith", "semeinoje radio": "faith", "nikradofem": "pop", "radio azathoth revival": "rock", "rahvaraadio": "folk", "raadio 11": "pop"};
 const GICON = {
 talk: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M168,12A75.9,75.9,0,0,0,92.49,96.33L23.91,189.85a19.89,19.89,0,0,0,2,26l14.29,14.29a19.89,19.89,0,0,0,26,2l93.52-68.58A76,76,0,1,0,168,12Zm52,76a51.66,51.66,0,0,1-7.75,27.27L140.74,43.75A52,52,0,0,1,220,88ZM54.72,210.71l-9.43-9.43,56.19-76.63a76.46,76.46,0,0,0,29.87,29.87ZM116,88a51.63,51.63,0,0,1,7.75-27.27l71.51,71.51A52,52,0,0,1,116,88Z"/></svg>`,
 pop: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M243,96a20.33,20.33,0,0,0-17.74-14l-56.59-4.57L146.83,24.62a20.36,20.36,0,0,0-37.66,0L87.35,77.44,30.76,82A20.45,20.45,0,0,0,19.1,117.88l43.18,37.24-13.2,55.7A20.37,20.37,0,0,0,79.57,233L128,203.19,176.43,233a20.39,20.39,0,0,0,30.49-22.15l-13.2-55.7,43.18-37.24A20.43,20.43,0,0,0,243,96ZM172.53,141.7a12,12,0,0,0-3.84,11.86L181.58,208l-47.29-29.08a12,12,0,0,0-12.58,0L74.42,208l12.89-54.4a12,12,0,0,0-3.84-11.86L41.2,105.24l55.4-4.47a12,12,0,0,0,10.13-7.38L128,41.89l21.27,51.5a12,12,0,0,0,10.13,7.38l55.4,4.47Z"/></svg>`,
@@ -921,10 +921,13 @@ function isCustom(name){ return custom.some(([n]) => n === name); }
 
 let fGenre = "";
 const GENRE_GROUPS = { alleaa: ['folk','kids'], jutt: ['talk','faith'], classical: ['classical','jazz'] };
+const CHIP_LABELS = { '': 'Kõik kanalid', pop:'Pop', dance:'Tants', alleaa:'Alleaa', jutt:'Jutt', rock:'Rock', retro:'Retro', classical:'Klassika' };
+const allHeading = document.getElementById('allHeading');
 document.getElementById('genreChips').addEventListener('click', e => {
   const b = e.target.closest('.chip'); if (!b) return;
   fGenre = b.dataset.g;
   document.querySelectorAll('#genreChips .chip').forEach(x => x.classList.toggle('on', x === b));
+  allHeading.textContent = CHIP_LABELS[fGenre] || 'Kõik kanalid';
   render();
 });
 
