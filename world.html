@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Radio — Mesiraadio</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#A9C94E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%224.5%22%20r%3D%223%22%20fill%3D%22%23F08BA0%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%221.8%22/%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%224%22%20r%3D%222.2%22%20fill%3D%22%23F08BA0%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%221.8%22/%3E%3Crect%20x%3D%227%22%20y%3D%226%22%20width%3D%2218%22%20height%3D%2224%22%20rx%3D%229%22%20fill%3D%22%237FA83C%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222.4%22/%3E%3Cpath%20d%3D%22M10.5%2016c1.4%201.5%203.2%201.5%204.6%200M17.5%2016c1.4%201.5%203.2%201.5%204.6%200%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2216.5%22%20cy%3D%2221.5%22%20r%3D%221.6%22%20fill%3D%22none%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%221.8%22/%3E%3C/svg%3E">
+<meta name="description" content="300 hand-picked world radio stations. Filter by country and genre, save favourites, add your own — prickly fresh.">
+
+<!-- Open Graph (Facebook, Messenger, LinkedIn jt) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mesiraadio">
+<meta property="og:title" content="World Radio — Mesiraadio">
+<meta property="og:description" content="300 hand-picked world radio stations. Filter by country and genre, save favourites, add your own.">
+<meta property="og:url" content="https://raadio.imresobnin.com/world.html">
+<meta property="og:image" content="https://raadio.imresobnin.com/world-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Smiling cactus with speakers on a salad-green background, title World Radio">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter/X kaart -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="World Radio — Mesiraadio">
+<meta name="twitter:description" content="300 hand-picked world radio stations, filterable by country and genre.">
+<meta name="twitter:image" content="https://raadio.imresobnin.com/world-og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page-bg:#A9C94E;
+  --honey:#A9C94E;
+  --honey-deep:#8FB335;
+  --honey-pale:#CBDF8B;
+  --ink:#1B2408;
+  --ink-soft:#57652E;
+  --paper:#FFFFFF;
+  --cream:#F6FAE6;
+  --leaf:#C97B4A;
+  --leaf-deep:#A85E33;
+  --berry:#D65438;
+  --terra:#C97B4A;
+  --terra-deep:#A85E33;
+  --blossom:#F08BA0;
+  --shadow:0 6px 0 rgba(27,36,8,.16);
+  --radius:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--page-bg);
+  color:var(--ink);
+  min-height:100vh;
+  padding-bottom:150px;
+  transition:background .3s ease, color .3s ease;
+}
+h1,h2,h3,.btn,.chip{font-family:'Baloo 2',cursive}
+
+
+/* ---------- päis ---------- */
+header{position:relative;z-index:2;padding:26px 20px 6px;max-width:960px;margin:0 auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Baloo 2',cursive;font-weight:800;font-size:1.5rem;letter-spacing:.02em}
+.logo svg{width:44px;height:44px}
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 0 4px}
+.hero-art{width:min(320px,72vw);height:auto;filter:drop-shadow(0 10px 0 rgba(27,36,8,.10))}
+.hero h1{font-size:clamp(1.7rem,5vw,2.5rem);font-weight:800;line-height:1.1;margin-top:6px}
+.hero p{color:var(--ink-soft);font-weight:700;margin-top:4px}
+
+/* ---------- otsing ---------- */
+.search-wrap{position:relative;z-index:2;max-width:560px;margin:18px auto 0;padding:0 20px;display:flex;gap:10px;align-items:center}
+.search{flex:1}
+.dice-btn{
+  flex:none;width:52px;height:52px;border-radius:50%;border:3px solid var(--ink);
+  background:var(--paper);color:var(--ink);cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 5px 0 rgba(0,0,0,.18);transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.dice-btn svg{width:26px;height:26px}
+.dice-btn:hover{transform:translateY(-2px) rotate(-12deg);background:var(--honey-pale)}
+.dice-btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.dice-btn:focus-visible{outline:4px solid var(--leaf);outline-offset:2px}
+@keyframes diceroll{0%{transform:rotate(0)}40%{transform:rotate(200deg) scale(1.15)}100%{transform:rotate(360deg)}}
+.dice-btn.rolling svg{animation:diceroll .5s ease}
+@media (prefers-reduced-motion:reduce){.dice-btn.rolling svg{animation:none}}
+.search{
+  display:flex;align-items:center;gap:10px;background:var(--paper);
+  border:3px solid var(--ink);border-radius:999px;padding:12px 18px;box-shadow:var(--shadow);
+}
+.search input{border:0;outline:0;flex:1;font:inherit;font-weight:700;color:var(--ink);background:transparent}
+.search input::placeholder{color:#B4A76E}
+.search svg{flex:none}
+
+/* ---------- filtrid ---------- */
+.topbtns{display:flex;gap:10px;align-items:center}
+.btn.accent{background:var(--terra);color:#fff}
+.btn.accent:hover{background:var(--terra-deep)}
+a.btn{text-decoration:none;display:inline-block}
+.filters{margin-top:6px}
+.filter-label{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:14px 0 6px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  border:3px solid var(--ink);border-radius:999px;background:var(--paper);color:var(--ink);
+  font-family:'Baloo 2',cursive;font-weight:700;font-size:.85rem;padding:6px 14px;cursor:pointer;
+  box-shadow:0 3px 0 rgba(27,36,8,.15);
+}
+.chip:hover{background:var(--cream)}
+.chip.on{background:var(--ink);color:var(--page-bg)}
+.chip:focus-visible{outline:4px solid var(--terra);outline-offset:2px}
+.card .meta{display:block;font-size:.74rem;font-weight:700;color:var(--ink-soft);margin-top:1px}
+.card.playing .meta{color:var(--honey-pale);opacity:.8}
+
+/* ---------- sektsioonid ---------- */
+main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:22px 20px 0}
+.section-head{display:flex;align-items:center;gap:10px;margin:22px 0 12px}
+.section-head h2{font-size:1.25rem;font-weight:800}
+.count-pill{background:var(--ink);color:var(--page-bg);font-family:'Baloo 2',cursive;font-weight:700;font-size:.8rem;border-radius:999px;padding:2px 12px}
+
+/* ---------- kaardid ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.card{
+  position:relative;display:flex;align-items:center;gap:12px;
+  background:var(--paper);border:3px solid var(--ink);border-radius:var(--radius);
+  padding:14px 14px 14px 14px;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .12s ease, box-shadow .12s ease;
+  text-align:left;width:100%;
+  min-width:0;
+  color:var(--ink);font-family:inherit;
+}
+.card > span{min-width:0}
+.card .name,.card .meta{overflow-wrap:anywhere}
+.card:hover{transform:translateY(-3px);box-shadow:0 9px 0 rgba(27,36,8,.14)}
+.card:active{transform:translateY(1px);box-shadow:0 3px 0 rgba(27,36,8,.14)}
+.card:focus-visible{outline:4px solid var(--leaf);outline-offset:2px}
+.badge{
+  flex:none;width:46px;height:46px;border-radius:14px;border:3px solid var(--ink);
+  display:grid;place-items:center;font-size:1.5rem;background:var(--cream);
+}
+.card .name{font-weight:800;font-size:.98rem;line-height:1.2;padding-right:30px}
+.card.playing{background:var(--ink);color:var(--honey)}
+.card.playing .name{color:var(--honey)}
+.card.playing .badge{border-color:var(--honey)}
+.eq{display:none;gap:3px;align-items:flex-end;height:14px;margin-top:3px}
+.card.playing .eq{display:inline-flex}
+.eq span{width:4px;background:var(--honey);border-radius:2px;animation:eq 1s ease-in-out infinite}
+.eq span:nth-child(2){animation-delay:.2s}
+.eq span:nth-child(3){animation-delay:.4s}
+@keyframes eq{0%,100%{height:5px}50%{height:14px}}
+@media (prefers-reduced-motion:reduce){.eq span{animation:none;height:9px}}
+
+/* süda */
+.fav-btn{
+  position:absolute;top:10px;right:10px;width:34px;height:34px;border:0;background:transparent;
+  cursor:pointer;display:grid;place-items:center;border-radius:50%;
+}
+.fav-btn:focus-visible{outline:3px solid var(--leaf)}
+.fav-btn svg{width:22px;height:22px;transition:transform .15s ease}
+.fav-btn:hover svg{transform:scale(1.2)}
+.fav-btn .heart{fill:none;stroke:var(--ink);stroke-width:2.4}
+.card.playing .fav-btn .heart{stroke:var(--honey)}
+.fav-btn.on .heart{fill:var(--berry);stroke:var(--berry)}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
+.fav-btn.on svg{animation:pop .3s ease}
+@media (prefers-reduced-motion:reduce){.fav-btn.on svg{animation:none}}
+
+/* ---------- pleier ---------- */
+.player{
+  position:fixed;left:0;right:0;bottom:0;z-index:10;
+  background:var(--paper);border-top:3px solid var(--ink);
+  border-radius:28px 28px 0 0;box-shadow:0 -8px 0 rgba(27,36,8,.10);
+  transform:translateY(110%);transition:transform .3s ease;
+}
+.player.open{transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){.player{transition:none}}
+.player-inner{max-width:960px;margin:0 auto;padding:14px 20px 18px;display:flex;align-items:center;gap:16px}
+.player .handle{width:52px;height:5px;border-radius:99px;background:rgba(27,36,8,.18);position:absolute;top:8px;left:50%;transform:translateX(-50%)}
+.now{flex:1;min-width:0}
+.now .label{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.now .title{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.now .status{font-size:.8rem;font-weight:700;color:var(--leaf-deep)}
+.now .status.err{color:var(--berry)}
+.now .track{
+  font-size:.85rem;font-weight:700;color:var(--ink-soft);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;
+}
+.now .track::before{content:'♪ ';color:var(--honey-deep)}
+.play-btn{
+  flex:none;width:64px;height:64px;border-radius:50%;border:3px solid var(--ink);
+  background:var(--honey);cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 5px 0 rgba(27,36,8,.2);transition:transform .1s ease;
+}
+.play-btn:hover{background:var(--honey-deep)}
+.play-btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(27,36,8,.2)}
+.play-btn:focus-visible{outline:4px solid var(--leaf);outline-offset:3px}
+.vol{display:flex;align-items:center;gap:8px}
+.vol{position:relative}
+.vol input[type=range]{width:110px;accent-color:var(--ink)}
+.vol-pct{
+  position:absolute;top:-34px;left:50%;transform:translateX(-50%) translateY(4px);
+  background:var(--ink);color:var(--paper);font-family:'Baloo 2',cursive;font-weight:700;
+  font-size:.78rem;padding:3px 10px;border-radius:999px;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .18s ease, transform .18s ease;
+}
+.vol-pct.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.player .fav-btn{position:static;flex:none}
+@media (max-width:560px){
+  .vol{display:none}
+  .player-inner{gap:12px}
+}
+
+/* spinner */
+.spin{width:20px;height:20px;border:3px solid rgba(27,36,8,.2);border-top-color:var(--ink);border-radius:50%;animation:spin .8s linear infinite;display:none}
+.player.loading .spin{display:block}
+.player.loading .play-icon{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- nupud ---------- */
+.btn{
+  border:3px solid var(--ink);border-radius:999px;background:var(--honey);
+  color:var(--ink);font-weight:700;font-size:.9rem;padding:8px 18px;cursor:pointer;
+  box-shadow:0 4px 0 rgba(27,36,8,.2);transition:transform .1s ease;
+}
+.btn:hover{background:var(--honey-deep)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(27,36,8,.2)}
+.btn:focus-visible{outline:4px solid var(--leaf);outline-offset:2px}
+.btn.ghost{background:var(--paper)}
+.btn.ghost:hover{background:var(--cream)}
+.add-btn{margin-left:auto;background:var(--paper)}
+.add-btn:hover{background:var(--honey)}
+
+/* ---------- oma kanali kaart ---------- */
+.card.custom{background:var(--cream)}
+.card.custom.playing{background:var(--ink)}
+.del-btn{
+  position:absolute;top:10px;right:44px;width:34px;height:34px;border:0;background:transparent;
+  cursor:pointer;display:grid;place-items:center;border-radius:50%;
+}
+.del-btn:focus-visible{outline:3px solid var(--berry)}
+.del-btn svg{width:18px;height:18px;transition:transform .15s ease}
+.del-btn:hover svg{transform:scale(1.2)}
+.del-btn path{stroke:var(--ink-soft);stroke-width:2.4;stroke-linecap:round}
+.del-btn:hover path{stroke:var(--berry)}
+.card.playing .del-btn path{stroke:var(--honey)}
+.card.custom .name{padding-right:64px}
+
+/* ---------- modaal ---------- */
+.modal-back{
+  position:fixed;inset:0;z-index:20;background:rgba(27,36,8,.45);
+  display:grid;place-items:center;padding:20px;
+}
+.modal-back[hidden]{display:none}
+.modal{
+  background:var(--paper);border:3px solid var(--ink);border-radius:26px;
+  box-shadow:0 8px 0 rgba(27,36,8,.25);width:min(440px,100%);padding:26px 24px 22px;
+}
+.modal h3{font-size:1.35rem;font-weight:800;margin-bottom:14px}
+.field{display:block;margin-bottom:12px}
+.field span{display:block;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+.field input{
+  width:100%;font:inherit;font-weight:700;color:var(--ink);
+  border:3px solid var(--ink);border-radius:14px;padding:10px 14px;background:var(--cream);outline:0;
+}
+.field input:focus-visible{border-color:var(--leaf);background:var(--paper)}
+.modal-err{color:var(--berry);font-weight:700;font-size:.85rem;min-height:1.2em;margin-bottom:8px}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px}
+
+footer{position:relative;z-index:1;text-align:center;padding:34px 20px 10px;color:var(--ink-soft);font-weight:700;font-size:.85rem}
+
+/* ---------- mobiil ---------- */
+@media (max-width:680px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .card{flex-direction:column;align-items:flex-start;gap:8px;padding:12px;border-radius:18px}
+  .badge{width:40px;height:40px;font-size:.95rem;border-radius:12px}
+  .card .name{font-size:.88rem;padding-right:0}
+  .card.custom .name{padding-right:0}
+  .fav-btn{top:8px;right:8px}
+  .del-btn{top:8px;right:42px}
+  header{padding:18px 14px 4px}
+  main{padding:16px 14px 0}
+  .search-wrap{padding:0 14px}
+  .search{padding:10px 14px}
+  .logo{font-size:1.25rem}
+  .logo svg{width:36px;height:36px}
+  .section-head{flex-wrap:wrap;row-gap:8px}
+  .add-btn{padding:7px 14px;font-size:.85rem}
+  .hero-art{width:min(250px,64vw)}
+  .hero p{font-size:.9rem;padding:0 6px}
+  .player-inner{padding:14px 14px 16px}
+  .play-btn{width:56px;height:56px}
+  .now .title{font-size:1rem}
+  .modal{padding:20px 16px 16px;border-radius:20px}
+  body{padding-bottom:130px}
+}
+@media (max-width:380px){
+  .grid{grid-template-columns:1fr 1fr}
+}
+footer a{color:inherit}
+body.dark{
+  --page-bg:#141B07; --paper:#243311; --cream:#2C3D14;
+  --ink:#F0F7DC; --ink-soft:#B9C98A; --honey-pale:#3A4C1A;
+}
+/* tume režiim: erijuhud */
+body.dark .card.playing{background:var(--honey);color:#241B04}
+body.dark .card.playing .name,body.dark .card.playing .meta{color:#241B04}
+body.dark .card.playing .eq span{background:#241B04}
+body.dark .card.playing .badge{border-color:#241B04}
+body.dark .card.playing .fav-btn .heart{stroke:#241B04}
+body.dark .card.playing .del-btn path{stroke:#241B04}
+body.dark .hero-art > circle:nth-of-type(1){fill:var(--cream)}
+body.dark .hero-art > circle:nth-of-type(2){fill:var(--honey-pale)}
+.theme-btn{
+  flex:none;width:44px;height:44px;border-radius:50%;border:3px solid var(--ink);
+  background:var(--paper);color:var(--ink);cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 4px 0 rgba(0,0,0,.18);transition:transform .12s ease;
+}
+.theme-btn svg{width:24px;height:24px}
+.theme-btn:hover{transform:translateY(-2px);background:var(--cream)}
+.theme-btn:active{transform:translateY(1px)}
+.theme-btn:focus-visible{outline:4px solid var(--leaf);outline-offset:2px}
+.badge{border-color:#241B04!important}
+
+
+
+/* ================= HERO: tants & uni ================= */
+#cactus{transform-origin:150px 180px;transition:transform .8s ease}
+body.dancing #cactus{animation:hero-rock 1.1s ease-in-out infinite}
+@keyframes hero-rock{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+#arm-l{transform-origin:130px 132px}
+#arm-r{transform-origin:170px 118px}
+body.dancing #arm-l{animation:armL .55s ease-in-out infinite alternate}
+body.dancing #arm-r{animation:armR .55s ease-in-out infinite alternate}
+@keyframes armL{from{transform:rotate(6deg)}to{transform:rotate(-10deg)}}
+@keyframes armR{from{transform:rotate(-6deg)}to{transform:rotate(10deg)}}
+#flower{transform-origin:151px 66px}
+body.dancing #flower{animation:flowerWiggle .55s ease-in-out infinite alternate}
+@keyframes flowerWiggle{from{transform:rotate(-8deg)}to{transform:rotate(8deg)}}
+.waves{opacity:0;transition:opacity .4s ease}
+body.dancing .waves{opacity:.55;animation:wavepulse .55s ease-in-out infinite alternate}
+@keyframes wavepulse{from{transform:scale(.94)}to{transform:scale(1.06)}}
+#waves-l{transform-origin:26px 190px}
+#waves-r{transform-origin:274px 190px}
+body.dancing .cone{animation:thump .275s ease-in-out infinite alternate}
+@keyframes thump{from{transform:scale(1)}to{transform:scale(1.12)}}
+.cone{transform-box:fill-box;transform-origin:center}
+.note{opacity:0}
+body.dancing .note{animation:noteFloat 1.6s ease-out infinite}
+body.dancing .note.n2{animation-delay:.8s}
+@keyframes noteFloat{0%{opacity:0;transform:translateY(6px)}25%{opacity:.8}100%{opacity:0;transform:translateY(-26px)}}
+body.sleeping #cactus{transform:rotate(-5deg)}
+body.sleeping #arm-l,body.sleeping #arm-r,body.sleeping #flower{transition:transform .8s ease .3s}
+body.sleeping #arm-l{transform:rotate(16deg)}
+body.sleeping #arm-r{transform:rotate(-16deg)}
+body.sleeping #flower{transform:rotate(-18deg)}
+#eyes-closed{opacity:0}
+#eyes-open,#eyes-closed{transition:opacity .25s ease .6s}
+body.sleeping #eyes-open{opacity:0}
+body.sleeping #eyes-closed{opacity:1}
+body:not(.sleeping) #eyes-open,body:not(.sleeping) #eyes-closed{transition-delay:0s}
+#mouth-sleep{opacity:0}
+#mouth-smile,#mouth-sleep{transition:opacity .25s ease .6s}
+body.sleeping #mouth-smile{opacity:0}
+body.sleeping #mouth-sleep{opacity:1}
+.zzz{opacity:0}
+body.sleeping .zzz{animation:zfloat 2.4s ease-out infinite}
+body.sleeping .zzz.z1{animation-delay:.9s}
+body.sleeping .zzz.z2{animation-delay:1.7s}
+body.sleeping .zzz.z3{animation-delay:2.5s}
+@keyframes zfloat{0%{opacity:0;transform:translate(0,4px) scale(.7)}20%{opacity:1}100%{opacity:0;transform:translate(14px,-30px) scale(1.15)}}
+body.dark .note,body.dark .zzz{fill:var(--ink)}
+body.dark .note path,body.dark .waves{stroke:var(--ink)}
+@media (prefers-reduced-motion:reduce){
+  body.dancing #cactus,body.dancing #arm-l,body.dancing #arm-r,body.dancing #flower,
+  body.dancing .waves,body.dancing .cone,body.dancing .note,body.sleeping .zzz{animation:none}
+  #cactus,#arm-l,#arm-r,#flower{transition:none}
+}
+
+/* ================= ÜLLATUSMUNAD ================= */
+#eyes-angry,#eyes-dizzy,#mouth-angry{opacity:0}
+.hero-art{cursor:pointer}
+/* klikireaktsioonid (svg-l, ei sega sisemisi tantsuanimatsioone) */
+.hero-art.react-spin{animation:reactSpin .65s ease}
+.hero-art.react-wave{animation:reactWave .6s ease}
+.hero-art.react-bow{animation:reactBow .7s ease}
+@keyframes reactSpin{to{transform:rotate(360deg)}}
+@keyframes reactWave{0%,100%{transform:rotate(0)}25%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}75%{transform:rotate(-6deg)}}
+@keyframes reactBow{0%,100%{transform:rotate(0)}40%{transform:rotate(14deg) translateY(6px)}}
+/* õis hüppab (kaktus) */
+#flower.jump{animation:flowerJump .7s cubic-bezier(.3,1.6,.5,1)!important}
+@keyframes flowerJump{0%,100%{transform:translateY(0)}45%{transform:translateY(-34px) rotate(12deg)}}
+/* vihane (5 kiiret klikki) */
+body.angry #eyes-open,body.angry #eyes-closed,body.angry #eyes-dizzy{opacity:0!important}
+body.angry #mouth-smile,body.angry #mouth-sleep{opacity:0!important}
+body.angry #eyes-angry,body.angry #mouth-angry{opacity:1!important}
+body.angry .hero-art{animation:angryShake .3s ease 3}
+@keyframes angryShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* pöörissilmad (täringu ülekuumenemine) */
+body.dizzy #eyes-open,body.dizzy #eyes-closed,body.dizzy #eyes-angry{opacity:0!important}
+body.dizzy #eyes-dizzy{opacity:1!important}
+body.dizzy #flower{animation:dizzyWobble .8s ease-in-out infinite!important}
+@keyframes dizzyWobble{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.dice-btn.hot{background:#E4573D!important;border-color:#8a2413!important;color:#fff!important;animation:hotShake .25s ease infinite}
+@keyframes hotShake{0%,100%{transform:translate(0)}25%{transform:translate(-2px,1px)}75%{transform:translate(2px,-1px)}}
+/* striimiviga: kehitab õlgu */
+body.oops .hero-art{animation:shrug .7s ease 2}
+@keyframes shrug{0%,100%{transform:rotate(0) translateY(0)}30%{transform:rotate(-4deg) translateY(-5px)}60%{transform:rotate(4deg) translateY(-5px)}}
+body.oops #mouth-smile{opacity:0!important}
+body.oops #mouth-sleep{opacity:1!important}
+/* disko */
+body.disco header,body.disco main{animation:discoHue 5s linear infinite}
+@keyframes discoHue{to{filter:hue-rotate(360deg)}}
+body.disco.dancing #cactus{animation-duration:.45s}
+body.disco body.disco #arm-l,body.disco #arm-r,body.disco #flower{animation-duration:.3s}
+/* jõulud */
+#scarf,#nightcap{opacity:0;transition:opacity .5s ease}
+body.xmas #scarf{opacity:1}
+body.nighttime #nightcap{opacity:1}
+body.nighttime.dancing #cactus{animation-duration:2.2s}
+body.nighttime.dancing #arm-l,body.nighttime.dancing #arm-r,body.nighttime.dancing #flower{animation-duration:1.1s}
+/* lendavad elemendid */
+.snowflake{position:fixed;top:-24px;color:#fff;pointer-events:none;z-index:6;animation:snowfall linear forwards;text-shadow:0 0 4px rgba(0,0,0,.15)}
+@keyframes snowfall{to{transform:translateY(110vh) rotate(240deg)}}
+.honeydrop{position:fixed;top:-30px;width:14px;height:20px;background:#F5B71E;border:2.5px solid #241B04;border-radius:50% 50% 60% 60%/40% 40% 70% 70%;pointer-events:none;z-index:6;animation:dropfall 2.2s ease-in forwards}
+@keyframes dropfall{to{transform:translateY(112vh)}}
+.antrow{position:fixed;bottom:4px;left:0;pointer-events:none;z-index:6;font-size:18px;letter-spacing:10px;white-space:nowrap;animation:antwalk 8s linear forwards}
+@keyframes antwalk{from{transform:translateX(-40vw)}to{transform:translateX(110vw)}}
+.confetti-p{position:fixed;width:9px;height:9px;pointer-events:none;z-index:6;animation:confall ease-in forwards}
+@keyframes confall{to{transform:translateY(60vh) rotate(600deg);opacity:0}}
+.smoke{position:fixed;width:16px;height:16px;border-radius:50%;background:rgba(120,120,120,.55);pointer-events:none;z-index:20;animation:smokerise 1.2s ease-out forwards}
+@keyframes smokerise{to{transform:translateY(-46px) scale(2.2);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .hero-art.react-spin,.hero-art.react-wave,.hero-art.react-bow,body.angry .hero-art,
+  body.dizzy #head-g,body.oops .hero-art,body.disco header,body.disco main,
+  .snowflake,.honeydrop,.antrow,.confetti-p,.smoke,.dice-btn.hot{animation:none}
+}
+
+/* ================= SILMAD, ŽANRITANTS, UNI+ ================= */
+#eyes-open{transition:transform .12s ease-out}
+/* žanritantsud */
+body.dancing.dance-rock #cactus{animation:cactusBang .38s ease-in-out infinite}
+@keyframes cactusBang{0%,100%{transform:rotate(2deg)}50%{transform:rotate(-10deg) translateY(3px)}}
+body.dancing.dance-classical #arm-l{animation:conductL 1.5s ease-in-out infinite}
+body.dancing.dance-classical #arm-r{animation:conductR 1.5s ease-in-out infinite}
+@keyframes conductL{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-34deg)}}
+@keyframes conductR{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(34deg)}}
+body.dancing.dance-classical #flower{animation-duration:1.5s}
+body.dancing.dance-classical #cactus{animation-duration:2.4s}
+body.dancing.dance-electronic #cactus,
+body.dancing.dance-electronic #flower,
+body.dancing.dance-electronic #arm-l,
+body.dancing.dance-electronic #arm-r{animation-timing-function:steps(2,end)}
+body.dancing.dance-folk #cactus{animation:folkSway 1.7s ease-in-out infinite}
+@keyframes folkSway{0%,100%{transform:rotate(-6deg) translateX(-5px)}50%{transform:rotate(6deg) translateX(5px)}}
+body.dancing.dance-folk #flower{animation-duration:1.7s}
+/* sügav uni: suurem Zzz, sügavam norg */
+body.deep-sleep #cactus{transform:rotate(-9deg) translateY(6px)}
+body.deep-sleep .zzz{font-size:130%}
+body.deep-sleep .zzz.z3{font-size:150%}
+/* ehmatusega ärkamine */
+body.startle .hero-art{animation:startleHop .6s cubic-bezier(.3,1.8,.5,1)}
+@keyframes startleHop{0%{transform:translateY(0)}35%{transform:translateY(-18px) scale(1.05)}100%{transform:translateY(0)}}
+/* haigutus */
+#mouth-sleep{transform-box:fill-box;transform-origin:center}
+body.yawning #mouth-sleep{animation:yawnMouth 1.6s ease}
+@keyframes yawnMouth{0%,100%{transform:scale(1)}40%,60%{transform:scale(2.6)}}
+body.yawning #cactus{animation:yawnStretch 1.6s ease}
+@keyframes yawnStretch{0%,100%{transform:rotate(-5deg)}40%,60%{transform:rotate(-1deg) scale(1.035)}}
+@media (prefers-reduced-motion:reduce){
+  body.dancing.dance-rock #head-g,body.dancing.dance-classical #arm-l,body.dancing.dance-classical #arm-r,
+  body.dancing.dance-folk #cactus,body.startle .hero-art,body.yawning #mouth-sleep,body.yawning #cactus{animation:none}
+  #eyes-open{transition:none}
+}
+
+/* ================= KELLAAJA TERVITUS ================= */
+.hero{position:relative}
+.greet-bubble{
+  position:absolute;top:6px;left:50%;transform:translateX(-50%) scale(.6);
+  background:var(--paper);color:var(--ink);border:3px solid var(--ink);border-radius:16px;
+  font-family:'Baloo 2',cursive;font-weight:700;font-size:1rem;padding:8px 16px;
+  box-shadow:0 4px 0 rgba(0,0,0,.15);white-space:nowrap;pointer-events:none;z-index:3;
+  opacity:0;transition:opacity .25s ease, transform .25s cubic-bezier(.3,1.6,.5,1);
+}
+.greet-bubble::after{
+  content:'';position:absolute;bottom:-11px;left:50%;transform:translateX(-50%);
+  border:8px solid transparent;border-top-color:var(--ink);border-bottom:0;
+}
+.greet-bubble::before{
+  content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);
+  border:6px solid transparent;border-top-color:var(--paper);border-bottom:0;z-index:1;
+}
+.greet-bubble.show{opacity:1;transform:translateX(-50%) scale(1)}
+@media (prefers-reduced-motion:reduce){.greet-bubble{transition:opacity .25s ease}}
+
+/* ================= FAVICON-SÜNK, PILGUTUS, MUTE, SÜDA ================= */
+/* pilgutus: hetkeline, ilma viivituseta */
+body.blink #eyes-open{opacity:0!important;transition:none!important}
+body.blink #eyes-closed{opacity:1!important;transition:none!important}
+/* hääletu: pahur nägu + õis norus */
+body.muted #flower{animation:none!important;transition:transform .35s ease!important;transform:rotate(-42deg)!important}
+body.muted #mouth-smile{opacity:0!important}
+body.muted #mouth-angry{opacity:1!important}
+/* lendav süda */
+.fly-heart{
+  position:fixed;font-size:18px;color:#E4573D;pointer-events:none;z-index:30;
+  animation:flyheart .9s ease-out forwards;
+}
+@keyframes flyheart{
+  0%{opacity:1;transform:translate(-50%,0) scale(.7)}
+  100%{opacity:0;transform:translate(-50%,-46px) scale(1.5)}
+}
+@media (prefers-reduced-motion:reduce){.fly-heart{animation-duration:.4s}}
+
+/* ================= PÄISENUPUD: kitsal ekraanil ikoonid ================= */
+.tb-btn,a.tb-btn,button.tb-btn{display:inline-flex;align-items:center;gap:8px}
+.tb-ic{display:grid;place-items:center}
+.tb-ic svg{width:20px;height:20px;display:block}
+@media (max-width:640px){
+  .tb-txt{display:none}
+  .tb-btn,a.tb-btn,button.tb-btn{width:44px;height:44px;padding:0;border-radius:50%;justify-content:center;flex:none}
+}
+
+/* ================= JAAMADE TERVISEKONTROLL ================= */
+.card.offline{opacity:.55}
+.card.offline .badge{filter:grayscale(1)}
+.offline-tag{display:none}
+.card.offline .offline-tag{
+  display:block;font-size:.72rem;font-weight:800;color:#B23A2E;margin-top:2px;
+}
+body.dark .card.offline .offline-tag{color:#F0A99E}
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="topbar">
+    <div class="logo">
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle light and dark mode"></button>
+      WORLD RADIO
+    </div>
+    <div class="topbtns">
+      <a class="btn tb-btn" href="./" style="text-decoration:none" title="Eesti raadiod"><span class="tb-ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222.14,105.85l-80-80a20,20,0,0,0-28.28,0l-80,80A19.86,19.86,0,0,0,28,120v96a12,12,0,0,0,12,12h64a12,12,0,0,0,12-12V164h24v52a12,12,0,0,0,12,12h64a12,12,0,0,0,12-12V120A19.86,19.86,0,0,0,222.14,105.85ZM204,204H164V152a12,12,0,0,0-12-12H104a12,12,0,0,0-12,12v52H52V121.65l76-76,76,76Z"/></svg></span><span class="tb-txt">Eesti raadiod</span></a>
+      <button class="btn accent tb-btn" id="addBtn" type="button" title="Add station"><span class="tb-ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/></svg></span><span class="tb-txt">Add station</span></button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <!-- kaktus kõlaritega -->
+    <svg class="hero-art" viewBox="0 0 300 250" role="img" aria-label="Cactus with speakers">
+      <circle cx="150" cy="125" r="100" fill="#CBDF8B"/>
+      <circle cx="150" cy="125" r="76" fill="#E9F3C8"/>
+      <!-- kõlarid külgedel, potiga samal joonel -->
+      <g stroke="#1B2408" stroke-width="4" stroke-linejoin="round">
+        <rect x="34" y="158" width="52" height="72" rx="10" fill="#F6FAE6"/>
+        <g class="cone"><circle cx="60" cy="182" r="13" fill="#A9C94E"/><circle cx="60" cy="182" r="5" fill="#1B2408" stroke="none"/></g>
+        <circle cx="60" cy="212" r="7" fill="#CBDF8B"/>
+        <rect x="214" y="158" width="52" height="72" rx="10" fill="#F6FAE6"/>
+        <g class="cone"><circle cx="240" cy="182" r="13" fill="#A9C94E"/><circle cx="240" cy="182" r="5" fill="#1B2408" stroke="none"/></g>
+        <circle cx="240" cy="212" r="7" fill="#CBDF8B"/>
+      </g>
+      <!-- helilained kõlaritest -->
+      <g class="waves" id="waves-l" stroke="#1B2408" stroke-width="4" stroke-linecap="round" fill="none">
+        <path d="M26 180c-6 6-6 16 0 22M18 172c-10 10-10 28 0 38"/>
+      </g>
+      <g class="waves" id="waves-r" stroke="#1B2408" stroke-width="4" stroke-linecap="round" fill="none">
+        <path d="M274 180c6 6 6 16 0 22M282 172c10 10 10 28 0 38"/>
+      </g>
+      <!-- kaktus -->
+      <g id="cactus" stroke-linecap="round" stroke-linejoin="round">
+        <!-- käed: tume alusjoon + roheline pealisjoon = kontuuriga toru -->
+        <g id="arm-l">
+          <path d="M130 132h-16c-9 0-16-7-16-16v-14" fill="none" stroke="#1B2408" stroke-width="24"/>
+          <path d="M130 132h-16c-9 0-16-7-16-16v-14" fill="none" stroke="#7FA83C" stroke-width="15"/>
+        </g>
+        <g id="arm-r">
+          <path d="M170 118h16c9 0 16-7 16-16V92" fill="none" stroke="#1B2408" stroke-width="24"/>
+          <path d="M170 118h16c9 0 16-7 16-16V92" fill="none" stroke="#7FA83C" stroke-width="15"/>
+        </g>
+        <!-- keha -->
+        <path d="M128 180V92c0-16 10-26 22-26s22 10 22 26v88z" fill="#7FA83C" stroke="#1B2408" stroke-width="5"/>
+        <!-- triibud -->
+        <path d="M140 92v74M150 84v82M160 92v74" stroke="#1B2408" stroke-width="3.5" opacity=".5" fill="none"/>
+        <!-- nägu -->
+        <g id="eyes-open">
+          <circle cx="143" cy="112" r="3" fill="#1B2408"/>
+          <circle cx="159" cy="112" r="3" fill="#1B2408"/>
+        </g>
+        <g id="eyes-closed" stroke="#1B2408" stroke-width="3.4" fill="none">
+          <path d="M138 112c3 3 7 3 10 0"/>
+          <path d="M156 112c3 3 7 3 10 0"/>
+        </g>
+        <path id="mouth-smile" d="M144 124c4 3 10 3 14 0" fill="none" stroke="#1B2408" stroke-width="4"/>
+        <circle id="mouth-sleep" cx="151" cy="126" r="3.4" fill="none" stroke="#1B2408" stroke-width="3.4"/>
+        <g id="eyes-angry" stroke="#1B2408" stroke-width="3.4">
+          <path d="M137 106l12 8M165 106l-12 8" fill="none"/>
+        </g>
+        <path id="mouth-angry" d="M144 129c4-3 10-3 14 0" fill="none" stroke="#1B2408" stroke-width="4"/>
+        <g id="eyes-dizzy" stroke="#1B2408" stroke-width="2.2" fill="none">
+          <path d="M143 112m-5 0a5 5 0 1 1 10 0a3.5 3.5 0 1 1 -7 0a2 2 0 1 1 4 0"/>
+          <path d="M159 112m-5 0a5 5 0 1 1 10 0a3.5 3.5 0 1 1 -7 0a2 2 0 1 1 4 0"/>
+        </g>
+        <!-- õis -->
+        <g id="flower" stroke="#1B2408" stroke-width="4">
+          <circle cx="141" cy="54" r="6" fill="#F08BA0"/>
+          <circle cx="161" cy="54" r="6" fill="#F08BA0"/>
+          <circle cx="151" cy="49" r="6" fill="#F08BA0"/>
+          <circle cx="151" cy="60" r="9" fill="#F08BA0"/>
+          <circle cx="151" cy="58" r="3.5" fill="#FFD84D" stroke="none"/>
+        </g>
+      </g>
+      <!-- pott -->
+      <g stroke="#1B2408" stroke-width="5" stroke-linejoin="round">
+        <path d="M116 180h68l-8 42c-1 5-5 8-10 8h-32c-5 0-9-3-10-8z" fill="#C97B4A"/>
+        <rect x="108" y="172" width="84" height="16" rx="8" fill="#A85E33"/>
+      </g>
+      <!-- noodid -->
+      <g class="note n2" fill="#1B2408">
+        <path d="M244 66v-20l11-4v20" fill="none" stroke="#1B2408" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="241" cy="67" r="5"/><circle cx="252" cy="63" r="5"/>
+      </g>
+      <g class="note" fill="#1B2408">
+        <circle cx="52" cy="70" r="4"/><path d="M55 70V54" stroke="#1B2408" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <!-- Zzz -->
+      <g font-family="Baloo 2, cursive" font-weight="800" fill="#1B2408">
+        <text class="zzz z1" x="192" y="66" font-size="20">z</text>
+        <text class="zzz z2" x="208" y="50" font-size="26">z</text>
+        <text class="zzz z3" x="228" y="32" font-size="32">Z</text>
+      </g>
+    </svg>
+    <h1>Tune the whole planet</h1>
+    <p>World radio stations, hand-picked and prickly fresh.</p>
+  </div>
+</header>
+
+<div class="search-wrap">
+  <div class="search">
+    <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="#241B04" stroke-width="2.6"/><path d="M13 13l5 5" stroke="#241B04" stroke-width="2.6" stroke-linecap="round"/></svg>
+    <input id="search" type="search" placeholder="Search stations…" aria-label="Search stations">
+  </div>
+  <button class="dice-btn" id="diceBtn" type="button" title="Random station" aria-label="Play a random station"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M192,28H64A36,36,0,0,0,28,64V192a36,36,0,0,0,36,36H192a36,36,0,0,0,36-36V64A36,36,0,0,0,192,28Zm12,164a12,12,0,0,1-12,12H64a12,12,0,0,1-12-12V64A12,12,0,0,1,64,52H192a12,12,0,0,1,12,12ZM104,88A16,16,0,1,1,88,72,16,16,0,0,1,104,88Zm40,40a16,16,0,1,1-16-16A16,16,0,0,1,144,128Zm40-40a16,16,0,1,1-16-16A16,16,0,0,1,184,88Zm-80,80a16,16,0,1,1-16-16A16,16,0,0,1,104,168Zm80,0a16,16,0,1,1-16-16A16,16,0,0,1,184,168Z"/></svg></button>
+</div>
+
+<main>
+  <div class="filters">
+    <div class="filter-label">Genre</div>
+    <div class="chips" id="genreChips">
+      <button class="chip on" data-g="">All</button>
+      <button class="chip" data-g="pop">Pop</button>
+      <button class="chip" data-g="rock">Rock</button>
+      <button class="chip" data-g="jazz">Jazz</button>
+      <button class="chip" data-g="electronic">Electronic</button>
+      <button class="chip" data-g="country">Country</button>
+    </div>
+  </div>
+
+  <section id="favSection" hidden>
+    <div class="section-head">
+      <h2>Favourites</h2>
+      <span class="count-pill" id="favCount">0</span>
+    </div>
+    <div class="grid" id="favGrid"></div>
+  </section>
+
+  <div class="section-head">
+    <h2>All stations</h2>
+    <span class="count-pill" id="allCount">0</span>
+    <button class="btn add-btn" id="toggleAllBtn" type="button" aria-expanded="true" aria-controls="allGrid">Hide stations</button>
+  </div>
+  <div class="grid" id="allGrid"></div>
+</main>
+
+<!-- kanali lisamise modaal -->
+<div class="modal-back" id="modalBack" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle">Add your station</h3>
+    <label class="field">
+      <span>Station name</span>
+      <input id="stName" type="text" maxlength="60" placeholder="e.g. My favourite station" autocomplete="off">
+    </label>
+    <label class="field">
+      <span>Stream URL</span>
+      <input id="stUrl" type="url" placeholder="https://…/stream.mp3" autocomplete="off" spellcheck="false">
+    </label>
+    <div class="modal-err" id="modalErr" role="alert"></div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="modalCancel" type="button">Cancel</button>
+      <button class="btn" id="modalSave" type="button">Add station</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- pleier -->
+<div class="player" id="player">
+  <div class="handle"></div>
+  <div class="player-inner">
+    <div class="now">
+      <div class="label">Now playing</div>
+      <div class="title" id="nowTitle">—</div>
+      <div class="status" id="nowStatus"></div>
+      <div class="track" id="nowTrack" hidden></div>
+    </div>
+    <button class="fav-btn" id="playerFav" aria-label="Add to favourites" title="Favourite">
+      <svg viewBox="0 0 24 24"><path class="heart" d="M12 20.5C7 16.5 3 13.2 3 9.3 3 6.4 5.2 4.5 7.7 4.5c1.7 0 3.2.9 4.3 2.4 1.1-1.5 2.6-2.4 4.3-2.4 2.5 0 4.7 1.9 4.7 4.8 0 3.9-4 7.2-9 11.2z"/></svg>
+    </button>
+    <div class="vol">
+      <span class="vol-pct" id="volPct" aria-hidden="true">100%</span>
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h4l5 4V4L7 8H3z" fill="#241B04"/><path d="M14.5 7c1 1 1.6 1.9 1.6 3s-.6 2-1.6 3" fill="none" stroke="#241B04" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="range" id="vol" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+    </div>
+    <button class="play-btn" id="playBtn" aria-label="Play / pause">
+      <span class="spin" aria-hidden="true"></span>
+      <svg class="play-icon" id="playIcon" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M8 5l14 8-14 8z" fill="#241B04"/></svg>
+    </button>
+  </div>
+</div>
+
+<audio id="audio" preload="none"></audio>
+
+<script>
+const STATIONS = [
+ ["#1 HITS 80s","https://makri.cdnstream.com/1898_128","US","🇺🇸","pop"],
+ ["- 0 N - 2000s on Radio","https://0n-2000s.radionetz.de/0n-2000s.mp3","DE","🇩🇪","rock"],
+ ["- 0 N - 60s on Radio","https://0n-60s.radionetz.de/0n-60s.mp3","DE","🇩🇪","rock"],
+ ["- 0 N - 70s on Radio","https://0n-70s.radionetz.de/0n-70s.mp3","DE","🇩🇪","pop"],
+ ["- 0 N - 80s on Radio","https://0n-80s.radionetz.de/0n-80s.mp3","DE","🇩🇪","pop"],
+ ["- 0 N - 90s on Radio","https://0n-90s.radionetz.de/0n-90s.mp3","DE","🇩🇪","rock"],
+ ["- 0 N - Chillout on Radio","https://0n-chillout.radionetz.de/0n-chillout.aac","DE","🇩🇪","electronic"],
+ ["- 0 N - Classic Rock on Radio","https://0n-classicrock.radionetz.de/0n-classicrock.mp3","DE","🇩🇪","rock"],
+ ["- 0 N - Country on Radio","https://0n-country.radionetz.de/0n-country.mp3","DE","🇩🇪","country"],
+ ["- 0 N - Dance on Radio","https://0n-dance.radionetz.de/0n-dance.mp3","DE","🇩🇪","electronic"],
+ ["- 0 N - Disco on Radio","https://0n-disco.radionetz.de/0n-disco.mp3","DE","🇩🇪","jazz"],
+ ["- 0 N - Electro on Radio","https://0n-electro.radionetz.de/0n-electro.mp3","DE","🇩🇪","electronic"],
+ ["- 0 N - Gothic on Radio","https://0n-gothic.radionetz.de/0n-gothic.mp3","DE","🇩🇪","rock"],
+ ["- 0 N - Indie on Radio","https://0n-indie.radionetz.de/0n-indie.mp3","DE","🇩🇪","rock"],
+ ["- 0 N - Rock on Radio","https://0n-rock.radionetz.de/0n-rock.mp3","DE","🇩🇪","rock"],
+ ["- 0 N - Smooth Jazz on Radio","https://0n-smoothjazz.radionetz.de/0n-smoothjazz.aac","DE","🇩🇪","jazz"],
+ ["0nlineradio REMIX","https://stream.0nlineradio.com/remix?ref=radiobrowser","DE","🇩🇪","electronic"],
+ ["0nlineradio SOFT ROCK","https://stream.0nlineradio.com/soft-rock?ref=radiobrowser","DE","🇩🇪","rock"],
+ ["100 BEST IBIZA DEEP HOUSE","https://stream.zeno.fm/lwv6zqgtv1dtv","CA","🇨🇦","jazz"],
+ ["104.9 Max Country","https://ais-sa1.streamon.fm/7246_48k.aac","US","🇺🇸","country"],
+ ["7000FM","https://stream.7000fm.gr/radio/8000/radio.mp3","GR","🇬🇷","electronic"],
+ ["70s 80s Disco Funk ModernSoul Boogie","https://discofunk.streamingmedia.it/usa","US","🇺🇸","jazz"],
+ ["80s Forever - We Keep The 80s Alive","https://premium.shoutcastsolutions.com/radio/8050/256.mp3","CH","🇨🇭","rock"],
+ ["89 A Radio Rock","https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO_89FM_ADP.aac?dist=site-89fm","BR","🇧🇷","rock"],
+ ["8radio","https://edge4.audioxi.com/8RADIO","IE","🇮🇪","rock"],
+ ["95.7 That Station","https://ais-sa8.cdnstream1.com/2749_64.aac","US","🇺🇸","rock"],
+ ["99.9 Gator Country","https://playerservices.streamtheworld.com/api/livestream-redirect/WGNEAAC.aac","US","🇺🇸","country"],
+ ["_80 EXITOS","https://80sexitos.stream.laut.fm/80sexitos","ES","🇪🇸","electronic"],
+ ["__CLUB__ by rautemusik (rm.fm)","https://club-high.rautemusik.fm/?ref=radiobrowser","DE","🇩🇪","electronic"],
+ ["__TRANCE__ by rautemusik (rm.fm)","https://trance-high.rautemusik.fm/?ref=radiobrowser","DE","🇩🇪","electronic"],
+ ["_Funky Corner Radio (Spain)","https://ais-sa2.cdnstream1.com/2447_96.aac","ES","🇪🇸","jazz"],
+ ["_Funky Corner Radio (USA)","https://ais-sa2.cdnstream1.com/2447_192.mp3","US","🇺🇸","jazz"],
+ ["AIRPORT LOUNGE RADIO","https://az1.mediacp.eu/listen/airport-lounge-radio/radio.mp3","CA","🇨🇦","jazz"],
+ ["Alternative Radio","https://www.radioking.com/play/alternative-radio-1","FR","🇫🇷","rock"],
+ ["Always ELVIS Radio","https://radioserver.dk/alwayselvisradio","DK","🇩🇰","pop"],
+ ["America's Country","https://ais-sa2.cdnstream1.com/1976_128.mp3","US","🇺🇸","country"],
+ ["Anime Para Ti","https://stream.zeno.fm/qpn8mkt8c4duv","JP","🇯🇵","pop"],
+ ["Antyradio","https://n-4-2.dcs.redcdn.pl/sc/o2/Eurozet/live/antyradio.livx?audio=5","PL","🇵🇱","rock"],
+ ["Arrow Classic Rock","https://stream.player.arrow.nl/arrowcr","NL","🇳🇱","rock"],
+ ["AshiyaRadio〜アシヤ・ラヂヲ〜","https://s3.radio.co/sc8d895604/listen","JP","🇯🇵","jazz"],
+ ["Athens Noise Rocks","https://radio.athensnoise.rocks/listen/athensnoise.rocks/radio.mp3","GR","🇬🇷","rock"],
+ ["Base FM","https://icast.connectmedia.hu/5401/live.mp3","HU","🇭🇺","electronic"],
+ ["Bayern 1 Franken","https://dispatcher.rndfnk.com/br/br1/franken/mp3/mid","DE","🇩🇪","pop"],
+ ["Bayern 1 Oberbayern","https://dispatcher.rndfnk.com/br/br1/obb/mp3/mid","DE","🇩🇪","pop"],
+ ["Bayern 3","https://dispatcher.rndfnk.com/br/br3/live/mp3/mid","DE","🇩🇪","pop"],
+ ["Begoodradio.com 80s metal","https://bigrradio.cdnstream1.com/5212_128","US","🇺🇸","rock"],
+ ["Best Of Rock.FM Alternative Rock","https://bestofrockfm.stream.vip/altrock/mp3-256/bestofrock.fm/","DE","🇩🇪","rock"],
+ ["Big B Radio - Jpop","https://antares.dribbcast.com/proxy/jpop?mp=/s","JP","🇯🇵","pop"],
+ ["Big B Radio - Kpop","https://antares.dribbcast.com/proxy/kpop?mp=/s","KR","🇰🇷","pop"],
+ ["Blue 100.7 FM","https://playerservices.streamtheworld.com/api/livestream-redirect/BLUE_FM_100_7AAC.aac","AR","🇦🇷","pop"],
+ ["Bluegrass Country","https://ice24.securenetsystems.net/WAMU","US","🇺🇸","country"],
+ ["Boot Boy Radio","https://streaming04.liveboxstream.uk/proxy/dwain?mp=/stream","GB","🇬🇧","rock"],
+ ["BOX : Japan City Pop - 日本のシティポップ","https://play.streamafrica.net/japancitypop","JP","🇯🇵","pop"],
+ ["ByteFM (192k)","https://bytefm.cast.addradio.de/bytefm/main/high/stream","DE","🇩🇪","rock"],
+ ["Cadena 3 Cordoba","https://liveradio.mediainbox.net/radio3.mp3","AR","🇦🇷","pop"],
+ ["Café del Mar","https://streams.radio.co/se1a320b47/listen","ES","🇪🇸","electronic"],
+ ["CBN Cross Country Christmas","https://streams.cbnradio.com/christmas-128K?%20Title1=CBN%20Cross%20Country%20Christmas","US","🇺🇸","country"],
+ ["Chill Lounge Florida (USA) 128k mp3","https://vip2.fastcast4u.com/proxy/chillfla?mp=/1","US","🇺🇸","electronic"],
+ ["chilltrax","https://streamssl.chilltrax.com/","US","🇺🇸","electronic"],
+ ["Choice Classic Rock","https://streamer.radio.co/s66f2626b4/listen","CA","🇨🇦","rock"],
+ ["Citizen","https://sp3.streams.ovh/8082/;","GR","🇬🇷","electronic"],
+ ["Classic 21 Blues","https://radios.rtbf.be/wr-c21-blues-128.mp3","BE","🇧🇪","jazz"],
+ ["CLASSIC HITS RADIO Italia","https://classichitsradio.streamingmedia.it/play","IT","🇮🇹","pop"],
+ ["Classic Rock Danmark","https://netradio.classicfm.dk/classicrock","DK","🇩🇰","rock"],
+ ["Convoy en vivo","https://live.convoynetwork.com/stream","MX","🇲🇽","rock"],
+ ["COOLFM Best Hits EVER","https://mediagw.e-tiger.net/stream/zc11","HU","🇭🇺","pop"],
+ ["COOLFM Funky&Soul","https://mediagw.e-tiger.net/stream/zc25","HU","🇭🇺","jazz"],
+ ["COOLFM YouTube HOT HITS!","https://mediagw.e-tiger.net/stream/zc22","HU","🇭🇺","pop"],
+ ["CruiseOne Radio","https://solid24.streamupsolutions.com/proxy/cmxicxxx?mp=/256kbps","GB","🇬🇧","rock"],
+ ["DANCE 90'S","https://mediagw.e-tiger.net/stream/zc06?ver=887687","HU","🇭🇺","electronic"],
+ ["Dance Club Radio","https://ice4.abradio.cz/dance128.mp3","CZ","🇨🇿","electronic"],
+ ["Dansbandskanalen.se*","https://stream.dbmedia.se/dbkMP3","SE","🇸🇪","rock"],
+ ["Disco Net","https://stream1.468.gr/8004/stream","GR","🇬🇷","pop"],
+ ["Doubleclap Radio","https://s3.radio.co/scfd7273b2/listen","FI","🇫🇮","electronic"],
+ ["Dublin's FM104","https://wg.cdn.tibus.net/fm104MP3128","IE","🇮🇪","electronic"],
+ ["DumDUM","https://sr11.inmystream.it/proxy/dumdumradio","IT","🇮🇹","rock"],
+ ["Easy FM","https://netradio.ziniur.lt/easyfm.mp3","LT","🇱🇹","jazz"],
+ ["Easy FM 972","https://stream.radiojar.com/cthtwxk5yvduv.mp3","GR","🇬🇷","rock"],
+ ["Easy Radio Ireland, Easy Mix","https://streaming.exclusive.radio/uber/easymix/icecast.audio","IE","🇮🇪","rock"],
+ ["Epic Lounge - IBIZA CHILLOUT LOUNGE","https://stream.epic-lounge.com/ibiza-chillout-lounge?ref=radiobrowser","DE","🇩🇪","electronic"],
+ ["EROTICA LOUNGE","https://stream.zeno.fm/89asra0sfa0uv","US","🇺🇸","jazz"],
+ ["EuroDance 90 radio","https://stream-eurodance90.fr/radio/8000/128.mp3?1627933323","FR","🇫🇷","electronic"],
+ ["Evropa 2 - Actve","https://ice.actve.net/fm-evropa2-128","CZ","🇨🇿","pop"],
+ ["Flaix FM","https://stream.flaixfm.cat/icecast","ES","🇪🇸","electronic"],
+ ["Flashback 60s","https://ice-11.spilarinn.is/60flashback","IS","🇮🇸","pop"],
+ ["FM 103.9 A Rock","https://stream.rockradio.hu/","HU","🇭🇺","rock"],
+ ["FM 97.9 Vida","https://streaming450tb.locucionar.com/proxy/fmvida979?mp=/stream","AR","🇦🇷","pop"],
+ ["FM4 | ORF","https://orf-live.ors-shoutcast.at/fm4-q1a","AT","🇦🇹","rock"],
+ ["FM4 | ORF | HQ","https://orf-live.ors-shoutcast.at/fm4-q2a","AT","🇦🇹","rock"],
+ ["Free FM 80 Tokyo","https://freefm80.radioca.st/","JP","🇯🇵","pop"],
+ ["Free FM Rock Austral","https://freefmrock.radioca.st/","AU","🇦🇺","rock"],
+ ["Free FM Tokyo","https://rocafmadrid.radioca.st/stream","JP","🇯🇵","rock"],
+ ["Freedom FM","https://edge3.audioxi.com/FREEDOMFM","IE","🇮🇪","rock"],
+ ["Fresh 92.7","https://live.fresh927.com.au/freshaac","AU","🇦🇺","pop"],
+ ["Frisky","https://stream.frisky.friskyradio.com/frisky_mp3_high","US","🇺🇸","electronic"],
+ ["Funkstar Radio","https://funkstar.radioca.st/stream","CZ","🇨🇿","jazz"],
+ ["Funky Radio","https://funkyradio.streamingmedia.it/play.mp3","IT","🇮🇹","jazz"],
+ ["Gold","https://media-ssl.musicradio.com/GoldMP3","GB","🇬🇧","pop"],
+ ["Gold 104.3","https://ais-arn.streamguys1.com/au_004_icy","AU","🇦🇺","pop"],
+ ["Gritty Rock Radio","https://listen.radioking.com/radio/10713/stream/224413","CA","🇨🇦","country"],
+ ["Grolloo Radio","https://uk1.streamingpulse.com/ssl/grollooradio","NL","🇳🇱","country"],
+ ["Harties FM","https://s5.radio.co/s68c6f4028/listen","ZA","🇿🇦","pop"],
+ ["Heart 70s","https://media-ssl.musicradio.com/Heart70sMP3","GB","🇬🇧","pop"],
+ ["Heart 80s","https://media-ssl.musicradio.com/Heart80sMP3","GB","🇬🇧","pop"],
+ ["Heart 90s","https://media-ssl.musicradio.com/Heart90sMP3","GB","🇬🇧","pop"],
+ ["Heart Dance","https://media-ssl.musicradio.com/HeartDanceMP3","GB","🇬🇧","electronic"],
+ ["Highland Radio","https://playerservices.streamtheworld.com/api/livestream-redirect/HIGHLAND_RADIO.mp3","IE","🇮🇪","pop"],
+ ["Hot FM 104.6 Greece","https://hotfm.live24.gr/hotfm","GR","🇬🇷","pop"],
+ ["Humm Radio","https://mediaworks.streamguys1.com/humm_net_icy","NZ","🇳🇿","pop"],
+ ["Indie88","https://localradio.streamb.live/SB00348","CA","🇨🇦","rock"],
+ ["ITALIA Italia 80","https://icy.unitedradio.it/um016.mp3","IT","🇮🇹","pop"],
+ ["Italo Disco","https://italo-disco.stream.laut.fm/italo-disco","DE","🇩🇪","electronic"],
+ ["Jakaranda FM","https://edge.iono.fm/xice/jacarandafm_live_high.mp3","ZA","🇿🇦","pop"],
+ ["Jazz de Ville - Chill","https://onair22.xdevel.com/proxy/xautocloud_td3e_421?mp=/stream","NL","🇳🇱","jazz"],
+ ["JazzRadio 106.8 Berlin","https://streaming.radio.co/s774887f7b/listen","DE","🇩🇪","jazz"],
+ ["JazzRadio.fr Blues","https://jazzblues.ice.infomaniak.ch/jazzblues-high.mp3","FR","🇫🇷","jazz"],
+ ["JazzRadio.fr Funk","https://jazz-wr06.ice.infomaniak.ch/jazz-wr06-128.mp3","FR","🇫🇷","jazz"],
+ ["Jazzradio.fr Jazz & Classique","https://jazz-wr17.ice.infomaniak.ch/jazz-wr17-128.mp3","FR","🇫🇷","jazz"],
+ ["Jazzy","https://radio.musorok.org/listen/jazzy/jazzy.mp3","HU","🇭🇺","jazz"],
+ ["Jazzy Groove","https://radio.musorok.org/listen/jazzygroove/jazzygroove.mp3","HU","🇭🇺","jazz"],
+ ["JFSR - Jazz Funk Soul Radio","https://s2.radio.co/s22ae5a8a6/listen","GB","🇬🇧","jazz"],
+ ["KFM 94.5","https://playerservices.streamtheworld.com/api/livestream-redirect/KFM.mp3","ZA","🇿🇦","rock"],
+ ["KIIS 101.1","https://ais-arn.streamguys1.com/au_001_icy","AU","🇦🇺","pop"],
+ ["KIIS 106.5","https://ais-arn.streamguys1.com/au_007_icy","AU","🇦🇺","pop"],
+ ["KINK 128k aac","https://22553.live.streamtheworld.com/KINKAAC_SC","NL","🇳🇱","rock"],
+ ["Kool FM","https://admin.stream.rinse.fm/proxy/kool/stream","GB","🇬🇧","rock"],
+ ["La 100 Clásicos - Disco Retro Clásicos","https://27323.live.streamtheworld.com/FCLASICOS_56AAC.aac?","AR","🇦🇷","electronic"],
+ ["Labgate - Progressive Rock","https://s2.ssl-stream.com/radio/8180/radio.mp3","CA","🇨🇦","rock"],
+ ["Labgate P.YG. Pink Floyd, Yes, Genesis","https://s2.ssl-stream.com/radio/8160/radio.mp3","CA","🇨🇦","rock"],
+ ["Latina reggaeton","https://latinareggaeton.ice.infomaniak.ch/latinareggaeton.mp3","FR","🇫🇷","electronic"],
+ ["Le Bon Mix Radio 97.9","https://stream10.xdevel.com/audio13s976748-2017/stream/icecast.audio","FR","🇫🇷","rock"],
+ ["Listen.moe J-Pop (MP3)","https://listen.moe/fallback","JP","🇯🇵","pop"],
+ ["Listen.Moe JPop","https://listen.moe/fallback","JP","🇯🇵","pop"],
+ ["LOS 40 Principales España","https://playerservices.streamtheworld.com/api/livestream-redirect/Los40.mp3","ES","🇪🇸","pop"],
+ ["Los 40 Urban","https://playerservices.streamtheworld.com/api/livestream-redirect/LOS40_URBAN.mp3","ES","🇪🇸","electronic"],
+ ["LOS40 Classic","https://playerservices.streamtheworld.com/api/livestream-redirect/LOS40_CLASSIC.mp3","ES","🇪🇸","rock"],
+ ["Lounge.FM - 100% Austria","https://s35.derstream.net/100austria.mp3","AT","🇦🇹","jazz"],
+ ["M-1 Dance","https://radio.m-1.fm/m-1dance/aac","LT","🇱🇹","electronic"],
+ ["MAD FM Auckland 106.7","https://madfm-gecko.radioca.st/stream","NZ","🇳🇿","rock"],
+ ["Megarock Radio 320k","https://stream3.megarockradio.net:80/","US","🇺🇸","rock"],
+ ["Metal Invasion Radio","https://radio.metal-invasion.fr/radio/8000/stream96","FR","🇫🇷","rock"],
+ ["Miami Beach Radio","https://streaming.radiostreamlive.com/miamibeachradio_devices","US","🇺🇸","pop"],
+ ["Mix 93.8 FM","https://edge.iono.fm/xice/113_medium.aac","ZA","🇿🇦","electronic"],
+ ["Mix Megapol 104,3","https://live-bauerse-fm.sharp-stream.com/mixmegapol_instream_se_mp3","SE","🇸🇪","pop"],
+ ["Mountain Reggae Radio","https://mountainreggaeradio.stream.laut.fm/mountainreggaeradio","AT","🇦🇹","electronic"],
+ ["MR2 - Petőfi Rádió","https://mr-stream.connectmedia.hu/4738/mr2.mp3","HU","🇭🇺","pop"],
+ ["MyFM Perth","https://halo.streamerr.co/listen/myfmperth/radio.mp3","AU","🇦🇺","rock"],
+ ["myROCK","https://live-bauerdk.sharp-stream.com/myrock_dk_mp3","DK","🇩🇰","rock"],
+ ["Netro Life Radio 100,8 FM","https://icecast9.play.cz/netro-life-radio.mp3","CZ","🇨🇿","electronic"],
+ ["NEW HITS RADIO Italia","https://newhitsradio.streamingmedia.it/play","IT","🇮🇹","pop"],
+ ["Nightride FM - Darksynth","https://stream.nightride.fm/darksynth.mp3","DE","🇩🇪","rock"],
+ ["Nordic Chillout Radio","https://play.radioking.io/nordic-chillout-radio/736489","LV","🇱🇻","electronic"],
+ ["Northern Metal Radio","https://dc5.serverse.com/proxy/lvzgnvcj/stream","SE","🇸🇪","rock"],
+ ["Northern Metal Radio Extreme","https://s2.free-shoutcast.com/stream/18092","SE","🇸🇪","rock"],
+ ["Nostalgie Vlaanderen","https://playerservices.streamtheworld.com/api/livestream-redirect/NOSTALGIEWHATAFEELING.mp3?dist=radiobrowser","BE","🇧🇪","pop"],
+ ["Nova 100% Dansk","https://live-bauerdk.sharp-stream.com/DK_HQ_RP11.aac","DK","🇩🇰","pop"],
+ ["Nova 91.9","https://playerservices.streamtheworld.com/api/livestream-redirect/NOVA_919_AAC48.aac","AU","🇦🇺","pop"],
+ ["NRJ","https://stream-redirect.bauermedia.fi/nrj/nrj_64.aac?aw_0_1st.bauer_loggedin=false&aw_0_1st.playerid=BMUK_tunein","FI","🇫🇮","pop"],
+ ["NRJ Norge","https://live-bauerno.sharp-stream.com/kiss_no_mp3","NO","🇳🇴","pop"],
+ ["OLDIE ANTENNE","https://s1-webradio.oldie-antenne.de/oldie-antenne?aw_0_1st.playerid=OldieAntenneWebPlayer","DE","🇩🇪","pop"],
+ ["One Dance","https://ice04.fluidstream.net/rn1_2.aac","IT","🇮🇹","electronic"],
+ ["OnlyHits Japan","https://j.onlyhit.us/play","JP","🇯🇵","pop"],
+ ["OUI FM","https://ouifm.ice.infomaniak.ch/ouifm-high.mp3","FR","🇫🇷","rock"],
+ ["OUI FM BLUES'N'ROCK","https://ouifmbluesnrock.ice.infomaniak.ch/ouifmbluesnrock-128.mp3","FR","🇫🇷","rock"],
+ ["OUI FM REGGAE","https://ouifmganja.ice.infomaniak.ch/ouifmganja-128.mp3","FR","🇫🇷","electronic"],
+ ["OUI FM ROCK INDÉ","https://ouifm5.ice.infomaniak.ch/ouifm5.mp3","FR","🇫🇷","rock"],
+ ["P10 Country (AAC HQ)","https://p10.p4groupaudio.com/P10_AH","NO","🇳🇴","country"],
+ ["P11 Dance (AAC HQ)","https://p11.p4groupaudio.com/P11_AH","NO","🇳🇴","electronic"],
+ ["P11 Dance (MP3 128k)","https://p11.p4groupaudio.com/P11_MM","NO","🇳🇴","electronic"],
+ ["P12 Hitmix (AAC HQ)","https://nrj.p4groupaudio.com/NRJ_AH","NO","🇳🇴","pop"],
+ ["P12 Hitmix (MP3 128k)","https://nrj.p4groupaudio.com/NRJ_MM","NO","🇳🇴","pop"],
+ ["P5 Hits (MP3 128k)","https://p5.p4groupaudio.com/P05_MM","NO","🇳🇴","pop"],
+ ["P5 Nonstop Hits (AAC HQ)","https://p5n.p4groupaudio.com/P05AAH","NO","🇳🇴","pop"],
+ ["P6 Rock (MP3 128k)","https://p6.p4groupaudio.com/P06_MM","NO","🇳🇴","rock"],
+ ["P7 Klem (AAC HQ)","https://p7.p4groupaudio.com/P07_AH","NO","🇳🇴","pop"],
+ ["P8 Pop (MP3 128k)","https://p8.p4groupaudio.com/P08_MM","NO","🇳🇴","pop"],
+ ["P9 Retro (MP3 128k)","https://p9.p4groupaudio.com/P09_MH","NO","🇳🇴","pop"],
+ ["Perfect Deep House","https://stream.radiojar.com/asngk2sg798uv?1659885393","ES","🇪🇸","electronic"],
+ ["PerfectMoods – 24/7 Quality Lounge","https://www.radioking.com/play/perfectmoods/104227","NL","🇳🇱","jazz"],
+ ["Petőfi Rádió","https://icast.connectmedia.hu/4738/mr2.mp3","HU","🇭🇺","rock"],
+ ["Pobre Johnny","https://stream4.suenas.net/pobrejohnny","AR","🇦🇷","rock"],
+ ["POPfm","https://stream.madmenmedia.se/popfm","FI","🇫🇮","pop"],
+ ["Power Hit Radio LT","https://ice.leviracloud.eu/phr192-mp3","LT","🇱🇹","electronic"],
+ ["PunkRockRadio.ca","https://stream.radio.co/s904013bb1/listen","CA","🇨🇦","rock"],
+ ["R/a/dio","https://relay0.r-a-d.io/main.mp3","JP","🇯🇵","pop"],
+ ["Radio 80 Afro","https://sphera.fluidstream.eu/r80_afro.mp3","IT","🇮🇹","jazz"],
+ ["Radio ABC","https://radioserver.dk/abc","DK","🇩🇰","pop"],
+ ["Radio Armisa","https://onair.armisa.it/listen/armisa/radio.mp3","IT","🇮🇹","electronic"],
+ ["Radio Art - Roots Reggae","https://live.radioart.com/fRoots_reggae.mp3","GR","🇬🇷","electronic"],
+ ["Radio Art Acoustic Blues","https://live.radioart.com/fAcoustic_blues.mp3","US","🇺🇸","jazz"],
+ ["Radio Art Vocal Lounge","https://live.radioart.com/fVocal_lounge.mp3","US","🇺🇸","electronic"],
+ ["Radio Blaník Morava a Slezsko","https://ice.abradio.cz/blanikmorava128.mp3?gdpr=1&gdpr_consent=Q084aEUyaE84aEUyaEFjQUJCRU5BX0NnQVBfQUFIX0FBQVlnRjVvQmhEeEVCU0ZDQUdKb1lOa2dBQUFXeHdBQUFDQUNBQUFBb0FBQUFCb0FBQVFBQUFBQUFBQWdCQUFBQUJJQUlBSUFBQUJBR0VBQUFBQUFBQUFBQUFBQUFFQUFBQUFBSVFBQUFBQUFBQ0JBQUFBQUFBQUFBQUFBQUFBQVFBQUFnWG5BZUFBV0FCVUFDNEFIQUFRQUFxQUJvQURrQUlnQVRBQW5nQlZBQzRBRjhBTVFBaElCRUFFVUFLVUFXSUF5d0Jtd0R1QU84QWhBQkZnQzBnRjFBTUNBYXdCTm9DOHdBQUFBLllBQUFBQUFBQUFBQQ==","CZ","🇨🇿","pop"],
+ ["Radio Country Live New York","https://streaming.radiostreamlive.com/radiocountrylive_devices","US","🇺🇸","country"],
+ ["Radio Mix FM","https://playerservices.streamtheworld.com/api/livestream-redirect/MIXFM_SAOPAULOAAC.aac","BR","🇧🇷","rock"],
+ ["Radio Motown","https://broadcast.miami/proxy/motown?mp=/stream/;","US","🇺🇸","jazz"],
+ ["Radio Nova","https://stream-redirect.bauermedia.fi/radionova/radionova_64.aac?aw_0_1st.bauer_loggedin=false&aw_0_1st.playerid=BMUK_tunein","FI","🇫🇮","pop"],
+ ["Radio Planeta Costa del Sol","https://radioplaneta.emitironline.com/radio","ES","🇪🇸","electronic"],
+ ["Radio Reggae Brasil","https://casthttps.suaradionanet.net/13805/stream","BR","🇧🇷","electronic"],
+ ["Radio Robotic","https://stream.zeno.fm/rhscse2a41zuv","NZ","🇳🇿","rock"],
+ ["Radio Rock (NO)","https://live-bauerno.sharp-stream.com/radiorock_no_mp3","NO","🇳🇴","rock"],
+ ["Radio Shopping","https://stream4.suenas.net/shoppingclassics","AR","🇦🇷","rock"],
+ ["Radiocentras","https://stream2.rc.lt/rc128.mp3","LT","🇱🇹","rock"],
+ ["radiolatinamerika","https://stream.radiolatinamerika.no/latam_hq","NO","🇳🇴","pop"],
+ ["Real Love Music - Radio Future Funk","https://stream-152.zeno.fm/48533y95cnruv?zs=doyTUcjfTvCVtBOS3nlI8g","JP","🇯🇵","jazz"],
+ ["Reggae.fr","https://listen.radioking.com/radio/50473/stream/87415","FR","🇫🇷","electronic"],
+ ["RELAX FM Lietuva","https://stream1.relaxfm.lt/relaxfm128.mp3","LT","🇱🇹","pop"],
+ ["Retro FM Skåne","https://live-bauerse-fm.sharp-stream.com/retrofm_aacp?ua=WEB&aw_0_1st.playerid=SBS_RP_WEB&aw_0_1st.skey=1575715192&companionAds=true&listenerId=@@GUID@@","SE","🇸🇪","pop"],
+ ["Retro Hit Radio","https://riphel02.radioca.st/stream","NZ","🇳🇿","pop"],
+ ["Retro Rádió","https://icast.connectmedia.hu/5001/live.mp3","HU","🇭🇺","rock"],
+ ["Rinse UK","https://admin.stream.rinse.fm/proxy/rinse_uk/stream","GB","🇬🇧","jazz"],
+ ["Roca Fm Clasicos Mexico","https://xxdelgado.radioca.st/","MX","🇲🇽","pop"],
+ ["Rock & Folk (rock n folk)","https://rockfolk.ice.infomaniak.ch/rockfolk.mp3","FR","🇫🇷","rock"],
+ ["Rock & Pop 95.9","https://playerservices.streamtheworld.com/api/livestream-redirect/ROCKANDPOP.mp3","AR","🇦🇷","rock"],
+ ["Rock 101","https://s3.radio.co/s2c1cebae5/listen","MX","🇲🇽","rock"],
+ ["Rock Antenne Gothic","https://s6-webradio.rockantenne.de/gothic/stream/mp3","DE","🇩🇪","rock"],
+ ["Rock Antenne Heavy Metal","https://stream.rockantenne.de/heavy-metal/stream/aacp","DE","🇩🇪","rock"],
+ ["Rock FM","https://stream2.rockfm.lt/crf128.mp3","LT","🇱🇹","rock"],
+ ["ROCK FM Classic Rock","https://audiotainment-sw.streamabc.net/atsw-classicrock-mp3-128-2538548?","US","🇺🇸","rock"],
+ ["Rock Radio","https://playerservices.streamtheworld.com/api/livestream-redirect/ROCK_RADIO_128.mp3","CZ","🇨🇿","rock"],
+ ["RTBF Classic 21","https://radios.rtbf.be/classic21-128.mp3","BE","🇧🇪","rock"],
+ ["RTBF Classic 21 - Live","https://radios.rtbf.be/wr-c21-live-128.mp3","BE","🇧🇪","rock"],
+ ["RTBF Classic 21 - Metal","https://radios.rtbf.be/wr-c21-metal-128.mp3","BE","🇧🇪","rock"],
+ ["RTBF Classic 21 - Reggae","https://radios.rtbf.be/wr-eventradio-128.mp3","BE","🇧🇪","electronic"],
+ ["RTBF Classic 21 - Route 66","https://radios.rtbf.be/wr-c21-route66-128.mp3","BE","🇧🇪","country"],
+ ["Rádio Beat (128 AAC)","https://icecast2.play.cz/beat128aac","CZ","🇨🇿","rock"],
+ ["Rádio Buteco Sertanejo","https://stream.zeno.fm/6kumndewqbruv","BR","🇧🇷","country"],
+ ["Rádio Metropolitana 98.5 FM Pop","https://ice.fabricahost.com.br/metrosppop","BR","🇧🇷","pop"],
+ ["Rádio Mix 106.3 FM","https://playerservices.streamtheworld.com/api/livestream-redirect/MIXFM_SAOPAULOAAC.aac","BR","🇧🇷","rock"],
+ ["Rádio Rap Brasil","https://stream.zeno.fm/7c83b37e32quv","BR","🇧🇷","electronic"],
+ ["Rádio Saudade FM 99.7","https://playerservices.streamtheworld.com/api/livestream-redirect/SAUDADE_FMAAC.aac","BR","🇧🇷","pop"],
+ ["Rádió 1","https://icast.connectmedia.hu/5201/live.mp3","HU","🇭🇺","electronic"],
+ ["SBS PopAsia","https://sbs-ice.streamguys1.com/sbs-popasia-sbs-web","AU","🇦🇺","pop"],
+ ["SKAI 100.3","https://skai.live24.gr/skai1003","GR","🇬🇷","rock"],
+ ["Ski FM","https://s2.radio.co/s6436891bc/listen","NZ","🇳🇿","pop"],
+ ["Sky Radio Hits","https://playerservices.streamtheworld.com/api/livestream-redirect/SRGSTR01.mp3?dist=skyradio_web&ttag=talpa_consent:0&gdpr=1&gdpr_consent=BO2svb6O2svb6ADABANLDTAAAAAxKAAA","NL","🇳🇱","pop"],
+ ["Skyrock Klassics","https://icecast.skyrock.net/s/klassiks_aac_64k?tvr_name=radiofr&tvr_section1=64aac","FR","🇫🇷","rock"],
+ ["Smooth Chill","https://media-ssl.musicradio.com/ChillMP3","GB","🇬🇧","electronic"],
+ ["Smooth Country","https://media-ssl.musicradio.com/SmoothCountry","GB","🇬🇧","country"],
+ ["SmoothJazz.com 128k mp3","https://smoothjazz.cdnstream1.com/2585_128.mp3","US","🇺🇸","jazz"],
+ ["SomaFM Beat Blender (128k MP3)","https://ice6.somafm.com/beatblender-128-mp3","US","🇺🇸","electronic"],
+ ["SomaFM Boot Liquor (128k AAC)","https://ice1.somafm.com/bootliquor-128-aac","US","🇺🇸","country"],
+ ["SomaFM Boot Liquor (320k MP3)","https://ice4.somafm.com/bootliquor-320-mp3","US","🇺🇸","country"],
+ ["SomaFM Deep Space One (32k AAC)","https://ice2.somafm.com/deepspaceone-32-aac","US","🇺🇸","electronic"],
+ ["SomaFM DEF CON Radio (128k AAC)","https://ice6.somafm.com/defcon-128-aac","US","🇺🇸","electronic"],
+ ["SomaFM Fluid (128k MP3)","https://ice4.somafm.com/fluid-128-mp3","US","🇺🇸","jazz"],
+ ["SomaFM Folk Forward (128k AAC)","https://ice5.somafm.com/folkfwd-128-aac","US","🇺🇸","rock"],
+ ["SomaFM Folk Forward (128k MP3)","https://ice1.somafm.com/folkfwd-128-mp3","US","🇺🇸","rock"],
+ ["SomaFM Groove Salad (128k AAC)","https://ice5.somafm.com/groovesalad-128-aac","US","🇺🇸","electronic"],
+ ["SomaFM Groove Salad (128k MP3)","https://ice5.somafm.com/groovesalad-128-mp3","US","🇺🇸","electronic"],
+ ["SomaFM Groove Salad (64k AAC)","https://ice2.somafm.com/groovesalad-64-aac","US","🇺🇸","electronic"],
+ ["SomaFM Heavyweight Reggae (256k MP3)","https://ice6.somafm.com/reggae-256-mp3","US","🇺🇸","rock"],
+ ["SomaFM Illinois Street Lounge (128k MP3)","https://ice4.somafm.com/illstreet-128-mp3","US","🇺🇸","electronic"],
+ ["SomaFM Indie Pop Rocks! (128k AAC)","https://ice6.somafm.com/indiepop-128-aac","US","🇺🇸","rock"],
+ ["SomaFM Left Coast 70s (320k MP3)","https://ice5.somafm.com/seventies-320-mp3","US","🇺🇸","rock"],
+ ["SomaFM Lush (128k AAC)","https://ice5.somafm.com/lush-128-aac","US","🇺🇸","electronic"],
+ ["SomaFM Lush (128k MP3)","https://ice2.somafm.com/lush-128-mp3","US","🇺🇸","electronic"],
+ ["SomaFM Metal Detector (128k AAC)","https://ice4.somafm.com/metal-128-aac","US","🇺🇸","rock"],
+ ["SomaFM PopTron (128k AAC)","https://ice5.somafm.com/poptron-128-aac","US","🇺🇸","rock"],
+ ["SomaFM PopTron (128k MP3)","https://ice2.somafm.com/poptron-128-mp3","US","🇺🇸","rock"],
+ ["SomaFM Secret Agent (128k MP3)","https://ice6.somafm.com/secretagent-128-mp3","US","🇺🇸","jazz"],
+ ["SomaFM Secret Agent (32k AAC)","https://ice6.somafm.com/secretagent-32-aac","US","🇺🇸","jazz"],
+ ["SomaFM Sonic Universe (128k MP3)","https://ice5.somafm.com/sonicuniverse-128-mp3","US","🇺🇸","jazz"],
+ ["SomaFM Space Station Soma (128k AAC)","https://ice5.somafm.com/spacestation-128-aac","US","🇺🇸","electronic"],
+ ["SomaFM Underground 80s (128k MP3)","https://ice6.somafm.com/u80s-128-mp3","US","🇺🇸","pop"],
+ ["SOUL RADIO Only Classic Soul","https://listen.soulradio.uk/uk","GB","🇬🇧","jazz"],
+ ["StarFM","https://edge.iono.fm/xice/112_medium.aac","ZA","🇿🇦","rock"],
+ ["Sveriges Radio - P4 Plus","https://live1.sr.se/p4plus-aac-320","SE","🇸🇪","pop"],
+ ["Sveriges Radio P2","https://sverigesradio.se/topsy/direkt/srapi/2562.mp3","SE","🇸🇪","jazz"],
+ ["Sveriges Radio P3","https://live1.sr.se/p3-aac-320","SE","🇸🇪","pop"],
+ ["SWISS GROOVE","https://relay2.swissgroove.ch/;","CH","🇨🇭","jazz"],
+ ["TechnoBase.FM","https://listener3.mp3.tb-group.fm/tb.mp3","DE","🇩🇪","electronic"],
+ ["Technolovers DEEP HOUSE","https://stream.technolovers.fm/deep-house?ref=radiobrowser","DE","🇩🇪","electronic"],
+ ["Technolovers EDM","https://stream.technolovers.fm/edm?ref=radiobrowser","DE","🇩🇪","electronic"],
+ ["Technolovers ELECTRO HOUSE","https://stream.technolovers.fm/electro-house?ref=radiobrowser","DE","🇩🇪","electronic"],
+ ["The Generator","https://s1.myradiostream.com/:14268/;?type=http&nocache=1608640718?0.7458407789862892","NZ","🇳🇿","rock"],
+ ["The Independent FM","https://listen.radioking.com/radio/293701/stream/340084","US","🇺🇸","rock"],
+ ["The Prog Rock Machine","https://theproganrockmachine.out.airtime.pro/theproganrockmachine_b","AU","🇦🇺","rock"],
+ ["The River Of Calm","https://listen.radioking.com/radio/49831/stream/86743","US","🇺🇸","electronic"],
+ ["The Rock - NZ's #1 rock radio station","https://digitalstreams.mediaworks.nz/rock_net_icy","NZ","🇳🇿","rock"],
+ ["The Tube | NTS","https://stream-mixtape-geo.ntslive.net/mixtape26","GB","🇬🇧","rock"],
+ ["The Voice - Danmarks Hitstation","https://live-bauerdk.sharp-stream.com/thevoice_dk_mp3","DK","🇩🇰","pop"],
+ ["TMM 1","https://listen-msmn.sharp-stream.com/nme1.mp3","GB","🇬🇧","electronic"],
+ ["TMM 2","https://listen-msmn.sharp-stream.com/nme2.mp3","GB","🇬🇧","electronic"],
+ ["TMM 2 (HQ)","https://listen-msmn.sharp-stream.com/nme2high.mp3","GB","🇬🇧","rock"],
+ ["Today FM","https://stream.audioxi.com/TD","IE","🇮🇪","rock"],
+ ["TodayFm","https://edge.audioxi.com/TDAAC","IE","🇮🇪","pop"],
+ ["TOP radio","https://topradio.live.advailo.com/topradio/mp3/icecast.audio","LV","🇱🇻","pop"],
+ ["UK Bass Radio","https://www.ukbassradio.com/stream","GB","🇬🇧","rock"],
+ ["Virgin Radio Rockstar: Rolling Stones","https://icy.unitedradio.it/VirginSpecialEvent.mp3","IT","🇮🇹","rock"],
+ ["WeHouseRadio","https://icecast9.play.cz/zun192.mp3","CZ","🇨🇿","jazz"],
+ ["Wired FM - FM 99.9 - Limerick, Ireland","https://s2.radio.co/sf0986595a/listen","IE","🇮🇪","electronic"],
+ ["WVVV V96.9","https://ice5.securenetsystems.net/WVVVFM","JP","🇯🇵","pop"],
+ ["WXPN 88.5 Philadelphia, PA","https://wxpnhi.xpn.org/xpnhi","US","🇺🇸","rock"],
+ ["XO.FM","https://live.xo.fm/xofm128","LV","🇱🇻","jazz"],
+ ["YleX","https://icecast.live.yle.fi/radio/YleX/icecast.audio","FI","🇫🇮","pop"],
+ ["Zeppelin 106.7","https://radiostreaming.ert.gr/ert-zeppelin","GR","🇬🇷","rock"],
+ ["ZIP FM","https://stream1.zipfm.lt/zipfm128.mp3","LT","🇱🇹","pop"],
+ ["Známka Punku","https://ice.abradio.cz/znamkapunku128.mp3","CZ","🇨🇿","rock"],
+ ["Авторадио Латвия","https://live.relaxfm.lv/03","LV","🇱🇻","pop"],
+ ["Ретро FM Рига (Retro FM)","https://live.retrofm.lv/retrofmlatvia","LV","🇱🇻","pop"]
+];
+
+const CNAME = {"FI": "Finland", "LV": "Latvia", "LT": "Lithuania", "SE": "Sweden", "NO": "Norway", "DK": "Denmark", "GB": "UK", "IE": "Ireland", "DE": "Germany", "FR": "France", "IT": "Italy", "ES": "Spain", "PT": "Portugal", "NL": "Netherlands", "BE": "Belgium", "AT": "Austria", "CH": "Switzerland", "PL": "Poland", "CZ": "Czechia", "HU": "Hungary", "GR": "Greece", "IS": "Iceland", "US": "USA", "CA": "Canada", "MX": "Mexico", "BR": "Brazil", "AR": "Argentina", "JP": "Japan", "KR": "South Korea", "AU": "Australia", "NZ": "New Zealand", "ZA": "South Africa"};
+
+/* ---------- lemmikute salvestus (localStorage + varu mälus) ---------- */
+const LS_KEY = 'mesiraadio_world_favs';
+let memFavs = [];
+function loadFavs(){
+  try{ return JSON.parse(localStorage.getItem(LS_KEY)) || []; }
+  catch(e){ return memFavs; }
+}
+function saveFavs(list){
+  memFavs = list;
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(list)); }catch(e){}
+}
+let favs = loadFavs();
+
+/* ---------- oma kanalid ---------- */
+const LS_CUSTOM = 'mesiraadio_world_custom';
+let memCustom = [];
+function loadCustom(){
+  try{ return JSON.parse(localStorage.getItem(LS_CUSTOM)) || []; }
+  catch(e){ return memCustom; }
+}
+function saveCustom(list){
+  memCustom = list;
+  try{ localStorage.setItem(LS_CUSTOM, JSON.stringify(list)); }catch(e){}
+}
+let custom = loadCustom();          // [[nimi, url], ...]
+function allStations(){ return STATIONS.concat(custom); }
+function isCustom(name){ return custom.some(([n]) => n === name); }
+
+/* ---------- märgi värv nime järgi (deterministlik) ---------- */
+const PALETTE = ['#FFC933','#FFE08A','#F5B71E','#A8D8A0','#F4A88E','#BFD8F5','#E8C7F0','#FFF3C9'];
+function hash(s){let h=0;for(let i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0}return Math.abs(h)}
+function badgeColor(name){return PALETTE[hash(name)%PALETTE.length]}
+function initials(name){
+  const parts = name.split(/\s+/).filter(Boolean);
+  return (parts.length>1 ? parts[0][0]+parts[1][0] : name.slice(0,2)).toUpperCase();
+}
+
+/* ---------- olek ---------- */
+const audio = document.getElementById('audio');
+let current = null;        // jaama nimi
+let playing = false;
+
+const allGrid   = document.getElementById('allGrid');
+const favGrid   = document.getElementById('favGrid');
+const favSection = document.getElementById('favSection');
+const favCount  = document.getElementById('favCount');
+const allCount  = document.getElementById('allCount');
+const player    = document.getElementById('player');
+const nowTitle  = document.getElementById('nowTitle');
+const nowStatus = document.getElementById('nowStatus');
+const nowTrack  = document.getElementById('nowTrack');
+const playBtn   = document.getElementById('playBtn');
+const playIcon  = document.getElementById('playIcon');
+const playerFav = document.getElementById('playerFav');
+const searchEl  = document.getElementById('search');
+const modalBack   = document.getElementById('modalBack');
+const stName      = document.getElementById('stName');
+const stUrl       = document.getElementById('stUrl');
+const modalErr    = document.getElementById('modalErr');
+const toggleAllBtn = document.getElementById('toggleAllBtn');
+const LS_ALLVIS = 'mesiraadio_world_allvisible';
+let memAllVis = true;
+function loadAllVisible(){
+  try{
+    const v = localStorage.getItem(LS_ALLVIS);
+    return v === null ? true : v === '1';   // vaikimisi avatud
+  }catch(e){ return memAllVis; }
+}
+function saveAllVisible(v){
+  memAllVis = v;
+  try{ localStorage.setItem(LS_ALLVIS, v ? '1' : '0'); }catch(e){}
+}
+let allVisible = loadAllVisible();
+let fGenre = "";
+document.getElementById('genreChips').addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if(!b) return;
+  fGenre = b.dataset.g;
+  document.querySelectorAll('#genreChips .chip').forEach(x => x.classList.toggle('on', x === b));
+  render();
+});
+toggleAllBtn.addEventListener('click', () => {
+  allVisible = !allVisible;
+  saveAllVisible(allVisible);
+  if (!allVisible) searchEl.value = '';   // peitmisel nullime ka otsingu
+  render();
+});
+
+function urlOf(name){
+  const s = allStations().find(([n]) => n === name);
+  return s ? s[1] : '';
+}
+
+/* ---------- kaardi loomine ---------- */
+function esc(s){
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function makeCard([name,url,cc,flag,genre]){
+  const card = document.createElement('button');
+  card.className = 'card' + (isCustom(name) ? ' custom' : '');
+  card.type = 'button';
+  card.dataset.name = name;
+  card.setAttribute('aria-label', 'Play: ' + name);
+  const safe = esc(name);
+  const meta = [genre ? genre.charAt(0).toUpperCase()+genre.slice(1) : '', CNAME[cc] || ''].filter(Boolean).join(' · ');
+  card.innerHTML =
+    '<span class="badge">'+(flag || '🌐')+'</span>' +
+    '<span><span class="name">'+safe+'</span>' +
+    (meta ? '<span class="meta">'+meta+'</span>' : '') +
+    '<span class="eq" aria-hidden="true"><span></span><span></span><span></span></span></span>' +
+    (isCustom(name)
+      ? '<span class="del-btn" role="button" tabindex="0" aria-label="Delete station: '+safe+'">' +
+        '<svg viewBox="0 0 18 18"><path d="M4 4l10 10M14 4L4 14" fill="none"/></svg></span>'
+      : '') +
+    '<span class="fav-btn" role="button" tabindex="0" aria-label="Favourite: '+safe+'">' +
+      '<svg viewBox="0 0 24 24"><path class="heart" d="M12 20.5C7 16.5 3 13.2 3 9.3 3 6.4 5.2 4.5 7.7 4.5c1.7 0 3.2.9 4.3 2.4 1.1-1.5 2.6-2.4 4.3-2.4 2.5 0 4.7 1.9 4.7 4.8 0 3.9-4 7.2-9 11.2z"/></svg>' +
+    '</span>';
+  const delBtn = card.querySelector('.del-btn');
+  if (delBtn){
+    delBtn.addEventListener('click', e => { e.stopPropagation(); removeCustom(name); });
+    delBtn.addEventListener('keydown', e => {
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); removeCustom(name); }
+    });
+  }
+  const favBtn = card.querySelector('.fav-btn');
+  if (favs.includes(name)) favBtn.classList.add('on');
+  favBtn.addEventListener('click', e => { e.stopPropagation(); toggleFav(name); });
+  favBtn.addEventListener('keydown', e => {
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleFav(name); }
+  });
+  card.addEventListener('click', () => {
+    if (current === name) togglePlay();
+    else playStation(name);
+  });
+  return card;
+}
+
+/* ---------- renderdamine ---------- */
+function render(){
+  const q = searchEl.value.trim().toLowerCase();
+  const match = ([n,u,cc,f,g]) => {
+    if (!n.toLowerCase().includes(q)) return false;
+    if (isCustom(n)) return true;           // oma jaamad läbivad riigi/žanri filtri alati
+    if (fGenre && g !== fGenre) return false;
+    return true;
+  };
+
+  const sortEt = (a, b) => a[0].localeCompare(b[0], 'en');
+
+  favGrid.innerHTML = '';
+  const favList = allStations().filter(([n]) => favs.includes(n)).filter(match).sort(sortEt);
+  favList.forEach(s => favGrid.appendChild(makeCard(s)));
+  favCount.textContent = favs.length;
+  favSection.hidden = favs.length === 0;
+
+  allGrid.innerHTML = '';
+  const allList = allStations().filter(match).sort(sortEt);
+  allList.forEach(s => allGrid.appendChild(makeCard(s)));
+  allCount.textContent = allList.length;
+
+  // nimekiri on nähtav, kui nuppu on vajutatud VÕI otsing käib
+  const show = allVisible || q.length > 0;
+  allGrid.hidden = !show;
+  toggleAllBtn.textContent = show ? 'Hide stations' : 'Show stations';
+  toggleAllBtn.setAttribute('aria-expanded', show);
+
+  markPlaying();
+  applyOfflineMarks();
+}
+
+function markPlaying(){
+  document.querySelectorAll('.card').forEach(c => {
+    c.classList.toggle('playing', playing && c.dataset.name === current);
+  });
+  playerFav.classList.toggle('on', current !== null && favs.includes(current));
+}
+
+/* ---------- lemmikud ---------- */
+function toggleFav(name){
+  favs = favs.includes(name) ? favs.filter(f => f !== name) : [...favs, name];
+  saveFavs(favs);
+  render();
+}
+
+/* ---------- mängimine ---------- */
+function playStation(name){
+  current = name;
+  updateXmas(name);
+  setDanceStyle(name);
+  try{ history.replaceState(null, '', '#station=' + encodeURIComponent(name)); }catch(e){}
+  nowTitle.textContent = name;
+  nowStatus.textContent = 'Connecting…';
+  nowStatus.classList.remove('err');
+  nowTrack.hidden = true;
+  nowTrack.textContent = '';
+  player.classList.add('open','loading');
+  audio.src = urlOf(name);
+  audio.play().catch(err => {
+    if (err.name === 'NotAllowedError'){
+      player.classList.remove('loading');
+      nowStatus.textContent = 'Autoplay blocked — press ▶';
+      nowStatus.classList.remove('err');
+    } else if (err.name !== 'AbortError') streamError();
+  });
+  markPlaying();
+}
+
+function togglePlay(){
+  if (!current) return;
+  if (playing){ audio.pause(); }
+  else {
+    player.classList.add('loading');
+    nowStatus.textContent = 'Connecting…';
+    nowStatus.classList.remove('err');
+    if (!audio.src) audio.src = urlOf(current);
+    audio.play().catch(err => { if (err.name !== 'AbortError') streamError(); });
+  }
+}
+
+function streamError(){
+  playing = false;
+  document.body.classList.add('oops');
+  setTimeout(() => document.body.classList.remove('oops'), 1600);
+  player.classList.remove('loading');
+  nowStatus.textContent = 'Station not responding — try another one.';
+  nowStatus.classList.add('err');
+  setIcon(false);
+  markPlaying();
+}
+
+function setIcon(isPlaying){
+  document.body.classList.toggle('dancing', isPlaying);
+  document.body.classList.toggle('sleeping', !isPlaying);
+  onStateChange(isPlaying);
+  playIcon.innerHTML = isPlaying
+    ? '<rect x="6" y="5" width="5" height="16" rx="1.5" fill="#241B04"/><rect x="15" y="5" width="5" height="16" rx="1.5" fill="#241B04"/>'
+    : '<path d="M8 5l14 8-14 8z" fill="#241B04"/>';
+}
+
+/* ---------- loo nimi (kliendipoolne, ainult CORS-iga serverid) ---------- */
+function npConfig(name){
+  const url = urlOf(name);
+  let m = url.match(/https:\/\/[^\/]*\.radio\.co\/(s[0-9a-f]+)\//);
+  if (m) return {type:'radioco', id:m[1]};
+  m = url.match(/^(https:\/\/[^\/]+)\/listen\/([^\/]+)\//);   // AzuraCast muster
+  if (m) return {type:'azura', base:m[1], station:m[2]};
+  m = url.match(/stream\.radiojar\.com\/([a-z0-9]+)/);
+  if (m) return {type:'radiojar', id:m[1]};
+  return null;
+}
+
+let trackTimer = null;
+let trackFetchSeq = 0;
+
+async function fetchTrack(name){
+  const cfg = npConfig(name);
+  if (!cfg) return null;
+  try{
+    if (cfg.type === 'radioco'){
+      const r = await fetch('https://public.radio.co/stations/' + cfg.id + '/status');
+      const d = await r.json();
+      return (d.current_track && d.current_track.title) || null;
+    }
+    if (cfg.type === 'azura'){
+      const r = await fetch(cfg.base + '/api/nowplaying/' + cfg.station);
+      const d = await r.json();
+      return (d.now_playing && d.now_playing.song && d.now_playing.song.text) || null;
+    }
+    if (cfg.type === 'radiojar'){
+      const r = await fetch('https://www.radiojar.com/api/stations/' + cfg.id + '/now_playing/');
+      const d = await r.json();
+      if (d.artist && d.title) return d.artist + ' - ' + d.title;
+      return d.title || null;
+    }
+    if (cfg.type === 'icecast'){
+      const r = await fetch(cfg.base + '/status-json.xsl');
+      const d = await r.json();
+      let srcs = d.icestats && d.icestats.source;
+      if (!srcs) return null;
+      if (!Array.isArray(srcs)) srcs = [srcs];
+      const s = srcs.find(x => (x.listenurl || '').endsWith(cfg.mount));
+      return s ? (s.title || s.yp_currently_playing || null) : null;
+    }
+  }catch(e){ /* võrguviga või blokk — lihtsalt ei näita */ }
+  return null;
+}
+
+async function updateTrack(){
+  const seq = ++trackFetchSeq;
+  const name = current;
+  const title = name ? await fetchTrack(name) : null;
+  // vahepeal võis kanal vahetuda — vana vastus visatakse minema
+  if (seq !== trackFetchSeq || name !== current) return;
+  const clean = title && title.trim();
+  nowTrack.hidden = !clean;
+  nowTrack.textContent = clean || '';
+  if (clean && 'mediaSession' in navigator){
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: clean, artist: current
+    });
+  }
+}
+
+function startTrackPolling(){
+  stopTrackPolling();
+  nowTrack.hidden = true;
+  nowTrack.textContent = '';
+  if (!current || !npConfig(current)) return;
+  updateTrack();
+  trackTimer = setInterval(updateTrack, 20000);
+}
+function stopTrackPolling(){
+  if (trackTimer){ clearInterval(trackTimer); trackTimer = null; }
+}
+
+audio.addEventListener('playing', () => {
+  playing = true;
+  player.classList.remove('loading');
+  nowStatus.textContent = 'Live';
+  nowStatus.classList.remove('err');
+  setIcon(true);
+  markPlaying();
+  startTrackPolling();
+});
+audio.addEventListener('pause', () => {
+  playing = false;
+  if (!nowStatus.classList.contains('err')) nowStatus.textContent = 'Paused';
+  setIcon(false);
+  markPlaying();
+  stopTrackPolling();
+});
+audio.addEventListener('error', () => { if (current) streamError(); });
+
+playBtn.addEventListener('click', togglePlay);
+playerFav.addEventListener('click', () => { if (current) toggleFav(current); });
+const volPct = document.getElementById('volPct');
+const volEl = document.getElementById('vol');
+let volPctTimer = null;
+
+/* helitugevus püsib lehtede vahel (jagatud võti, nagu tume režiim) */
+const VOL_KEY = 'mesiraadio_vol';
+function loadVolume(){
+  try{
+    const v = parseFloat(localStorage.getItem(VOL_KEY));
+    if (!isNaN(v) && v >= 0 && v <= 1) return v;
+  }catch(e){}
+  return 1;
+}
+audio.volume = volEl.value = loadVolume();
+
+volEl.addEventListener('input', e => {
+  audio.volume = e.target.value;
+  volPct.textContent = Math.round(e.target.value * 100) + '%';
+  volPct.classList.add('show');
+  clearTimeout(volPctTimer);
+  volPctTimer = setTimeout(() => volPct.classList.remove('show'), 1000);
+  try{ localStorage.setItem(VOL_KEY, e.target.value); }catch(err){}
+});
+searchEl.addEventListener('input', render);
+
+const diceBtn = document.getElementById('diceBtn');
+diceBtn.addEventListener('click', () => {
+  if (diceOverheated) return;
+  registerRoll();
+  diceBtn.classList.remove('rolling');
+  void diceBtn.offsetWidth;              // taaskäivitab animatsiooni
+  diceBtn.classList.add('rolling');
+  let names = [...allGrid.querySelectorAll('.card')].map(c => c.dataset.name);
+  if (!names.length) names = allStations().map(s => s[0]);
+  const pool = names.filter(n => n !== current);
+  const pick = (pool.length ? pool : names)[Math.floor(Math.random() * (pool.length || names.length))];
+  if (pick) playStation(pick);
+});
+
+/* Media Session — lukustuskuva nupud telefonis */
+if ('mediaSession' in navigator){
+  navigator.mediaSession.setActionHandler('play', togglePlay);
+  navigator.mediaSession.setActionHandler('pause', togglePlay);
+  audio.addEventListener('playing', () => {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: current || 'World Radio', artist: 'World Radio · live'
+    });
+  });
+}
+
+/* ---------- oma kanali lisamine / kustutamine ---------- */
+function openModal(){
+  modalErr.textContent = '';
+  stName.value = '';
+  stUrl.value = '';
+  modalBack.hidden = false;
+  stName.focus();
+}
+function closeModal(){
+  modalBack.hidden = true;
+  document.getElementById('addBtn').focus();
+}
+function addCustom(){
+  const name = stName.value.trim();
+  let url = stUrl.value.trim();
+  if (!name){ modalErr.textContent = 'Give the station a name.'; stName.focus(); return; }
+  if (!url){ modalErr.textContent = 'Stream URL is missing.'; stUrl.focus(); return; }
+  if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+  try{ new URL(url); }
+  catch(e){ modalErr.textContent = 'That does not look like a valid URL.'; stUrl.focus(); return; }
+  if (location.protocol === 'https:' && url.startsWith('http://')){
+    modalErr.textContent = 'Only https:// streams can play on an https page.';
+    stUrl.focus(); return;
+  }
+  if (allStations().some(([n]) => n.toLowerCase() === name.toLowerCase())){
+    modalErr.textContent = 'A station with this name already exists.';
+    stName.focus(); return;
+  }
+  custom = [...custom, [name, url, '', '🌐', '']];
+  saveCustom(custom);
+  if (!allVisible){ allVisible = true; saveAllVisible(true); }  // et uus kanal oleks näha
+  closeModal();
+  render();
+  playStation(name);   // proovime kohe — nii on kuulda, kas striim töötab
+}
+function removeCustom(name){
+  if (!confirm('Delete station \u201C' + name + '\u201D?')) return;
+  custom = custom.filter(([n]) => n !== name);
+  saveCustom(custom);
+  if (favs.includes(name)){
+    favs = favs.filter(f => f !== name);
+    saveFavs(favs);
+  }
+  if (current === name){
+    audio.pause();
+    audio.removeAttribute('src');
+    current = null;
+    player.classList.remove('open','loading');
+  }
+  render();
+}
+
+document.getElementById('addBtn').addEventListener('click', openModal);
+document.getElementById('modalCancel').addEventListener('click', closeModal);
+document.getElementById('modalSave').addEventListener('click', addCustom);
+modalBack.addEventListener('click', e => { if (e.target === modalBack) closeModal(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !modalBack.hidden) closeModal();
+});
+[stName, stUrl].forEach(el => el.addEventListener('keydown', e => {
+  if (e.key === 'Enter'){ e.preventDefault(); addCustom(); }
+}));
+
+
+/* ---------- tume/hele režiim ---------- */
+const THEME_KEY = 'mesiraadio_theme';
+const themeBtn = document.getElementById('themeBtn');
+const SUNICON = `<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M116,36V20a12,12,0,0,1,24,0V36a12,12,0,0,1-24,0Zm80,92a68,68,0,1,1-68-68A68.07,68.07,0,0,1,196,128Zm-24,0a44,44,0,1,0-44,44A44.05,44.05,0,0,0,172,128ZM51.51,68.49a12,12,0,1,0,17-17l-12-12a12,12,0,0,0-17,17Zm0,119-12,12a12,12,0,0,0,17,17l12-12a12,12,0,1,0-17-17ZM196,72a12,12,0,0,0,8.49-3.51l12-12a12,12,0,0,0-17-17l-12,12A12,12,0,0,0,196,72Zm8.49,115.51a12,12,0,0,0-17,17l12,12a12,12,0,0,0,17-17ZM48,128a12,12,0,0,0-12-12H20a12,12,0,0,0,0,24H36A12,12,0,0,0,48,128Zm80,80a12,12,0,0,0-12,12v16a12,12,0,0,0,24,0V220A12,12,0,0,0,128,208Zm108-92H220a12,12,0,0,0,0,24h16a12,12,0,0,0,0-24Z"/></svg>`;
+const MOONICON = `<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M236.37,139.4a12,12,0,0,0-12-3A84.07,84.07,0,0,1,119.6,31.59a12,12,0,0,0-15-15A108.86,108.86,0,0,0,49.69,55.07,108,108,0,0,0,136,228a107.09,107.09,0,0,0,64.93-21.69,108.86,108.86,0,0,0,38.44-54.94A12,12,0,0,0,236.37,139.4Zm-49.88,47.74A84,84,0,0,1,68.86,69.51,84.93,84.93,0,0,1,92.27,48.29Q92,52.13,92,56A108.12,108.12,0,0,0,200,164q3.87,0,7.71-.27A84.79,84.79,0,0,1,186.49,187.14Z"/></svg>`;
+function applyTheme(dark){
+  document.body.classList.toggle('dark', dark);
+  themeBtn.innerHTML = dark ? SUNICON : MOONICON;
+}
+function loadTheme(){
+  try{
+    const v = localStorage.getItem(THEME_KEY);
+    if (v !== null) return v === 'dark';
+  }catch(e){}
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+applyTheme(loadTheme());
+document.body.classList.add('sleeping');   // leht avaneb magava kaktusega
+themeBtn.addEventListener('click', () => {
+  const dark = !document.body.classList.contains('dark');
+  applyTheme(dark);
+  try{ localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light'); }catch(e){}
+});
+
+
+/* ================= ÜLLATUSMUNAD ================= */
+const heroEl = document.querySelector('.hero-art');
+
+/* --- klikitav maskott + vihastamine --- */
+const REACTIONS = ['react-spin','react-bow'];
+let clickTimes = [];
+let angryUntil = 0;
+heroEl.addEventListener('click', () => {
+  const now = Date.now();
+  if (now < angryUntil) return;                 // vihasena ignoreerib
+  clickTimes = clickTimes.filter(t => now - t < 3000);
+  clickTimes.push(now);
+  if (clickTimes.length >= 5){                  // 5 kiiret klikki -> pahane
+    clickTimes = [];
+    angryUntil = now + 2600;
+    document.body.classList.add('angry');
+    setTimeout(() => document.body.classList.remove('angry'), 2600);
+    return;
+  }
+  if (Math.random() < .6){   // kaktusel hüppab enamasti õis
+    const fl = document.getElementById('flower');
+    fl.classList.remove('jump'); void fl.getBBox; fl.classList.add('jump');
+    fl.addEventListener('animationend', () => fl.classList.remove('jump'), {once:true});
+    return;
+  }
+  const r = REACTIONS[Math.floor(Math.random() * REACTIONS.length)];
+  heroEl.classList.remove(...REACTIONS);
+  void heroEl.offsetWidth;
+  heroEl.classList.add(r);
+  heroEl.addEventListener('animationend', () => heroEl.classList.remove(r), {once:true});
+});
+
+/* --- öörežiim (23-06): öömüts + unine groove --- */
+function setNight(hOverride){
+  const h = (hOverride !== undefined) ? hOverride : new Date().getHours();
+  document.body.classList.toggle('nighttime', h >= 23 || h < 6);
+}
+setNight();
+setInterval(setNight, 60000);
+
+/* --- diskorežiim: Konami VÕI 7 kiiret klikki logol --- */
+const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let kIdx = 0, discoTimer = null, confettiTimer = null;
+document.addEventListener('keydown', e => {
+  kIdx = (e.key === KONAMI[kIdx]) ? kIdx + 1 : (e.key === KONAMI[0] ? 1 : 0);
+  if (kIdx === KONAMI.length){ kIdx = 0; startDisco(); }
+});
+let logoClicks = [];
+document.querySelector('.logo').addEventListener('click', e => {
+  if (e.target.closest('.theme-btn')) return;
+  const now = Date.now();
+  logoClicks = logoClicks.filter(t => now - t < 3000);
+  logoClicks.push(now);
+  if (logoClicks.length >= 7){ logoClicks = []; startDisco(); }
+});
+function confettiOrigins(){
+  const cones = [...document.querySelectorAll('.cone')];
+  if (cones.length) return cones.map(c => { const r = c.getBoundingClientRect(); return [r.left + r.width/2, r.top]; });
+  const r = heroEl.getBoundingClientRect();
+  return [[r.left + 20, r.top + 30], [r.right - 20, r.top + 30]];
+}
+function confettiBurst(){
+  const colors = ['#FFC933','#E4573D','#5E9C52','#BFD8F5','#E8C7F0','#F5B71E'];
+  confettiOrigins().forEach(([x, y]) => {
+    for (let i = 0; i < 14; i++){
+      const p = document.createElement('div');
+      p.className = 'confetti-p';
+      p.style.left = (x + (Math.random()*60 - 30)) + 'px';
+      p.style.top = (y - Math.random()*30) + 'px';
+      p.style.background = colors[Math.floor(Math.random()*colors.length)];
+      p.style.animationDuration = (1.2 + Math.random()*1.2) + 's';
+      document.body.appendChild(p);
+      p.addEventListener('animationend', () => p.remove());
+    }
+  });
+}
+function startDisco(){
+  if (document.body.classList.contains('disco')) return;
+  document.body.classList.add('disco');
+  confettiBurst();
+  confettiTimer = setInterval(confettiBurst, 1600);
+  discoTimer = setTimeout(stopDisco, 20000);
+}
+function stopDisco(){
+  document.body.classList.remove('disco');
+  clearInterval(confettiTimer);
+  clearTimeout(discoTimer);
+}
+
+/* --- otsingumunad --- */
+let lastEggWord = '';
+searchEl.addEventListener('input', () => {
+  const v = searchEl.value.trim().toLowerCase();
+  if (v === lastEggWord) return;
+  lastEggWord = v;
+  if (v === 'mesi' || v === 'honey'){
+    for (let i = 0; i < 8; i++){
+      const d = document.createElement('div');
+      d.className = 'honeydrop';
+      d.style.left = (5 + Math.random()*90) + 'vw';
+      d.style.animationDelay = (Math.random()*1.2) + 's';
+      document.body.appendChild(d);
+      d.addEventListener('animationend', () => d.remove());
+    }
+  }
+  if (v === 'sipelgad' || v === 'ants'){
+    const row = document.createElement('div');
+    row.className = 'antrow';
+    row.textContent = '🐜🐜🐜🐜🐜🐜🐜🐜';
+    document.body.appendChild(row);
+    row.addEventListener('animationend', () => row.remove());
+  }
+});
+
+/* --- täringu ülekuumenemine --- */
+let rollTimes = [];
+let diceOverheated = false;
+function registerRoll(){
+  const now = Date.now();
+  rollTimes = rollTimes.filter(t => now - t < 60000);
+  rollTimes.push(now);
+  if (rollTimes.length >= 10){
+    rollTimes = [];
+    diceOverheated = true;
+    diceBtn.classList.add('hot');
+    document.body.classList.add('dizzy');
+    const r = diceBtn.getBoundingClientRect();
+    const makePuff = () => {
+      const sm = document.createElement('div');
+      sm.className = 'smoke';
+      sm.style.left = (r.left + r.width/2 - 8 + (Math.random()*20 - 10)) + 'px';
+      sm.style.top = (r.top - 8) + 'px';
+      document.body.appendChild(sm);
+      sm.addEventListener('animationend', () => sm.remove());
+    };
+    makePuff();
+    const puff = setInterval(makePuff, 350);
+    setTimeout(() => {
+      clearInterval(puff);
+      diceOverheated = false;
+      diceBtn.classList.remove('hot');
+      document.body.classList.remove('dizzy');
+    }, 5000);
+  }
+}
+
+/* --- jõulud: detsembris või jõulujaama mängides sajab, mesilane saab salli --- */
+let snowTimer = null;
+function startSnow(){
+  if (snowTimer) return;
+  snowTimer = setInterval(() => {
+    const f = document.createElement('div');
+    f.className = 'snowflake';
+    f.textContent = Math.random() < .5 ? '❄' : '❅';
+    f.style.left = Math.random()*100 + 'vw';
+    f.style.fontSize = (10 + Math.random()*12) + 'px';
+    f.style.animationDuration = (5 + Math.random()*6) + 's';
+    f.style.opacity = .5 + Math.random()*.5;
+    document.body.appendChild(f);
+    f.addEventListener('animationend', () => f.remove());
+  }, 350);
+}
+function stopSnow(){ clearInterval(snowTimer); snowTimer = null; }
+function updateXmas(stationName){
+  const dec = new Date().getMonth() === 11;
+  const xmasStation = !!stationName && /christmas|jõulu/i.test(stationName);
+  const on = dec || xmasStation;
+  document.body.classList.toggle('xmas', on);
+  on ? startSnow() : stopSnow();
+}
+updateXmas(null);
+
+
+/* ================= SILMAD JÄRGIVAD KURSORIT ================= */
+const eyesOpenEl = document.getElementById('eyes-open');
+let eyeRaf = null;
+document.addEventListener('pointermove', e => {
+  if (eyeRaf || document.body.classList.contains('sleeping')) return;
+  eyeRaf = requestAnimationFrame(() => {
+    eyeRaf = null;
+    const r = heroEl.getBoundingClientRect();
+    const vb = heroEl.viewBox.baseVal;
+    const cx = r.left + (151 / vb.width) * r.width;
+    const cy = r.top + (112 / vb.height) * r.height;
+    const dx = e.clientX - cx, dy = e.clientY - cy;
+    const d = Math.hypot(dx, dy) || 1;
+    const m = Math.min(d / 40, 3);           // max 3 ühikut nihkumist
+    eyesOpenEl.style.transform = 'translate(' + (dx/d*m).toFixed(1) + 'px,' + (dy/d*m).toFixed(1) + 'px)';
+  });
+});
+
+/* ================= ŽANRIPÕHINE TANTS ================= */
+const DANCE_MAP = {rock:'dance-rock', jazz:'dance-classical', electronic:'dance-electronic', country:'dance-folk'};
+const DANCE_CLASSES = ['dance-rock','dance-classical','dance-electronic','dance-folk'];
+function setDanceStyle(name){
+  const g = (allStations().find(s => s[0] === name) || [])[4] || '';
+  document.body.classList.remove(...DANCE_CLASSES);
+  if (DANCE_MAP[g]) document.body.classList.add(DANCE_MAP[g]);
+}
+
+/* ================= SÜGAV UNI + HAIGUTUS + EHMATUS ================= */
+let sleepSince = Date.now();
+let yawnTimer = null;
+const DEEP_SLEEP_MS = 10 * 60 * 1000;
+function doYawn(){
+  if (!document.body.classList.contains('sleeping')) return;
+  document.body.classList.add('yawning');
+  setTimeout(() => document.body.classList.remove('yawning'), 1700);
+}
+function checkDeepSleep(){
+  if (document.body.classList.contains('sleeping') && Date.now() - sleepSince >= DEEP_SLEEP_MS)
+    document.body.classList.add('deep-sleep');
+}
+setInterval(checkDeepSleep, 30000);
+function onStateChange(isPlaying){
+  if (isPlaying){
+    if (document.body.classList.contains('deep-sleep')){   // ehmatusega ärkamine
+      document.body.classList.remove('deep-sleep');
+      document.body.classList.add('startle');
+      setTimeout(() => document.body.classList.remove('startle'), 700);
+    }
+    clearInterval(yawnTimer); yawnTimer = null;
+    eyesOpenEl.style.transform = '';
+  } else {
+    sleepSince = Date.now();
+    eyesOpenEl.style.transform = '';
+    if (!yawnTimer) yawnTimer = setInterval(doYawn, 40000);
+  }
+}
+onStateChange(false);   // leht avaneb magades
+
+
+/* ================= KELLAAJA TERVITUS ================= */
+function greet(hourOverride){
+  const h = (hourOverride !== undefined) ? hourOverride : new Date().getHours();
+  let msg;
+  if (h >= 6 && h < 11) msg = 'Good morning!';
+  else if (h >= 11 && h < 16) msg = 'Lunchtime tunes!';
+  else if (h >= 16 && h < 22) msg = 'Lovely evening!';
+  else if (h >= 22 || h < 4) msg = 'Night disco!';
+  else msg = 'Up early, huh?';
+  const old = document.querySelector('.greet-bubble');
+  if (old) old.remove();
+  const b = document.createElement('div');
+  b.className = 'greet-bubble';
+  b.textContent = msg;
+  document.querySelector('.hero').appendChild(b);
+  requestAnimationFrame(() => requestAnimationFrame(() => b.classList.add('show')));
+  setTimeout(() => {
+    b.classList.remove('show');
+    setTimeout(() => b.remove(), 400);
+  }, 3000);
+}
+greet();
+
+
+/* ================= FAVICON SÜNKROONIS OLEKUGA ================= */
+const FAV_AWAKE = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><circle cx="12" cy="4.5" r="3" fill="#F08BA0" stroke="#241B04" stroke-width="1.8"/><circle cx="19" cy="4" r="2.2" fill="#F08BA0" stroke="#241B04" stroke-width="1.8"/><rect x="7" y="6" width="18" height="24" rx="9" fill="#7FA83C" stroke="#241B04" stroke-width="2.4"/><circle cx="13" cy="16" r="1.9" fill="#241B04"/><circle cx="20" cy="16" r="1.9" fill="#241B04"/><path d="M13 21c2.3 1.8 4.7 1.8 7 0" stroke="#241B04" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>';
+const FAV_SLEEP = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><circle cx="12" cy="4.5" r="3" fill="#F08BA0" stroke="#241B04" stroke-width="1.8"/><circle cx="19" cy="4" r="2.2" fill="#F08BA0" stroke="#241B04" stroke-width="1.8"/><rect x="7" y="6" width="18" height="24" rx="9" fill="#7FA83C" stroke="#241B04" stroke-width="2.4"/><path d="M10.5 16c1.4 1.5 3.2 1.5 4.6 0M17.5 16c1.4 1.5 3.2 1.5 4.6 0" stroke="#241B04" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="16.5" cy="21.5" r="1.6" fill="none" stroke="#241B04" stroke-width="1.8"/></svg>';
+let favLink = document.querySelector('link[rel="icon"]');
+if (!favLink){
+  favLink = document.createElement('link');
+  favLink.rel = 'icon';
+  document.head.appendChild(favLink);
+}
+function setFavicon(awake){
+  favLink.href = 'data:image/svg+xml,' + encodeURIComponent(awake ? FAV_AWAKE : FAV_SLEEP);
+}
+
+/* ================= JUHUSLIK PILGUTAMINE ================= */
+let blinkTimer = null;
+function doBlink(){
+  const b = document.body;
+  if (b.classList.contains('sleeping') || b.classList.contains('angry') || b.classList.contains('dizzy')) return;
+  b.classList.add('blink');
+  setTimeout(() => b.classList.remove('blink'), 150);
+}
+function scheduleBlink(){
+  blinkTimer = setTimeout(() => { doBlink(); scheduleBlink(); }, 4000 + Math.random() * 3000);
+}
+function stopBlink(){ clearTimeout(blinkTimer); blinkTimer = null; }
+
+/* olekuvahetus: favicon + pilgutus */
+const _onStateChange = onStateChange;
+onStateChange = function(isPlaying){
+  _onStateChange(isPlaying);
+  setFavicon(isPlaying);
+  if (isPlaying){ if (!blinkTimer) scheduleBlink(); }
+  else stopBlink();
+};
+setFavicon(false);
+
+/* ================= HÄÄLETU = PAHUR ================= */
+function updateMuted(){
+  document.body.classList.toggle('muted', audio.volume === 0);
+}
+document.getElementById('vol').addEventListener('input', updateMuted);
+audio.addEventListener('volumechange', updateMuted);
+
+/* ================= LEMMIKU SÜDA LENDU ================= */
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.fav-btn');
+  if (!btn || btn.classList.contains('on')) return;   // ainult lisamisel
+  const r = btn.getBoundingClientRect();
+  const h = document.createElement('div');
+  h.className = 'fly-heart';
+  h.textContent = '\u2665';
+  h.style.left = (r.left + r.width / 2) + 'px';
+  h.style.top = (r.top - 2) + 'px';
+  document.body.appendChild(h);
+  h.addEventListener('animationend', () => h.remove());
+}, true);   // capture-faas: fav-nupu stopPropagation ei sega
+
+
+/* ================= TAB'I TIITEL + JAGAMISLINK ================= */
+const SITE_NAME = 'World Radio';
+function updateTitle(isPlaying){
+  document.title = (isPlaying && current)
+    ? '\u25B6 ' + current + ' \u00B7 ' + SITE_NAME
+    : '\uD83D\uDCA4 ' + SITE_NAME;
+}
+const _osc2 = onStateChange;
+onStateChange = function(isPlaying){
+  _osc2(isPlaying);
+  updateTitle(isPlaying);
+};
+updateTitle(false);
+/* topeltkindlus: tiitel uueneb ka otse audio-sündmustelt */
+audio.addEventListener('playing', () => updateTitle(true));
+audio.addEventListener('pause', () => updateTitle(false));
+audio.addEventListener('error', () => updateTitle(false));
+
+function playFromHash(){
+  const m = location.hash.match(/^#station=(.+)$/);
+  if (!m) return;
+  let name;
+  try{ name = decodeURIComponent(m[1]); }catch(e){ return; }
+  if (allStations().some(s => s[0] === name)) playStation(name);
+}
+window.addEventListener('hashchange', playFromHash);
+playFromHash();
+
+
+/* ================= PWA ================= */
+if ('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+
+
+/* ================= JAAMADE TERVISEKONTROLL ================= */
+/* status.json kirjutab .github/workflows/station-healthcheck.yml iga päev.
+   Jaam märgitakse "maas" alles pärast mitut järjestikust ebaõnnestunud
+   kontrolli (vt scripts/check_stations.py), et vältida vale-alarme. */
+let offlineStations = new Set();
+
+function applyOfflineMarks(){
+  if (!offlineStations.size) return;
+  document.querySelectorAll('.card').forEach(c => {
+    if (!offlineStations.has(c.dataset.name)) return;
+    c.classList.add('offline');
+    if (!c.querySelector('.offline-tag')){
+      const tag = document.createElement('span');
+      tag.className = 'offline-tag';
+      tag.textContent = 'Hetkel maas';
+      const nameEl = c.querySelector('.name');
+      if (nameEl) nameEl.insertAdjacentElement('afterend', tag);
+    }
+  });
+}
+
+
+fetch('status.json', {cache: 'no-store'})
+  .then(r => r.ok ? r.json() : null)
+  .then(data => {
+    if (!data || !data.stations) return;
+    offlineStations = new Set(Object.keys(data.stations).filter(n => !data.stations[n].ok));
+    applyOfflineMarks();
+  })
+  .catch(() => {});
+
+render();
+</script>
+<script data-goatcounter="https://mesiraadio.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

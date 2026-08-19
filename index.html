@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mesiraadio — Eesti netiraadiod</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#FFC933">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M11%209C9%206%207%205%207%205M21%209c2-3%204-4%204-4%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222.4%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%227%22%20cy%3D%225%22%20r%3D%222.2%22%20fill%3D%22%23241B04%22/%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%225%22%20r%3D%222.2%22%20fill%3D%22%23241B04%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2219%22%20r%3D%2212%22%20fill%3D%22%23FFC933%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222.4%22/%3E%3Cpath%20d%3D%22M9.5%2017c1.5%201.6%203.5%201.6%205%200M17.5%2017c1.5%201.6%203.5%201.6%205%200%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2223.5%22%20r%3D%221.7%22%20fill%3D%22none%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%221.8%22/%3E%3C/svg%3E">
+<meta name="description" content="Kuula 93 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
+
+<!-- Open Graph (Facebook, Messenger, LinkedIn jt) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mesiraadio">
+<meta property="og:title" content="Mesiraadio — Eesti netiraadiod">
+<meta property="og:description" content="Kuula 93 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
+<meta property="og:url" content="https://raadio.imresobnin.com/">
+<meta property="og:image" content="https://raadio.imresobnin.com/mesiraadio-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mesilane hoiab raadiot mesikollasel taustal, pealkiri Mesiraadio">
+<meta property="og:locale" content="et_EE">
+
+<!-- Twitter/X kaart -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mesiraadio — Eesti netiraadiod">
+<meta name="twitter:description" content="Kuula 93 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine.">
+<meta name="twitter:image" content="https://raadio.imresobnin.com/mesiraadio-og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page-bg:#FFC933;
+  --honey:#FFC933;
+  --honey-deep:#F5B71E;
+  --honey-pale:#FFE08A;
+  --ink:#241B04;
+  --ink-soft:#6B5B2A;
+  --paper:#FFFFFF;
+  --cream:#FFF8E4;
+  --leaf:#5E9C52;
+  --leaf-deep:#3F7A36;
+  --berry:#E4573D;
+  --shadow:0 6px 0 rgba(36,27,4,.14);
+  --radius:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--page-bg);
+  color:var(--ink);
+  min-height:100vh;
+  padding-bottom:150px;
+  transition:background .3s ease, color .3s ease;
+}
+h1,h2,h3,.btn,.chip{font-family:'Baloo 2',cursive}
+
+
+/* ---------- päis ---------- */
+header{position:relative;z-index:2;padding:26px 20px 6px;max-width:960px;margin:0 auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Baloo 2',cursive;font-weight:800;font-size:1.5rem;letter-spacing:.02em}
+.logo svg{width:44px;height:44px}
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 0 4px}
+.hero-art{width:min(320px,72vw);height:auto;filter:drop-shadow(0 10px 0 rgba(36,27,4,.10))}
+.hero h1{font-size:clamp(1.7rem,5vw,2.5rem);font-weight:800;line-height:1.1;margin-top:6px}
+.hero p{color:var(--ink-soft);font-weight:700;margin-top:4px}
+
+/* ---------- otsing ---------- */
+.search-wrap{position:relative;z-index:2;max-width:560px;margin:18px auto 0;padding:0 20px;display:flex;gap:10px;align-items:center}
+.search{flex:1}
+.dice-btn{
+  flex:none;width:52px;height:52px;border-radius:50%;border:3px solid var(--ink);
+  background:var(--paper);color:var(--ink);cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 5px 0 rgba(0,0,0,.18);transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.dice-btn svg{width:26px;height:26px}
+.dice-btn:hover{transform:translateY(-2px) rotate(-12deg);background:var(--honey-pale)}
+.dice-btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.dice-btn:focus-visible{outline:4px solid var(--leaf);outline-offset:2px}
+@keyframes diceroll{0%{transform:rotate(0)}40%{transform:rotate(200deg) scale(1.15)}100%{transform:rotate(360deg)}}
+.dice-btn.rolling svg{animation:diceroll .5s ease}
+@media (prefers-reduced-motion:reduce){.dice-btn.rolling svg{animation:none}}
+.search{
+  display:flex;align-items:center;gap:10px;background:var(--paper);
+  border:3px solid var(--ink);border-radius:999px;padding:12px 18px;box-shadow:var(--shadow);
+}
+.search input{border:0;outline:0;flex:1;font:inherit;font-weight:700;color:var(--ink);background:transparent}
+.search input::placeholder{color:#B4A76E}
+.search svg{flex:none}
+
+/* ---------- sektsioonid ---------- */
+main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:22px 20px 0}
+.section-head{display:flex;align-items:center;gap:10px;margin:22px 0 12px}
+.section-head h2{font-size:1.25rem;font-weight:800}
+.count-pill{background:var(--ink);color:var(--page-bg);font-family:'Baloo 2',cursive;font-weight:700;font-size:.8rem;border-radius:999px;padding:2px 12px}
+
+/* ---------- kaardid ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.card{
+  position:relative;display:flex;align-items:center;gap:12px;
+  background:var(--paper);border:3px solid var(--ink);border-radius:var(--radius);
+  padding:14px 14px 14px 14px;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .12s ease, box-shadow .12s ease;
+  text-align:left;width:100%;
+  min-width:0;
+  color:var(--ink);font-family:inherit;
+}
+.card > span{min-width:0}
+.card .name,.card .meta{overflow-wrap:anywhere}
+.card:hover{transform:translateY(-3px);box-shadow:0 9px 0 rgba(36,27,4,.14)}
+.card:active{transform:translateY(1px);box-shadow:0 3px 0 rgba(36,27,4,.14)}
+.card:focus-visible{outline:4px solid var(--leaf);outline-offset:2px}
+.badge{
+  flex:none;width:46px;height:46px;border-radius:14px;border:3px solid var(--ink);
+  display:grid;place-items:center;
+}
+.badge svg{width:28px;height:28px}
+.card .name{font-weight:800;font-size:.98rem;line-height:1.2;padding-right:30px}
+.card.playing{background:var(--ink);color:var(--honey)}
+.card.playing .name{color:var(--honey)}
+.card.playing .badge{border-color:var(--honey)}
+.eq{display:none;gap:3px;align-items:flex-end;height:14px;margin-top:3px}
+.card.playing .eq{display:inline-flex}
+.eq span{width:4px;background:var(--honey);border-radius:2px;animation:eq 1s ease-in-out infinite}
+.eq span:nth-child(2){animation-delay:.2s}
+.eq span:nth-child(3){animation-delay:.4s}
+@keyframes eq{0%,100%{height:5px}50%{height:14px}}
+@media (prefers-reduced-motion:reduce){.eq span{animation:none;height:9px}}
+
+/* süda */
+.fav-btn{
+  position:absolute;top:10px;right:10px;width:34px;height:34px;border:0;background:transparent;
+  cursor:pointer;display:grid;place-items:center;border-radius:50%;
+}
+.fav-btn:focus-visible{outline:3px solid var(--leaf)}
+.fav-btn svg{width:22px;height:22px;transition:transform .15s ease}
+.fav-btn:hover svg{transform:scale(1.2)}
+.fav-btn .heart{fill:none;stroke:var(--ink);stroke-width:2.4}
+.card.playing .fav-btn .heart{stroke:var(--honey)}
+.fav-btn.on .heart{fill:var(--berry);stroke:var(--berry)}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
+.fav-btn.on svg{animation:pop .3s ease}
+@media (prefers-reduced-motion:reduce){.fav-btn.on svg{animation:none}}
+
+/* ---------- pleier ---------- */
+.player{
+  position:fixed;left:0;right:0;bottom:0;z-index:10;
+  background:var(--paper);border-top:3px solid var(--ink);
+  border-radius:28px 28px 0 0;box-shadow:0 -8px 0 rgba(36,27,4,.10);
+  transform:translateY(110%);transition:transform .3s ease;
+}
+.player.open{transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){.player{transition:none}}
+.player-inner{max-width:960px;margin:0 auto;padding:14px 20px 18px;display:flex;align-items:center;gap:16px}
+.player .handle{width:52px;height:5px;border-radius:99px;background:rgba(36,27,4,.18);position:absolute;top:8px;left:50%;transform:translateX(-50%)}
+.now{flex:1;min-width:0}
+.now .label{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.now .title{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.now .status{font-size:.8rem;font-weight:700;color:var(--leaf-deep)}
+.now .status.err{color:var(--berry)}
+.now .track{
+  font-size:.85rem;font-weight:700;color:var(--ink-soft);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;
+}
+.now .track::before{content:'♪ ';color:var(--honey-deep)}
+.play-btn{
+  flex:none;width:64px;height:64px;border-radius:50%;border:3px solid var(--ink);
+  background:var(--honey);cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 5px 0 rgba(36,27,4,.2);transition:transform .1s ease;
+}
+.play-btn:hover{background:var(--honey-deep)}
+.play-btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(36,27,4,.2)}
+.play-btn:focus-visible{outline:4px solid var(--leaf);outline-offset:3px}
+.vol{display:flex;align-items:center;gap:8px}
+.vol{position:relative}
+.vol input[type=range]{width:110px;accent-color:var(--ink)}
+.vol-pct{
+  position:absolute;top:-34px;left:50%;transform:translateX(-50%) translateY(4px);
+  background:var(--ink);color:var(--paper);font-family:'Baloo 2',cursive;font-weight:700;
+  font-size:.78rem;padding:3px 10px;border-radius:999px;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .18s ease, transform .18s ease;
+}
+.vol-pct.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.player .fav-btn{position:static;flex:none}
+@media (max-width:560px){
+  .vol{display:none}
+  .player-inner{gap:12px}
+}
+
+/* spinner */
+.spin{width:20px;height:20px;border:3px solid rgba(36,27,4,.2);border-top-color:var(--ink);border-radius:50%;animation:spin .8s linear infinite;display:none}
+.player.loading .spin{display:block}
+.player.loading .play-icon{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- nupud ---------- */
+.btn{
+  border:3px solid var(--ink);border-radius:999px;background:var(--honey);
+  color:var(--ink);font-weight:700;font-size:.9rem;padding:8px 18px;cursor:pointer;
+  box-shadow:0 4px 0 rgba(36,27,4,.2);transition:transform .1s ease;
+}
+.btn:hover{background:var(--honey-deep)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(36,27,4,.2)}
+.btn:focus-visible{outline:4px solid var(--leaf);outline-offset:2px}
+.btn.ghost{background:var(--paper)}
+.btn.ghost:hover{background:var(--cream)}
+.add-btn{margin-left:auto;background:var(--paper)}
+.add-btn:hover{background:var(--honey)}
+
+/* ---------- oma kanali kaart ---------- */
+.card.custom{background:var(--cream)}
+.card.custom.playing{background:var(--ink)}
+.del-btn{
+  position:absolute;top:10px;right:44px;width:34px;height:34px;border:0;background:transparent;
+  cursor:pointer;display:grid;place-items:center;border-radius:50%;
+}
+.del-btn:focus-visible{outline:3px solid var(--berry)}
+.del-btn svg{width:18px;height:18px;transition:transform .15s ease}
+.del-btn:hover svg{transform:scale(1.2)}
+.del-btn path{stroke:var(--ink-soft);stroke-width:2.4;stroke-linecap:round}
+.del-btn:hover path{stroke:var(--berry)}
+.card.playing .del-btn path{stroke:var(--honey)}
+.card.custom .name{padding-right:64px}
+
+/* ---------- modaal ---------- */
+.modal-back{
+  position:fixed;inset:0;z-index:20;background:rgba(36,27,4,.45);
+  display:grid;place-items:center;padding:20px;
+}
+.modal-back[hidden]{display:none}
+.modal{
+  background:var(--paper);border:3px solid var(--ink);border-radius:26px;
+  box-shadow:0 8px 0 rgba(36,27,4,.25);width:min(440px,100%);padding:26px 24px 22px;
+}
+.modal h3{font-size:1.35rem;font-weight:800;margin-bottom:14px}
+.field{display:block;margin-bottom:12px}
+.field span{display:block;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+.field input{
+  width:100%;font:inherit;font-weight:700;color:var(--ink);
+  border:3px solid var(--ink);border-radius:14px;padding:10px 14px;background:var(--cream);outline:0;
+}
+.field input:focus-visible{border-color:var(--leaf);background:var(--paper)}
+.modal-err{color:var(--berry);font-weight:700;font-size:.85rem;min-height:1.2em;margin-bottom:8px}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px}
+
+footer{position:relative;z-index:1;text-align:center;padding:34px 20px 10px;color:var(--ink-soft);font-weight:700;font-size:.85rem}
+
+/* ---------- mobiil ---------- */
+@media (max-width:680px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .card{flex-direction:column;align-items:flex-start;gap:8px;padding:12px;border-radius:18px}
+  .badge{width:40px;height:40px;font-size:.95rem;border-radius:12px}
+  .card .name{font-size:.88rem;padding-right:0}
+  .card.custom .name{padding-right:0}
+  .fav-btn{top:8px;right:8px}
+  .del-btn{top:8px;right:42px}
+  header{padding:18px 14px 4px}
+  main{padding:16px 14px 0}
+  .search-wrap{padding:0 14px}
+  .search{padding:10px 14px}
+  .logo{font-size:1.25rem}
+  .logo svg{width:36px;height:36px}
+  .section-head{flex-wrap:wrap;row-gap:8px}
+  .add-btn{padding:7px 14px;font-size:.85rem}
+  .hero-art{width:min(250px,64vw)}
+  .hero p{font-size:.9rem;padding:0 6px}
+  .player-inner{padding:14px 14px 16px}
+  .play-btn{width:56px;height:56px}
+  .now .title{font-size:1rem}
+  .modal{padding:20px 16px 16px;border-radius:20px}
+  body{padding-bottom:130px}
+}
+@media (max-width:380px){
+  .grid{grid-template-columns:1fr 1fr}
+}
+footer a{color:inherit}
+body.dark{
+  --page-bg:#211A06; --paper:#332908; --cream:#3E320C;
+  --ink:#FFF3C9; --ink-soft:#C9B77A; --honey-pale:#4A3B0E;
+}
+/* tume režiim: erijuhud */
+body.dark .card.playing{background:var(--honey);color:#241B04}
+body.dark .card.playing .name,body.dark .card.playing .meta{color:#241B04}
+body.dark .card.playing .eq span{background:#241B04}
+body.dark .card.playing .badge{border-color:#241B04}
+body.dark .card.playing .fav-btn .heart{stroke:#241B04}
+body.dark .card.playing .del-btn path{stroke:#241B04}
+body.dark .hero-art > circle:nth-of-type(1){fill:var(--cream)}
+body.dark .hero-art > circle:nth-of-type(2){fill:var(--honey-pale)}
+.theme-btn{
+  flex:none;width:44px;height:44px;border-radius:50%;border:3px solid var(--ink);
+  background:var(--paper);color:var(--ink);cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 4px 0 rgba(0,0,0,.18);transition:transform .12s ease;
+}
+.theme-btn svg{width:24px;height:24px}
+.theme-btn:hover{transform:translateY(-2px);background:var(--cream)}
+.theme-btn:active{transform:translateY(1px)}
+.theme-btn:focus-visible{outline:4px solid var(--leaf);outline-offset:2px}
+.badge{border-color:#241B04!important}
+
+
+
+/* ================= HERO: tants & uni ================= */
+#bee{transform-origin:150px 185px;transition:transform .8s ease}
+body.dancing #bee{animation:hero-rock 1.1s ease-in-out infinite}
+@keyframes hero-rock{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+#wing-l{transform-origin:120px 86px}
+#wing-r{transform-origin:180px 86px}
+body.dancing #wing-l{animation:flapL .22s ease-in-out infinite alternate}
+body.dancing #wing-r{animation:flapR .22s ease-in-out infinite alternate}
+@keyframes flapL{from{transform:rotate(4deg)}to{transform:rotate(-18deg)}}
+@keyframes flapR{from{transform:rotate(-4deg)}to{transform:rotate(18deg)}}
+#head-g{transform-origin:150px 80px}
+body.dancing #head-g{animation:hero-bob .55s ease-in-out infinite alternate}
+@keyframes hero-bob{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+.note{opacity:0}
+body.dancing .note{animation:noteFloat 1.6s ease-out infinite}
+body.dancing .note.n2{animation-delay:.55s}
+body.dancing .note.n3{animation-delay:1.1s}
+@keyframes noteFloat{0%{opacity:0;transform:translateY(6px)}25%{opacity:.8}100%{opacity:0;transform:translateY(-26px)}}
+body.sleeping #bee{transform:translateY(10px) rotate(-6deg)}
+body.sleeping #wing-l,body.sleeping #wing-r{transition:transform .8s ease .3s}
+body.sleeping #wing-l{transform:rotate(14deg)}
+body.sleeping #wing-r{transform:rotate(-14deg)}
+#eyes-closed{opacity:0}
+#eyes-open,#eyes-closed{transition:opacity .25s ease .6s}
+body.sleeping #eyes-open{opacity:0}
+body.sleeping #eyes-closed{opacity:1}
+body:not(.sleeping) #eyes-open,body:not(.sleeping) #eyes-closed{transition-delay:0s}
+#mouth-sleep{opacity:0}
+#mouth-smile,#mouth-sleep{transition:opacity .25s ease .6s}
+body.sleeping #mouth-smile{opacity:0}
+body.sleeping #mouth-sleep{opacity:1}
+.zzz{opacity:0}
+body.sleeping .zzz{animation:zfloat 2.4s ease-out infinite}
+body.sleeping .zzz.z1{animation-delay:.9s}
+body.sleeping .zzz.z2{animation-delay:1.7s}
+body.sleeping .zzz.z3{animation-delay:2.5s}
+@keyframes zfloat{0%{opacity:0;transform:translate(0,4px) scale(.7)}20%{opacity:1}100%{opacity:0;transform:translate(14px,-30px) scale(1.15)}}
+body.dark .note,body.dark .zzz{fill:var(--ink)}
+body.dark .note path{stroke:var(--ink)}
+@media (prefers-reduced-motion:reduce){
+  body.dancing #bee,body.dancing #wing-l,body.dancing #wing-r,body.dancing #head-g,
+  body.dancing .note,body.sleeping .zzz{animation:none}
+  #bee,#wing-l,#wing-r{transition:none}
+}
+
+/* ================= ÜLLATUSMUNAD ================= */
+#eyes-angry,#eyes-dizzy,#mouth-angry{opacity:0}
+.hero-art{cursor:pointer}
+/* klikireaktsioonid (svg-l, ei sega sisemisi tantsuanimatsioone) */
+.hero-art.react-spin{animation:reactSpin .65s ease}
+.hero-art.react-wave{animation:reactWave .6s ease}
+.hero-art.react-bow{animation:reactBow .7s ease}
+@keyframes reactSpin{to{transform:rotate(360deg)}}
+@keyframes reactWave{0%,100%{transform:rotate(0)}25%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}75%{transform:rotate(-6deg)}}
+@keyframes reactBow{0%,100%{transform:rotate(0)}40%{transform:rotate(14deg) translateY(6px)}}
+/* õis hüppab (kaktus) */
+#flower.jump{animation:flowerJump .7s cubic-bezier(.3,1.6,.5,1)!important}
+@keyframes flowerJump{0%,100%{transform:translateY(0)}45%{transform:translateY(-34px) rotate(12deg)}}
+/* vihane (5 kiiret klikki) */
+body.angry #eyes-open,body.angry #eyes-closed,body.angry #eyes-dizzy{opacity:0!important}
+body.angry #mouth-smile,body.angry #mouth-sleep{opacity:0!important}
+body.angry #eyes-angry,body.angry #mouth-angry{opacity:1!important}
+body.angry .hero-art{animation:angryShake .3s ease 3}
+@keyframes angryShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* pöörissilmad (täringu ülekuumenemine) */
+body.dizzy #eyes-open,body.dizzy #eyes-closed,body.dizzy #eyes-angry{opacity:0!important}
+body.dizzy #eyes-dizzy{opacity:1!important}
+body.dizzy #head-g{animation:dizzyWobble .8s ease-in-out infinite!important}
+@keyframes dizzyWobble{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.dice-btn.hot{background:#E4573D!important;border-color:#8a2413!important;color:#fff!important;animation:hotShake .25s ease infinite}
+@keyframes hotShake{0%,100%{transform:translate(0)}25%{transform:translate(-2px,1px)}75%{transform:translate(2px,-1px)}}
+/* striimiviga: kehitab õlgu */
+body.oops .hero-art{animation:shrug .7s ease 2}
+@keyframes shrug{0%,100%{transform:rotate(0) translateY(0)}30%{transform:rotate(-4deg) translateY(-5px)}60%{transform:rotate(4deg) translateY(-5px)}}
+body.oops #mouth-smile{opacity:0!important}
+body.oops #mouth-sleep{opacity:1!important}
+/* disko */
+body.disco header,body.disco main{animation:discoHue 5s linear infinite}
+@keyframes discoHue{to{filter:hue-rotate(360deg)}}
+body.disco.dancing #bee{animation-duration:.45s}
+body.disco body.disco #wing-l{animation-duration:.12s}body.disco #wing-r{animation-duration:.12s}
+/* jõulud */
+#scarf{opacity:0;transition:opacity .5s ease}
+body.xmas #scarf{opacity:1}
+body.nighttime.dancing #bee{animation-duration:2.2s}
+body.nighttime.dancing #wing-l,body.nighttime.dancing #wing-r{animation-duration:.44s}
+body.nighttime.dancing #head-g{animation-duration:1.1s}
+/* lendavad elemendid */
+.snowflake{position:fixed;top:-24px;color:#fff;pointer-events:none;z-index:6;animation:snowfall linear forwards;text-shadow:0 0 4px rgba(0,0,0,.15)}
+@keyframes snowfall{to{transform:translateY(110vh) rotate(240deg)}}
+.honeydrop{position:fixed;top:-30px;width:14px;height:20px;background:#F5B71E;border:2.5px solid #241B04;border-radius:50% 50% 60% 60%/40% 40% 70% 70%;pointer-events:none;z-index:6;animation:dropfall 2.2s ease-in forwards}
+@keyframes dropfall{to{transform:translateY(112vh)}}
+.antrow{position:fixed;bottom:4px;left:0;pointer-events:none;z-index:6;font-size:18px;letter-spacing:10px;white-space:nowrap;animation:antwalk 8s linear forwards}
+@keyframes antwalk{from{transform:translateX(-40vw)}to{transform:translateX(110vw)}}
+.confetti-p{position:fixed;width:9px;height:9px;pointer-events:none;z-index:6;animation:confall ease-in forwards}
+@keyframes confall{to{transform:translateY(60vh) rotate(600deg);opacity:0}}
+.smoke{position:fixed;width:16px;height:16px;border-radius:50%;background:rgba(120,120,120,.55);pointer-events:none;z-index:20;animation:smokerise 1.2s ease-out forwards}
+@keyframes smokerise{to{transform:translateY(-46px) scale(2.2);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .hero-art.react-spin,.hero-art.react-wave,.hero-art.react-bow,body.angry .hero-art,
+  body.dizzy #head-g,body.oops .hero-art,body.disco header,body.disco main,
+  .snowflake,.honeydrop,.antrow,.confetti-p,.smoke,.dice-btn.hot{animation:none}
+}
+
+/* ================= SILMAD, ŽANRITANTS, UNI+ ================= */
+#eyes-open{transition:transform .12s ease-out}
+/* žanritantsud */
+body.dancing.dance-rock #head-g{animation:headbang .38s ease-in-out infinite}
+@keyframes headbang{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-15deg)}}
+body.dancing.dance-classical #wing-l{animation:conductL 1.5s ease-in-out infinite}
+body.dancing.dance-classical #wing-r{animation:conductR 1.5s ease-in-out infinite}
+@keyframes conductL{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-34deg)}}
+@keyframes conductR{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(34deg)}}
+body.dancing.dance-classical #head-g{animation-duration:1.5s}
+body.dancing.dance-classical #bee{animation-duration:2.4s}
+body.dancing.dance-electronic #bee,
+body.dancing.dance-electronic #head-g,
+body.dancing.dance-electronic #wing-l,
+body.dancing.dance-electronic #wing-r{animation-timing-function:steps(2,end)}
+body.dancing.dance-folk #bee{animation:folkSway 1.7s ease-in-out infinite}
+@keyframes folkSway{0%,100%{transform:rotate(-6deg) translateX(-5px)}50%{transform:rotate(6deg) translateX(5px)}}
+body.dancing.dance-folk #head-g{animation-duration:1.7s}
+/* sügav uni: suurem Zzz, sügavam norg */
+body.deep-sleep #bee{transform:translateY(18px) rotate(-11deg)}
+body.deep-sleep .zzz{font-size:130%}
+body.deep-sleep .zzz.z3{font-size:150%}
+/* ehmatusega ärkamine */
+body.startle .hero-art{animation:startleHop .6s cubic-bezier(.3,1.8,.5,1)}
+@keyframes startleHop{0%{transform:translateY(0)}35%{transform:translateY(-18px) scale(1.05)}100%{transform:translateY(0)}}
+/* haigutus */
+#mouth-sleep{transform-box:fill-box;transform-origin:center}
+body.yawning #mouth-sleep{animation:yawnMouth 1.6s ease}
+@keyframes yawnMouth{0%,100%{transform:scale(1)}40%,60%{transform:scale(2.6)}}
+body.yawning #bee{animation:yawnStretch 1.6s ease}
+@keyframes yawnStretch{0%,100%{transform:translateY(10px) rotate(-6deg)}40%,60%{transform:translateY(4px) rotate(-2deg) scale(1.035)}}
+@media (prefers-reduced-motion:reduce){
+  body.dancing.dance-rock #head-g,body.dancing.dance-classical #wing-l,body.dancing.dance-classical #wing-r,
+  body.dancing.dance-folk #bee,body.startle .hero-art,body.yawning #mouth-sleep,body.yawning #bee{animation:none}
+  #eyes-open{transition:none}
+}
+
+/* ================= EESTI PÜHAD ================= */
+#bonfire,#evflag{display:none}
+body.jaanipaev #bonfire{display:block}
+body.ev24 #evflag{display:block}
+body.ev24 #radio-ant{display:none}
+.flame{transform-box:fill-box;transform-origin:50% 100%}
+body.jaanipaev .flame.f1{animation:flick .5s ease-in-out infinite alternate}
+body.jaanipaev .flame.f2{animation:flick .38s ease-in-out .15s infinite alternate}
+body.jaanipaev .flame.f3{animation:flick .6s ease-in-out .3s infinite alternate}
+@keyframes flick{from{transform:scaleY(1) scaleX(1)}to{transform:scaleY(1.18) scaleX(.92)}}
+body.jaanipaev .spark{animation:sparkUp 1.4s ease-out infinite}
+body.jaanipaev .spark.s2{animation-delay:.5s}
+body.jaanipaev .spark.s3{animation-delay:.9s}
+@keyframes sparkUp{0%{opacity:0;transform:translateY(0)}20%{opacity:1}100%{opacity:0;transform:translateY(-30px)}}
+.flag{transform-box:fill-box;transform-origin:left center}
+body.ev24 .flag{animation:flagWave 1.8s ease-in-out infinite}
+@keyframes flagWave{0%,100%{transform:skewY(0deg)}50%{transform:skewY(-6deg)}}
+@media (prefers-reduced-motion:reduce){
+  body.jaanipaev .flame,body.jaanipaev .spark,body.ev24 .flag{animation:none}
+  body.jaanipaev .spark{opacity:.7}
+}
+
+/* ================= KELLAAJA TERVITUS ================= */
+.hero{position:relative}
+.greet-bubble{
+  position:absolute;top:6px;left:50%;transform:translateX(-50%) scale(.6);
+  background:var(--paper);color:var(--ink);border:3px solid var(--ink);border-radius:16px;
+  font-family:'Baloo 2',cursive;font-weight:700;font-size:1rem;padding:8px 16px;
+  box-shadow:0 4px 0 rgba(0,0,0,.15);white-space:nowrap;pointer-events:none;z-index:3;
+  opacity:0;transition:opacity .25s ease, transform .25s cubic-bezier(.3,1.6,.5,1);
+}
+.greet-bubble::after{
+  content:'';position:absolute;bottom:-11px;left:50%;transform:translateX(-50%);
+  border:8px solid transparent;border-top-color:var(--ink);border-bottom:0;
+}
+.greet-bubble::before{
+  content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);
+  border:6px solid transparent;border-top-color:var(--paper);border-bottom:0;z-index:1;
+}
+.greet-bubble.show{opacity:1;transform:translateX(-50%) scale(1)}
+@media (prefers-reduced-motion:reduce){.greet-bubble{transition:opacity .25s ease}}
+
+/* ================= FAVICON-SÜNK, PILGUTUS, MUTE, SÜDA ================= */
+/* pilgutus: hetkeline, ilma viivituseta */
+body.blink #eyes-open{opacity:0!important;transition:none!important}
+body.blink #eyes-closed{opacity:1!important;transition:none!important}
+/* hääletu: pahur nägu + tiivad kõrvadel */
+body.muted #wing-l,body.muted #wing-r{animation:none!important;transition:transform .35s ease!important}
+body.muted #wing-l{transform:rotate(44deg)!important}
+body.muted #wing-r{transform:rotate(-44deg)!important}
+body.muted #mouth-smile{opacity:0!important}
+body.muted #mouth-angry{opacity:1!important}
+/* lendav süda */
+.fly-heart{
+  position:fixed;font-size:18px;color:#E4573D;pointer-events:none;z-index:30;
+  animation:flyheart .9s ease-out forwards;
+}
+@keyframes flyheart{
+  0%{opacity:1;transform:translate(-50%,0) scale(.7)}
+  100%{opacity:0;transform:translate(-50%,-46px) scale(1.5)}
+}
+@media (prefers-reduced-motion:reduce){.fly-heart{animation-duration:.4s}}
+
+/* ================= PÄISENUPUD: kitsal ekraanil ikoonid ================= */
+.tb-btn,a.tb-btn,button.tb-btn{display:inline-flex;align-items:center;gap:8px}
+.tb-ic{display:grid;place-items:center}
+.tb-ic svg{width:20px;height:20px;display:block}
+@media (max-width:640px){
+  .tb-txt{display:none}
+  .tb-btn,a.tb-btn,button.tb-btn{width:44px;height:44px;padding:0;border-radius:50%;justify-content:center;flex:none}
+}
+
+/* ================= YOUTUBE KANAL ================= */
+#ytSection{margin-top:26px}
+.yt-badge{background:#F6D0C4}
+.yt-meta{display:block;font-size:.78rem;font-weight:700;color:var(--ink-soft);margin-top:2px}
+.card.yt-card.playing .yt-meta{color:var(--honey)}
+body.dark .card.yt-card.playing .yt-meta{color:#241B04}
+.yt-box{max-width:960px;margin:0 auto;padding:16px 20px 0;box-sizing:border-box}
+.yt-frame-wrap{
+  width:150px;max-width:40vw;border-radius:14px;overflow:hidden;
+  border:3px solid var(--ink);position:relative;background:#000;
+}
+.yt-frame-wrap::before{content:'';display:block;padding-top:56.25%}
+#ytFrame{position:absolute;inset:0;width:100%;height:100%;border:0}
+.player.yt-active .fav-btn{display:none}
+
+/* ================= JAAMADE TERVISEKONTROLL ================= */
+.card.offline{opacity:.55}
+.card.offline .badge{filter:grayscale(1)}
+.offline-tag{display:none}
+.card.offline .offline-tag{
+  display:block;font-size:.72rem;font-weight:800;color:#B23A2E;margin-top:2px;
+}
+body.dark .card.offline .offline-tag{color:#F0A99E}
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="topbar">
+    <div class="logo">
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Vaheta heledat ja tumedat režiimi"></button>
+      MESIRAADIO
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a class="btn add-btn tb-btn" href="world.html" style="text-decoration:none" title="Välismaa raadiod"><span class="tb-ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,20A108,108,0,1,0,236,128,108.12,108.12,0,0,0,128,20Zm84,108a83.64,83.64,0,0,1-4.47,27L167,130a19.65,19.65,0,0,0-7.8-2.78l-22.82-3.08A20.14,20.14,0,0,0,117.72,132h-4.07l-2.71-5.6a19.88,19.88,0,0,0-13.8-10.84L94.46,115l4-7h14.39a20,20,0,0,0,9.66-2.49l12.25-6.76a20.57,20.57,0,0,0,3.74-2.68l26.92-24.33A20,20,0,0,0,172,56.49,84,84,0,0,1,212,128ZM140.76,45l6.2,11.1L122.75,78l-10.93,6H96.14A20.05,20.05,0,0,0,78.78,94.06l-4.49,7.85L67.68,84.28l9.91-23.42A83.91,83.91,0,0,1,140.76,45ZM44,128a83.52,83.52,0,0,1,4.4-26.77l7.74,20.65a19.89,19.89,0,0,0,14.52,12.53l19.53,4.2,3,6.1a20.11,20.11,0,0,0,13.55,10.77l-5,11.12a20,20,0,0,0,3.58,21.71l.21.22,18.16,18.7-.89,4.59A84.09,84.09,0,0,1,44,128Zm103.65,81.66a20.11,20.11,0,0,0-5-17.3l-.21-.22-17.72-18.25,11.37-25.52,19,2.56,41.43,25.48A84.2,84.2,0,0,1,147.65,209.66Z"/></svg></span><span class="tb-txt">Välismaa raadiod</span></a>
+      <button class="btn add-btn tb-btn" id="addBtn" type="button" style="margin-left:0" title="Lisa kanal"><span class="tb-ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/></svg></span><span class="tb-txt">Lisa kanal</span></button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <!-- mesilane raadioga -->
+    <svg class="hero-art" viewBox="0 0 300 240" role="img" aria-label="Mesilane hoiab raadiot">
+      <circle cx="150" cy="120" r="100" fill="#FFE08A"/>
+      <circle cx="150" cy="120" r="76" fill="#FFF3C9"/>
+      <g id="bee">
+      <!-- tiivad -->
+      <g stroke="#241B04" stroke-width="4" stroke-linejoin="round">
+        <g id="wing-l"><ellipse cx="108" cy="78" rx="26" ry="17" fill="#FFF8E4" opacity=".92" transform="rotate(-24 108 78)"/></g>
+        <g id="wing-r"><ellipse cx="192" cy="78" rx="26" ry="17" fill="#FFF8E4" opacity=".92" transform="rotate(24 192 78)"/></g>
+      </g>
+      <!-- keha -->
+      <g stroke="#241B04" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+        <ellipse cx="150" cy="130" rx="42" ry="48" fill="#FFC933"/>
+        <path d="M112 116h76M108 134h84M114 152h72" stroke-width="5"/>
+      </g>
+      <!-- pea -->
+      <g id="head-g" stroke="#241B04" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+        <circle cx="150" cy="72" r="26" fill="#FFC933"/>
+        <path d="M138 50c-3-9-10-12-10-12M162 50c3-9 10-12 10-12" fill="none"/>
+        <circle cx="126" cy="36" r="4.5" fill="#241B04"/>
+        <circle cx="174" cy="36" r="4.5" fill="#241B04"/>
+        <g id="eyes-open">
+          <circle cx="141" cy="70" r="3" fill="#241B04" stroke="none"/>
+          <circle cx="159" cy="70" r="3" fill="#241B04" stroke="none"/>
+        </g>
+        <g id="eyes-closed" stroke-width="3.4">
+          <path d="M136 70c3 3 7 3 10 0" fill="none"/>
+          <path d="M154 70c3 3 7 3 10 0" fill="none"/>
+        </g>
+        <path id="mouth-smile" d="M142 81c5 4 11 4 16 0" fill="none" stroke-width="4"/>
+        <circle id="mouth-sleep" cx="150" cy="83" r="3.4" fill="none" stroke-width="3.4"/>
+        <g id="eyes-angry" stroke-width="3.4">
+          <path d="M135 64l12 8M165 64l-12 8" fill="none"/>
+        </g>
+        <path id="mouth-angry" d="M142 86c5-4 11-4 16 0" fill="none" stroke-width="4"/>
+        <g id="eyes-dizzy" stroke-width="2.2" fill="none">
+          <path d="M141 70m-5 0a5 5 0 1 1 10 0a3.5 3.5 0 1 1 -7 0a2 2 0 1 1 4 0"/>
+          <path d="M159 70m-5 0a5 5 0 1 1 10 0a3.5 3.5 0 1 1 -7 0a2 2 0 1 1 4 0"/>
+        </g>
+      </g>
+      <g id="scarf" stroke="#241B04" stroke-width="4" stroke-linejoin="round">
+        <path d="M126 96c14 8 34 8 48 0l-2 12c-13 7-31 7-44 0z" fill="#E4573D"/>
+        <path d="M168 104l8 22-12 3-6-22" fill="#E4573D"/>
+        <path d="M164 126h12M166 120h11" stroke-width="3"/>
+      </g>
+      <!-- käpad hoiavad raadiot -->
+      <g stroke="#241B04" stroke-width="5" stroke-linecap="round" fill="none">
+        <path d="M118 122c-8 8-8 18-2 24"/>
+        <path d="M182 122c8 8 8 18 2 24"/>
+      </g>
+      <!-- raadio -->
+      <g stroke="#241B04" stroke-width="4" stroke-linejoin="round">
+        <rect x="112" y="140" width="76" height="48" rx="10" fill="#FFF8E4"/>
+        <circle cx="133" cy="164" r="11" fill="#FFC933"/>
+        <circle cx="133" cy="164" r="4" fill="#241B04" stroke="none"/>
+        <rect x="152" y="152" width="26" height="6" rx="3" fill="#F5B71E" stroke="none"/>
+        <rect x="152" y="164" width="19" height="6" rx="3" fill="#F5B71E" stroke="none"/>
+        <circle cx="176" cy="178" r="3.4" fill="#241B04" stroke="none"/>
+        <g id="radio-ant">
+          <path d="M182 140l12-18" stroke-linecap="round"/>
+          <circle cx="196" cy="120" r="3.5" fill="#241B04" stroke="none"/>
+        </g>
+        <g id="evflag" stroke="#241B04" stroke-width="3" stroke-linejoin="round">
+          <path d="M196 120L212 88" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <g class="flag">
+            <rect x="212" y="82" width="30" height="7" fill="#4891D9"/>
+            <rect x="212" y="89" width="30" height="7" fill="#241B04"/>
+            <rect x="212" y="96" width="30" height="7" fill="#FFF8E4"/>
+          </g>
+        </g>
+      </g>
+      </g><!-- /bee -->
+      <!-- noodid -->
+      <g class="note n2" fill="#241B04">
+        <path d="M242 84v-22l12-4v22" fill="none" stroke="#241B04" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="239" cy="85" r="5"/><circle cx="251" cy="81" r="5"/>
+      </g>
+      <g class="note" fill="#241B04">
+        <circle cx="52" cy="96" r="4"/><path d="M55 96V78" stroke="#241B04" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <g class="note n3" fill="#241B04">
+        <circle cx="66" cy="150" r="3.5"/><path d="M69 150v-15" stroke="#241B04" stroke-width="3.5" stroke-linecap="round"/>
+      </g>
+      <!-- jaanilõke -->
+      <g id="bonfire" stroke="#241B04" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+        <path class="flame f3" d="M251 196c-9-8-8-22 1-32 1 7 6 9 6 9s-1-10 6-16c1 11 9 14 9 21 0 10-8 18-14 18z" fill="#F5B71E"/>
+        <path class="flame f1" d="M255 196c-6-5-6-15 0-22 1 5 4 6 4 6s0-7 4-11c1 8 7 10 7 15 0 7-6 12-9 12z" fill="#E4573D"/>
+        <path class="flame f2" d="M258 196c-3-3-3-8 0-12 2 3 5 4 5 8 0 3-3 4-5 4z" fill="#FFE08A"/>
+        <path d="M240 200l32-8M240 192l32 8" stroke="#8A5A2B" stroke-width="7"/>
+        <circle class="spark" cx="256" cy="160" r="2.5" fill="#F5B71E" stroke="none"/>
+        <circle class="spark s2" cx="266" cy="156" r="2" fill="#E4573D" stroke="none"/>
+        <circle class="spark s3" cx="248" cy="158" r="2" fill="#F5B71E" stroke="none"/>
+      </g>
+      <!-- Zzz -->
+      <g font-family="Baloo 2, cursive" font-weight="800" fill="#241B04">
+        <text class="zzz z1" x="192" y="52" font-size="20">z</text>
+        <text class="zzz z2" x="208" y="36" font-size="26">z</text>
+        <text class="zzz z3" x="228" y="20" font-size="32">Z</text>
+      </g>
+    </svg>
+    <h1>Kõige kiirem raadio</h1>
+    <p>Eesti netiraadiod otse sinu kõrvu — sumin garanteeritud.</p>
+  </div>
+</header>
+
+<div class="search-wrap">
+  <div class="search">
+    <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="#241B04" stroke-width="2.6"/><path d="M13 13l5 5" stroke="#241B04" stroke-width="2.6" stroke-linecap="round"/></svg>
+    <input id="search" type="search" placeholder="Otsi kanalit…" aria-label="Otsi raadiokanalit">
+  </div>
+  <button class="dice-btn" id="diceBtn" type="button" title="Suvaline jaam" aria-label="Mängi suvalist jaama"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M192,28H64A36,36,0,0,0,28,64V192a36,36,0,0,0,36,36H192a36,36,0,0,0,36-36V64A36,36,0,0,0,192,28Zm12,164a12,12,0,0,1-12,12H64a12,12,0,0,1-12-12V64A12,12,0,0,1,64,52H192a12,12,0,0,1,12,12ZM104,88A16,16,0,1,1,88,72,16,16,0,0,1,104,88Zm40,40a16,16,0,1,1-16-16A16,16,0,0,1,144,128Zm40-40a16,16,0,1,1-16-16A16,16,0,0,1,184,88Zm-80,80a16,16,0,1,1-16-16A16,16,0,0,1,104,168Zm80,0a16,16,0,1,1-16-16A16,16,0,0,1,184,168Z"/></svg></button>
+</div>
+
+<main>
+  <section id="favSection" hidden>
+    <div class="section-head">
+      <h2>Lemmikud</h2>
+      <span class="count-pill" id="favCount">0</span>
+    </div>
+    <div class="grid" id="favGrid"></div>
+  </section>
+
+  <div class="section-head">
+    <h2>Kõik kanalid</h2>
+    <span class="count-pill" id="allCount">0</span>
+    <button class="btn add-btn" id="toggleAllBtn" type="button" aria-expanded="true" aria-controls="allGrid">Peida kanalid</button>
+  </div>
+  <div class="grid" id="allGrid"></div>
+
+  <section id="ytSection">
+    <button class="card yt-card" id="ytCard" type="button" aria-label="Mängi: Karvane Õhtusöök (YouTube esitusloend)">
+      <span class="badge yt-badge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="#241B04"><path d="M176,128a12,12,0,0,1-5.17,9.87l-52,36A12,12,0,0,1,100,164V92a12,12,0,0,1,18.83-9.87l52,36A12,12,0,0,1,176,128Zm60,0A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-24,0a84,84,0,1,0-84,84A84.09,84.09,0,0,0,212,128Z"/></svg></span>
+      <span>
+        <span class="name">Karvane Õhtusöök</span>
+        <span class="yt-meta" id="ytMeta">Esitusloend · vajuta mängimiseks</span>
+        <span class="eq" aria-hidden="true"><span></span><span></span><span></span></span>
+      </span>
+    </button>
+  </section>
+</main>
+
+<!-- kanali lisamise modaal -->
+<div class="modal-back" id="modalBack" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle">Lisa oma kanal</h3>
+    <label class="field">
+      <span>Kanali nimi</span>
+      <input id="stName" type="text" maxlength="60" placeholder="nt Minu lemmikjaam" autocomplete="off">
+    </label>
+    <label class="field">
+      <span>Striimi URL</span>
+      <input id="stUrl" type="url" placeholder="https://…/stream.mp3" autocomplete="off" spellcheck="false">
+    </label>
+    <div class="modal-err" id="modalErr" role="alert"></div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="modalCancel" type="button">Tühista</button>
+      <button class="btn" id="modalSave" type="button">Lisa kanal</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- pleier -->
+<div class="player" id="player">
+  <div class="handle"></div>
+  <div class="yt-box" id="ytBox" hidden>
+    <div class="yt-frame-wrap"><div id="ytFrame"></div></div>
+  </div>
+  <div class="player-inner">
+    <div class="now">
+      <div class="label">Praegu mängib</div>
+      <div class="title" id="nowTitle">—</div>
+      <div class="status" id="nowStatus"></div>
+      <div class="track" id="nowTrack" hidden></div>
+    </div>
+    <button class="fav-btn" id="playerFav" aria-label="Lisa lemmikutesse" title="Lemmik">
+      <svg viewBox="0 0 24 24"><path class="heart" d="M12 20.5C7 16.5 3 13.2 3 9.3 3 6.4 5.2 4.5 7.7 4.5c1.7 0 3.2.9 4.3 2.4 1.1-1.5 2.6-2.4 4.3-2.4 2.5 0 4.7 1.9 4.7 4.8 0 3.9-4 7.2-9 11.2z"/></svg>
+    </button>
+    <div class="vol">
+      <span class="vol-pct" id="volPct" aria-hidden="true">100%</span>
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h4l5 4V4L7 8H3z" fill="#241B04"/><path d="M14.5 7c1 1 1.6 1.9 1.6 3s-.6 2-1.6 3" fill="none" stroke="#241B04" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="range" id="vol" min="0" max="1" step="0.01" value="1" aria-label="Helitugevus">
+    </div>
+    <button class="play-btn" id="playBtn" aria-label="Mängi / paus">
+      <span class="spin" aria-hidden="true"></span>
+      <svg class="play-icon" id="playIcon" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M8 5l14 8-14 8z" fill="#241B04"/></svg>
+    </button>
+  </div>
+</div>
+
+<audio id="audio" preload="none"></audio>
+
+<script>
+const STATIONS = [
+ ["vikerraadio","https://icecast.err.ee/vikerraadiokorge.mp3"],
+ ["raadio tallinn","https://icecast.err.ee/raadiotallinnkorge.mp3"],
+ ["raadio 2","https://icecast.err.ee/raadio2korge.mp3"],
+ ["r2 eesti","https://icecast.err.ee/r2eestikorge.mp3"],
+ ["r2 millennium","https://icecast.err.ee/r2musickorge.mp3"],
+ ["r2 pop","https://icecast.err.ee/r2popkorge.mp3"],
+ ["r2 rap","https://icecast.err.ee/r2pkorge.mp3"],
+ ["r2 altpop","https://icecast.err.ee/r2alternatiivkorge.mp3"],
+ ["r2 chill","https://icecast.err.ee/r2chillkorge.mp3"],
+ ["r2 rock","https://icecast.err.ee/r2rockkorge.mp3"],
+ ["klassikaraadio","https://icecast.err.ee/klassikaraadiokorge.mp3"],
+ ["klara jazz","https://icecast.err.ee/klarajazzkorge.mp3"],
+ ["klara nostalgia","https://icecast.err.ee/klaranostalgiakorge.mp3"],
+ ["klara meditatsioon","https://icecast.err.ee/klarameditatsioonkorge.mp3"],
+ ["klara klassika","https://icecast.err.ee/klaraklassikakorge.mp3"],
+ ["raadio 4","https://icecast.err.ee/raadio4korge.mp3"],
+ ["elmar","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/elmar.aac"],
+ ["elmari kuld","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/elmarikuld.aac"],
+ ["elmari tantsuõhtu","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/elmaritantsuohtu.aac"],
+ ["elmari ballaadid","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/EB_elmariballaadid.aac"],
+ ["kuku","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/kuku_high.mp3"],
+ ["äripäev","https://www.aripaev.ee/raadio/stream.mp3"],
+ ["doubleclap","https://s3.radio.co/scfd7273b2/listen"],
+ ["legendaarne","https://edge03.cdn.bitflip.ee:8888/Legendaarne"],
+ ["ida raadio","https://broadcast.idaidaida.net:8000/stream"],
+ ["hps bassline","https://azura.hpsbassline.club/listen/haapsaly_bassline/radio.mp3"],
+ ["hardcore predictor","https://azura.hpsbassline.club/listen/hardcore_predictorfm/radio.mp3"],
+ ["nrj fm","https://skymedia-live.bitflip.ee/NRJ"],
+ ["xfm","https://stream4.rcast.net/73328"],
+ ["big fm","https://sc2.flamebox.org/bigfm-hd"],
+ ["retro fm","https://skymedia-live.bitflip.ee/RETRO"],
+ ["retro fm disco","https://skymedia-live.bitflip.ee/retro1.mp3"],
+ ["retro fm eestikas","https://skymedia-live.bitflip.ee/retro2.mp3"],
+ ["retro fm love","https://stream.skymedia.ee/live/RetroJ6ulud"],
+ ["sunlight fm","https://striim.sunlightfm.ee:8443/sunlightfm.mp3"],
+ ["hitmix","https://stream.hitmix.ee:8443/HIT_320"],
+ ["hits radio","https://stream1.rcast.net/66833"],
+ ["ring fm","https://cdn.treraadio.ee/ringfm"],
+ ["tre raadio","https://cdn.treraadio.ee/pohja-tre"],
+ ["ruut fm","https://a1.asurahosting.com/listen/ruut_fm/radio.mp3"],
+ ["rock fm","https://skymedia-live.bitflip.ee/rck"],
+ ["rock fm metal","https://skymedia-live.bitflip.ee/rckmetal"],
+ ["sooviraadio","https://play.sooviraadio.net/stream.mp3"],
+ ["meie raadio","https://pleier.meieraadio.ee/pleier2"],
+ ["raadio kadi","https://edge06.cdn.bitflip.ee:8888/kadi"],
+ ["raadio remix","https://stream.hostbee.nl:5740/stream"],
+ ["rahvaraadio","https://streamer.tt.ee/rahvaraadio"],
+ ["raadio 11","https://sonic.mediacp.eu/8126/stream.mp3"],
+ ["võmba fm","https://c4.radioboss.fm:18123/stream"],
+ ["sky plus","https://skymedia-live.bitflip.ee/SKYPLUS"],
+ ["sky plus dnb","https://skymedia-live.bitflip.ee/NRJdnb"],
+ ["sky radio","https://stream.skymedia.ee/live/SKY"],
+ ["power hit radio","https://ice.leviracloud.eu/phr96-aac"],
+ ["myhits","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/myhits.mp3"],
+ ["myhits dance","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/md_mhdance.aac"],
+ ["myhits rock","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/MHR_myhitsrock.aac"],
+ ["circle k","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/circle-k.mp3"],
+ ["star fm","https://ice.leviracloud.eu/star96-aac"],
+ ["star fm eesti","https://ice.leviracloud.eu/starFMEesti128-aac"],
+ ["kiss fm","https://stream.skymedia.ee/live/KISS_AAC"],
+ ["kiss eurovision","https://stream.skymedia.ee/live/KissEurovisioon"],
+ ["kiss pride","https://edge01.cdn.bitflip.ee:8888/KissPride"],
+ ["finest fm","https://s2.radio.co/sadb37cbdb/listen"],
+ ["taifuun fm","https://eagle.streemlion.com/proxy/taifuunfm?mp=/stream"],
+ ["happyu","https://radio.streemlion.com:2525/stream"],
+ ["estonian party radio","https://maggie.torontocast.com:8110/stream"],
+ ["xl raadio","https://stream2.rcast.net/69794"],
+ ["raadio duo","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/radioduo.aac"],
+ ["duo gold","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/kuld.aac"],
+ ["duo hitmix","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/DuoGH.aac"],
+ ["duo rock","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/rokk.aac"],
+ ["duo party","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/duodance.aac"],
+ ["duo softmix","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/DS_softmix.aac"],
+ ["duo country","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/dc_duocountry.aac"],
+ ["duo christmas","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/christmas.aac"],
+ ["raadio kidzone","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/kidzone.aac"],
+ ["relax fm","https://stream.relaxfm.ee/relax_HD"],
+ ["relax cafe","https://stream.relaxfm.ee/cafe_HD"],
+ ["relax international","https://stream.relaxfm.ee/international_HD"],
+ ["relax instrumental","https://stream.relaxfm.ee/instrumental_HD"],
+ ["relax spa","https://stream.relaxfm.ee/spa"],
+ ["chat raadio","https://puma.streemlion.com:1830/stream"],
+ ["hits show","https://stream.zeno.fm/dghp9excl67vv"],
+ ["raadio x","https://stream1.rcast.net/73328"],
+ ["tagatuba fm","https://mcr.streams.gr/listen/tagatubaraadio"],
+ ["raadio 7","https://edge05.cdn.bitflip.ee:8888/R7"],
+ ["pereraadio tallinn","https://icecast.pereraadio.ee:9000/Tallinn"],
+ ["pereraadio tartu","https://icecast.pereraadio.ee:9000/Tartu"],
+ ["pereraadio kuressaare","https://icecast.pereraadio.ee:9000/Kuressaare"],
+ ["radio eli","https://icecast.pereraadio.ee:9000/RadioEli"],
+ ["semeinoje radio","https://icecast.pereraadio.ee:9000/Semeinoje"],
+ ["nikradofem","https://live.nikradofem.online/live"],
+ ["radio azathoth revival","https://cast4.asurahosting.com/proxy/aadu/stream"]
+];
+
+/* ---------- žanrid ja ikoonid (Phosphor Icons, MIT) ---------- */
+const GENRE = {"vikerraadio": "talk", "raadio tallinn": "pop", "raadio 2": "pop", "r2 eesti": "folk", "r2 millennium": "retro", "r2 pop": "pop", "r2 rap": "dance", "r2 altpop": "rock", "r2 chill": "dance", "r2 rock": "rock", "klassikaraadio": "classical", "klara jazz": "jazz", "klara nostalgia": "retro", "klara meditatsioon": "classical", "klara klassika": "classical", "raadio 4": "talk", "elmar": "folk", "elmari kuld": "folk", "elmari tantsuõhtu": "folk", "elmari ballaadid": "folk", "kuku": "talk", "äripäev": "talk", "doubleclap": "dance", "legendaarne": "retro", "ida raadio": "dance", "hps bassline": "dance", "hardcore predictor": "dance", "nrj fm": "pop", "xfm": "rock", "big fm": "pop", "retro fm": "retro", "retro fm disco": "retro", "retro fm eestikas": "retro", "retro fm love": "retro", "sunlight fm": "pop", "hitmix": "pop", "hits radio": "pop", "ring fm": "pop", "tre raadio": "pop", "ruut fm": "pop", "rock fm": "rock", "rock fm metal": "rock", "sooviraadio": "folk", "meie raadio": "folk", "raadio kadi": "pop", "raadio remix": "dance", "võmba fm": "folk", "sky plus": "pop", "sky plus dnb": "dance", "sky radio": "pop", "power hit radio": "pop", "myhits": "pop", "myhits dance": "dance", "myhits rock": "rock", "circle k": "pop", "star fm": "pop", "star fm eesti": "folk", "kiss fm": "pop", "kiss eurovision": "pop", "kiss pride": "pop", "finest fm": "pop", "taifuun fm": "pop", "happyu": "pop", "estonian party radio": "folk", "xl raadio": "folk", "raadio duo": "pop", "duo gold": "retro", "duo hitmix": "pop", "duo rock": "rock", "duo party": "dance", "duo softmix": "pop", "duo country": "pop", "duo christmas": "pop", "raadio kidzone": "kids", "relax fm": "dance", "relax cafe": "dance", "relax international": "dance", "relax instrumental": "dance", "relax spa": "dance", "chat raadio": "talk", "hits show": "pop", "raadio x": "rock", "tagatuba fm": "rock", "raadio 7": "faith", "pereraadio tallinn": "faith", "pereraadio tartu": "faith", "pereraadio kuressaare": "faith", "radio eli": "faith", "semeinoje radio": "faith", "nikradofem": "pop", "radio azathoth revival": "rock", "rahvaraadio": "folk", "raadio 11": "pop"};
+const GICON = {
+talk: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M168,12A75.9,75.9,0,0,0,92.49,96.33L23.91,189.85a19.89,19.89,0,0,0,2,26l14.29,14.29a19.89,19.89,0,0,0,26,2l93.52-68.58A76,76,0,1,0,168,12Zm52,76a51.66,51.66,0,0,1-7.75,27.27L140.74,43.75A52,52,0,0,1,220,88ZM54.72,210.71l-9.43-9.43,56.19-76.63a76.46,76.46,0,0,0,29.87,29.87ZM116,88a51.63,51.63,0,0,1,7.75-27.27l71.51,71.51A52,52,0,0,1,116,88Z"/></svg>`,
+pop: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M243,96a20.33,20.33,0,0,0-17.74-14l-56.59-4.57L146.83,24.62a20.36,20.36,0,0,0-37.66,0L87.35,77.44,30.76,82A20.45,20.45,0,0,0,19.1,117.88l43.18,37.24-13.2,55.7A20.37,20.37,0,0,0,79.57,233L128,203.19,176.43,233a20.39,20.39,0,0,0,30.49-22.15l-13.2-55.7,43.18-37.24A20.43,20.43,0,0,0,243,96ZM172.53,141.7a12,12,0,0,0-3.84,11.86L181.58,208l-47.29-29.08a12,12,0,0,0-12.58,0L74.42,208l12.89-54.4a12,12,0,0,0-3.84-11.86L41.2,105.24l55.4-4.47a12,12,0,0,0,10.13-7.38L128,41.89l21.27,51.5a12,12,0,0,0,10.13,7.38l55.4,4.47Z"/></svg>`,
+rock: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M92.49,187.5a12,12,0,1,1-17,17l-24-24a12,12,0,0,1,17-17ZM112,120a24,24,0,1,0,24,24A24,24,0,0,0,112,120ZM252.49,60.48a12,12,0,0,1-14.12,2.12L182,119a73.13,73.13,0,0,1,5.36,18.68c2.51,17.58-2.2,33.35-13.27,44.42a46.11,46.11,0,0,1-15.73,10.29,4.32,4.32,0,0,0-2.39,4c-.53,15.61-6.16,29.22-16.28,39.34C129,246.37,114.5,252,98.13,252a76.73,76.73,0,0,1-10.77-.78c-19.47-2.78-38.73-12.85-54.23-28.35S7.56,188.11,4.78,168.64c-3-20.75,2.56-39.34,15.55-52.33C30.45,106.19,44.06,100.56,59.67,100a4.32,4.32,0,0,0,4-2.39A46.11,46.11,0,0,1,73.93,81.91C85,70.84,100.77,66.13,118.35,68.64A73.13,73.13,0,0,1,137,74L193.4,17.63A12,12,0,0,1,212.49,3.51l40,40A12,12,0,0,1,252.49,60.48ZM221,46,210,35,191,54l11,11Zm-74.31,63.28C135.53,98.09,121.39,92,109.34,92c-7.29,0-13.81,2.21-18.44,6.85A22.16,22.16,0,0,0,86,106.47,28.23,28.23,0,0,1,60.48,124h0c-6.57.22-15.93,2-23.18,9.26-7.52,7.52-10.63,18.87-8.76,32,2.05,14.37,9.71,28.81,21.56,40.66s26.29,19.51,40.66,21.56c13.09,1.87,24.44-1.24,32-8.76,7.25-7.25,9-16.61,9.26-23.18A28.23,28.23,0,0,1,149.53,170a22.16,22.16,0,0,0,7.59-4.94C169.43,152.79,164.67,127.23,146.72,109.28ZM169,98.07,185,82,174,71,157.93,87c2,1.67,3.9,3.42,5.76,5.27S167.29,96.09,169,98.07Z"/></svg>`,
+jazz: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,28H48A20,20,0,0,0,28,48V208a20,20,0,0,0,20,20H208a20,20,0,0,0,20-20V48A20,20,0,0,0,208,28ZM92,132V52h24v80Zm52,24v48H112V156Zm20-24H140V52h24ZM52,52H68v92a12,12,0,0,0,12,12h8v48H52ZM204,204H168V156h8a12,12,0,0,0,12-12V52h16Z"/></svg>`,
+classical: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M215.38,14.54a12,12,0,0,0-10.29-2.18l-128,32A12,12,0,0,0,68,56V159.35A40,40,0,1,0,92,196V113.37l104-26v40A40,40,0,1,0,220,164V24A12,12,0,0,0,215.38,14.54ZM52,212a16,16,0,1,1,16-16A16,16,0,0,1,52,212ZM92,88.63V65.37l104-26V62.63ZM180,180a16,16,0,1,1,16-16A16,16,0,0,1,180,180Z"/></svg>`,
+dance: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M124,60.78V16a12,12,0,0,0-24,0V60.78a92,92,0,1,0,24,0ZM178.92,140h-23.4c-1.64-20.74-7.36-37-13.81-49.15A68.23,68.23,0,0,1,178.92,140ZM112,215c-7-8.62-17-25.09-19.45-51h38.9C129,189.9,119,206.37,112,215ZM92.55,140C95,114.1,105,97.63,112,89c7,8.62,17,25.09,19.45,51ZM82.29,90.85C75.84,103,70.12,119.26,68.48,140H45.08A68.23,68.23,0,0,1,82.29,90.85ZM45.08,164h23.4c1.64,20.74,7.36,37,13.81,49.15A68.23,68.23,0,0,1,45.08,164Zm96.63,49.15c6.45-12.15,12.17-28.41,13.81-49.15h23.4A68.23,68.23,0,0,1,141.71,213.15ZM256,88a12,12,0,0,1-12,12h-4v4a12,12,0,0,1-24,0v-4h-4a12,12,0,0,1,0-24h4V72a12,12,0,0,1,24,0v4h4A12,12,0,0,1,256,88ZM148,36a12,12,0,0,1,12-12h8V16a12,12,0,0,1,24,0v8h8a12,12,0,0,1,0,24h-8v8a12,12,0,0,1-24,0V48h-8A12,12,0,0,1,148,36Z"/></svg>`,
+retro: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,44H32A20,20,0,0,0,12,64V192a20,20,0,0,0,20,20H224a20,20,0,0,0,20-20V64A20,20,0,0,0,224,44Zm-4,144H183l-12.6-16.8A8,8,0,0,0,164,168H92a8,8,0,0,0-6.4,3.2L73,188H36V68H220ZM82,152h92a34,34,0,0,0,0-68H82a34,34,0,0,0,0,68Zm0-44a10,10,0,1,1-10,10A10,10,0,0,1,82,108Zm102,10a10,10,0,1,1-10-10A10,10,0,0,1,184,118Zm-42.5,10h-27a34.08,34.08,0,0,0,0-20h27a34.08,34.08,0,0,0,0,20Z"/></svg>`,
+folk: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M215.64,128a44,44,0,0,0-43.82-75.9,44,44,0,0,0-87.64,0A44,44,0,0,0,40.36,128a44,44,0,0,0,43.82,75.89,44,44,0,0,0,87.64,0A44,44,0,0,0,215.64,128ZM108,128a20,20,0,1,1,20,20A20,20,0,0,1,108,128Zm72.35-53.32a20,20,0,1,1,20,34.64c-2.65,1.53-10.52,4.88-30.1,6.42a44.08,44.08,0,0,0-10.52-18.18C170.86,81.36,177.7,76.21,180.35,74.68ZM128,36a20,20,0,0,1,20,20c0,3.06-1,11.55-9.49,29.28a43.79,43.79,0,0,0-21,0C109,67.55,108,59.06,108,56A20,20,0,0,1,128,36ZM48.33,82a20,20,0,0,1,27.32-7.32c2.65,1.53,9.49,6.68,20.62,22.88a44.08,44.08,0,0,0-10.52,18.18c-19.58-1.54-27.45-4.89-30.1-6.42A20,20,0,0,1,48.33,82Zm27.32,99.32a20,20,0,1,1-20-34.64c2.65-1.53,10.52-4.88,30.1-6.42a44.08,44.08,0,0,0,10.52,18.18C85.14,174.64,78.3,179.79,75.65,181.32ZM128,220a20,20,0,0,1-20-20c0-3.06,1-11.55,9.49-29.28a43.79,43.79,0,0,0,21,0C147,188.45,148,196.94,148,200A20,20,0,0,1,128,220Zm79.67-46a20,20,0,0,1-27.32,7.32c-2.65-1.53-9.49-6.68-20.62-22.88a44.08,44.08,0,0,0,10.52-18.18c19.58,1.54,27.45,4.89,30.1,6.42A20,20,0,0,1,207.67,174Z"/></svg>`,
+kids: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,12a92.1,92.1,0,0,0-92,92c0,24.53,9.55,50.13,26.19,70.22,10,12,21.56,21.07,34.05,26.76L85,227.27A12,12,0,0,0,96,244h64a12,12,0,0,0,11-16.73L159.76,201c12.49-5.69,24.08-14.73,34.05-26.76C210.45,154.13,220,128.53,220,104A92.1,92.1,0,0,0,128,12Zm13.8,208H114.2l5.35-12.49a73.1,73.1,0,0,0,16.9,0Zm33.53-61.09C161.93,175.09,145.12,184,128,184s-33.93-8.91-47.33-25.09C67.73,143.29,60,122.76,60,104a68,68,0,0,1,136,0C196,122.76,188.27,143.29,175.33,158.91Zm-6.34-47q-.6.06-1.2.06a12,12,0,0,1-11.93-10.81,28,28,0,0,0-19.47-23.91,12,12,0,1,1,7.22-22.89,51.94,51.94,0,0,1,36.13,44.42A12,12,0,0,1,169,111.94Z"/></svg>`,
+faith: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M230.17,141.71,196,121.21V104A12,12,0,0,0,190,93.58L140,65V52h12a12,12,0,0,0,0-24H140V16a12,12,0,0,0-24,0V28H104a12,12,0,0,0,0,24h12V65L66.05,93.58A12,12,0,0,0,60,104v17.21l-34.17,20.5A12,12,0,0,0,20,152v64a12,12,0,0,0,12,12h76a12,12,0,0,0,12-12V172a8,8,0,0,1,16,0v44a12,12,0,0,0,12,12h76a12,12,0,0,0,12-12V152A12,12,0,0,0,230.17,141.71ZM44,158.79l16-9.6V204H44ZM128,140a32,32,0,0,0-32,32v32H84V111l44-25.14L172,111v93H160V172A32,32,0,0,0,128,140Zm84,64H196V149.19l16,9.6Z"/></svg>`,
+custom: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M160,172a36,36,0,1,0-36-36A36,36,0,0,0,160,172Zm0-48a12,12,0,1,1-12,12A12,12,0,0,1,160,124Zm56-64H113.76l81.69-24.5a12,12,0,0,0-6.9-23l-160,48A12,12,0,0,0,20,72V192a20,20,0,0,0,20,20H216a20,20,0,0,0,20-20V80A20,20,0,0,0,216,60Zm-4,128H44V84H212ZM60,116a12,12,0,0,1,12-12H96a12,12,0,0,1,0,24H72A12,12,0,0,1,60,116Zm0,40a12,12,0,0,1,12-12H96a12,12,0,0,1,0,24H72A12,12,0,0,1,60,156Z"/></svg>`
+};
+const GCOLOR = {
+  talk:"#BFD8F5", pop:"#FFE08A", rock:"#F4A88E", jazz:"#E8C7F0",
+  classical:"#FFF3C9", dance:"#A8D8A0", retro:"#FFC933",
+  folk:"#F5B71E", kids:"#FFD1DC", faith:"#D6EAF8", custom:"#FFF8E4"
+};
+
+/* ---------- lemmikute salvestus (localStorage + varu mälus) ---------- */
+const LS_KEY = 'mesiraadio_favs';
+let memFavs = [];
+function loadFavs(){
+  try{ return JSON.parse(localStorage.getItem(LS_KEY)) || []; }
+  catch(e){ return memFavs; }
+}
+function saveFavs(list){
+  memFavs = list;
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(list)); }catch(e){}
+}
+let favs = loadFavs();
+
+/* ---------- oma kanalid ---------- */
+const LS_CUSTOM = 'mesiraadio_custom';
+let memCustom = [];
+function loadCustom(){
+  try{ return JSON.parse(localStorage.getItem(LS_CUSTOM)) || []; }
+  catch(e){ return memCustom; }
+}
+function saveCustom(list){
+  memCustom = list;
+  try{ localStorage.setItem(LS_CUSTOM, JSON.stringify(list)); }catch(e){}
+}
+let custom = loadCustom();          // [[nimi, url], ...]
+function allStations(){ return STATIONS.concat(custom); }
+function isCustom(name){ return custom.some(([n]) => n === name); }
+
+
+
+/* ---------- olek ---------- */
+const audio = document.getElementById('audio');
+let current = null;        // jaama nimi
+
+/* YouTube-kanali konstandid ja olek — deklareeritud vara, et updateTitle() jt varakäivituv kood pääseks ligi */
+const YT_PLAYLIST_ID = 'PLiWaUpaPHXYZeseQ8tq9uazMQVyUdMXaI';
+const YT_CHANNEL_NAME = 'Karvane Õhtusöök';
+const YT_SENTINEL = '__youtube__';
+let ytMode = false, ytPlayer = null, ytPendingPlay = false, ytWatchdog = null, ytVideoTitle = '';
+const ytCard = document.getElementById('ytCard');
+const ytBox  = document.getElementById('ytBox');
+const ytMeta = document.getElementById('ytMeta');
+ytCard.dataset.name = YT_SENTINEL;
+let playing = false;
+
+const allGrid   = document.getElementById('allGrid');
+const favGrid   = document.getElementById('favGrid');
+const favSection = document.getElementById('favSection');
+const favCount  = document.getElementById('favCount');
+const allCount  = document.getElementById('allCount');
+const player    = document.getElementById('player');
+const nowTitle  = document.getElementById('nowTitle');
+const nowStatus = document.getElementById('nowStatus');
+const nowTrack  = document.getElementById('nowTrack');
+
+/* ================= PLEIERI KÕRGUSEGA KOHANDUV RUUM ================= */
+/* Pleier võib olla erineva kõrgusega (loo nimi, YouTube'i video-eelvaade) —
+   jälgin tema tegelikku kõrgust ja jätan lehe alla täpselt nii palju ruumi.
+   ResizeObserver+MutationObserver katavad enamiku juhte kohe, aga YouTube'i
+   iframe võib kõrgust muuta ka veidi hiljem (võrgu/fondi laadimine) — seepärast
+   on lisaks pidev, väikese vahega taustakontroll niikaua kui pleier on lahti. */
+function syncPlayerSpace(){
+  document.body.style.paddingBottom = player.classList.contains('open')
+    ? (player.offsetHeight + 40) + 'px'
+    : '';
+}
+if ('ResizeObserver' in window){
+  new ResizeObserver(syncPlayerSpace).observe(player);
+} else {
+  window.addEventListener('resize', syncPlayerSpace);
+}
+new MutationObserver(syncPlayerSpace).observe(player, {attributes:true, attributeFilter:['class']});
+setInterval(syncPlayerSpace, 400);
+syncPlayerSpace();
+const playBtn   = document.getElementById('playBtn');
+const playIcon  = document.getElementById('playIcon');
+const playerFav = document.getElementById('playerFav');
+const searchEl  = document.getElementById('search');
+const modalBack   = document.getElementById('modalBack');
+const stName      = document.getElementById('stName');
+const stUrl       = document.getElementById('stUrl');
+const modalErr    = document.getElementById('modalErr');
+const toggleAllBtn = document.getElementById('toggleAllBtn');
+const LS_ALLVIS = 'mesiraadio_allvisible';
+let memAllVis = true;
+function loadAllVisible(){
+  try{
+    const v = localStorage.getItem(LS_ALLVIS);
+    return v === null ? true : v === '1';   // vaikimisi avatud
+  }catch(e){ return memAllVis; }
+}
+function saveAllVisible(v){
+  memAllVis = v;
+  try{ localStorage.setItem(LS_ALLVIS, v ? '1' : '0'); }catch(e){}
+}
+let allVisible = loadAllVisible();
+toggleAllBtn.addEventListener('click', () => {
+  allVisible = !allVisible;
+  saveAllVisible(allVisible);
+  if (!allVisible) searchEl.value = '';   // peitmisel nullime ka otsingu
+  render();
+});
+
+function urlOf(name){
+  const s = allStations().find(([n]) => n === name);
+  return s ? s[1] : '';
+}
+
+/* ---------- kaardi loomine ---------- */
+function esc(s){
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function makeCard([name,url]){
+  const card = document.createElement('button');
+  card.className = 'card' + (isCustom(name) ? ' custom' : '');
+  card.type = 'button';
+  card.dataset.name = name;
+  card.setAttribute('aria-label', 'Mängi: ' + name);
+  const g = GENRE[name] || 'custom';
+  const safe = esc(name);
+  card.innerHTML =
+    '<span class="badge" style="background:'+GCOLOR[g]+'">'+GICON[g]+'</span>' +
+    '<span><span class="name">'+safe+'</span>' +
+    '<span class="eq" aria-hidden="true"><span></span><span></span><span></span></span></span>' +
+    (isCustom(name)
+      ? '<span class="del-btn" role="button" tabindex="0" aria-label="Kustuta kanal: '+safe+'">' +
+        '<svg viewBox="0 0 18 18"><path d="M4 4l10 10M14 4L4 14" fill="none"/></svg></span>'
+      : '') +
+    '<span class="fav-btn" role="button" tabindex="0" aria-label="Lemmik: '+safe+'">' +
+      '<svg viewBox="0 0 24 24"><path class="heart" d="M12 20.5C7 16.5 3 13.2 3 9.3 3 6.4 5.2 4.5 7.7 4.5c1.7 0 3.2.9 4.3 2.4 1.1-1.5 2.6-2.4 4.3-2.4 2.5 0 4.7 1.9 4.7 4.8 0 3.9-4 7.2-9 11.2z"/></svg>' +
+    '</span>';
+  const delBtn = card.querySelector('.del-btn');
+  if (delBtn){
+    delBtn.addEventListener('click', e => { e.stopPropagation(); removeCustom(name); });
+    delBtn.addEventListener('keydown', e => {
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); removeCustom(name); }
+    });
+  }
+  const favBtn = card.querySelector('.fav-btn');
+  if (favs.includes(name)) favBtn.classList.add('on');
+  favBtn.addEventListener('click', e => { e.stopPropagation(); toggleFav(name); });
+  favBtn.addEventListener('keydown', e => {
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleFav(name); }
+  });
+  card.addEventListener('click', () => {
+    if (current === name) togglePlay();
+    else playStation(name);
+  });
+  return card;
+}
+
+/* ---------- renderdamine ---------- */
+function render(){
+  const q = searchEl.value.trim().toLowerCase();
+  const match = ([n]) => n.toLowerCase().includes(q);
+
+  const sortEt = (a, b) => a[0].localeCompare(b[0], 'et');
+
+  favGrid.innerHTML = '';
+  const favList = allStations().filter(([n]) => favs.includes(n)).filter(match).sort(sortEt);
+  favList.forEach(s => favGrid.appendChild(makeCard(s)));
+  favCount.textContent = favs.length;
+  favSection.hidden = favs.length === 0;
+
+  allGrid.innerHTML = '';
+  const allList = allStations().filter(match).sort(sortEt);
+  allList.forEach(s => allGrid.appendChild(makeCard(s)));
+  allCount.textContent = allList.length;
+
+  // nimekiri on nähtav, kui nuppu on vajutatud VÕI otsing käib
+  const show = allVisible || q.length > 0;
+  allGrid.hidden = !show;
+  toggleAllBtn.textContent = show ? 'Peida kanalid' : 'Näita kanaleid';
+  toggleAllBtn.setAttribute('aria-expanded', show);
+
+  markPlaying();
+  applyOfflineMarks();
+}
+
+function markPlaying(){
+  document.querySelectorAll('.card').forEach(c => {
+    c.classList.toggle('playing', playing && c.dataset.name === current);
+  });
+  playerFav.classList.toggle('on', current !== null && favs.includes(current));
+}
+
+/* ---------- lemmikud ---------- */
+function toggleFav(name){
+  favs = favs.includes(name) ? favs.filter(f => f !== name) : [...favs, name];
+  saveFavs(favs);
+  render();
+}
+
+/* ---------- mängimine ---------- */
+function playStation(name){
+  exitYouTube();
+  current = name;
+  updateXmas(name);
+  setDanceStyle(name);
+  try{ history.replaceState(null, '', '#jaam=' + encodeURIComponent(name)); }catch(e){}
+  nowTitle.textContent = name;
+  nowStatus.textContent = 'Ühendan…';
+  nowStatus.classList.remove('err');
+  nowTrack.hidden = true;
+  nowTrack.textContent = '';
+  player.classList.add('open','loading');
+  audio.src = urlOf(name);
+  audio.play().catch(err => {
+    if (err.name === 'NotAllowedError'){
+      player.classList.remove('loading');
+      nowStatus.textContent = 'Autostart blokeeritud — vajuta ▶';
+      nowStatus.classList.remove('err');
+    } else if (err.name !== 'AbortError') streamError();
+  });
+  markPlaying();
+}
+
+function togglePlay(){
+  if (ytMode){
+    if (!ytPlayer) return;
+    if (playing) ytPlayer.pauseVideo(); else ytPlayer.playVideo();
+    return;
+  }
+  if (!current) return;
+  if (playing){ audio.pause(); }
+  else {
+    player.classList.add('loading');
+    nowStatus.textContent = 'Ühendan…';
+    nowStatus.classList.remove('err');
+    if (!audio.src) audio.src = urlOf(current);
+    audio.play().catch(err => { if (err.name !== 'AbortError') streamError(); });
+  }
+}
+
+function streamError(){
+  playing = false;
+  document.body.classList.add('oops');
+  setTimeout(() => document.body.classList.remove('oops'), 1600);
+  player.classList.remove('loading');
+  nowStatus.textContent = 'Kanal ei vasta — proovi mõnda teist.';
+  nowStatus.classList.add('err');
+  setIcon(false);
+  markPlaying();
+}
+
+function setIcon(isPlaying){
+  document.body.classList.toggle('dancing', isPlaying);
+  document.body.classList.toggle('sleeping', !isPlaying);
+  onStateChange(isPlaying);
+  playIcon.innerHTML = isPlaying
+    ? '<rect x="6" y="5" width="5" height="16" rx="1.5" fill="#241B04"/><rect x="15" y="5" width="5" height="16" rx="1.5" fill="#241B04"/>'
+    : '<path d="M8 5l14 8-14 8z" fill="#241B04"/>';
+}
+
+/* ---------- loo nimi (kliendipoolne, ainult CORS-iga serverid) ---------- */
+const NOWPLAYING = {
+  'doubleclap':          {type:'radioco',  id:'scfd7273b2'},
+  'finest fm':           {type:'radioco',  id:'sadb37cbdb'},
+  'ruut fm':             {type:'azura',    base:'https://a1.asurahosting.com',      station:'ruut_fm'},
+  'hps bassline':        {type:'azura',    base:'https://azura.hpsbassline.club',   station:'haapsaly_bassline'},
+  'hardcore predictor':  {type:'azura',    base:'https://azura.hpsbassline.club',   station:'hardcore_predictorfm'},
+  'tunitemusic':         {type:'radiojar', id:'6x51bmzpfy3vv'},
+  'ring fm':             {type:'icecast',  base:'https://cdn.treraadio.ee',         mount:'/ringfm'},
+  'tre raadio':          {type:'icecast',  base:'https://cdn.treraadio.ee',         mount:'/pohja-tre'}
+};
+
+let trackTimer = null;
+let trackFetchSeq = 0;
+
+async function fetchTrack(name){
+  const cfg = NOWPLAYING[name];
+  if (!cfg) return null;
+  try{
+    if (cfg.type === 'radioco'){
+      const r = await fetch('https://public.radio.co/stations/' + cfg.id + '/status');
+      const d = await r.json();
+      return (d.current_track && d.current_track.title) || null;
+    }
+    if (cfg.type === 'azura'){
+      const r = await fetch(cfg.base + '/api/nowplaying/' + cfg.station);
+      const d = await r.json();
+      return (d.now_playing && d.now_playing.song && d.now_playing.song.text) || null;
+    }
+    if (cfg.type === 'radiojar'){
+      const r = await fetch('https://www.radiojar.com/api/stations/' + cfg.id + '/now_playing/');
+      const d = await r.json();
+      if (d.artist && d.title) return d.artist + ' - ' + d.title;
+      return d.title || null;
+    }
+    if (cfg.type === 'icecast'){
+      const r = await fetch(cfg.base + '/status-json.xsl');
+      const d = await r.json();
+      let srcs = d.icestats && d.icestats.source;
+      if (!srcs) return null;
+      if (!Array.isArray(srcs)) srcs = [srcs];
+      const s = srcs.find(x => (x.listenurl || '').endsWith(cfg.mount));
+      return s ? (s.title || s.yp_currently_playing || null) : null;
+    }
+  }catch(e){ /* võrguviga või blokk — lihtsalt ei näita */ }
+  return null;
+}
+
+async function updateTrack(){
+  const seq = ++trackFetchSeq;
+  const name = current;
+  const title = name ? await fetchTrack(name) : null;
+  // vahepeal võis kanal vahetuda — vana vastus visatakse minema
+  if (seq !== trackFetchSeq || name !== current) return;
+  const clean = title && title.trim();
+  nowTrack.hidden = !clean;
+  nowTrack.textContent = clean || '';
+  if (clean && 'mediaSession' in navigator){
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: clean, artist: current
+    });
+  }
+}
+
+function startTrackPolling(){
+  stopTrackPolling();
+  nowTrack.hidden = true;
+  nowTrack.textContent = '';
+  if (!current) return;
+  if (NOWPLAYING[current]){
+    updateTrack();
+    trackTimer = setInterval(updateTrack, 20000);
+    return;
+  }
+  // live-pollimist pole seadistatud — näitan status.json-i viimati teada olnud lugu, kui leidub
+  const snap = statusTracks[current];
+  if (snap){
+    nowTrack.hidden = false;
+    nowTrack.textContent = snap;
+  }
+}
+function stopTrackPolling(){
+  if (trackTimer){ clearInterval(trackTimer); trackTimer = null; }
+}
+
+audio.addEventListener('playing', () => {
+  playing = true;
+  player.classList.remove('loading');
+  nowStatus.textContent = 'Otse-eetris';
+  nowStatus.classList.remove('err');
+  setIcon(true);
+  markPlaying();
+  startTrackPolling();
+});
+audio.addEventListener('pause', () => {
+  playing = false;
+  if (!nowStatus.classList.contains('err')) nowStatus.textContent = 'Paus';
+  setIcon(false);
+  markPlaying();
+  stopTrackPolling();
+});
+audio.addEventListener('error', () => { if (current) streamError(); });
+
+playBtn.addEventListener('click', togglePlay);
+playerFav.addEventListener('click', () => { if (current && current !== YT_SENTINEL) toggleFav(current); });
+const volPct = document.getElementById('volPct');
+const volEl = document.getElementById('vol');
+let volPctTimer = null;
+
+/* helitugevus püsib lehtede vahel (jagatud võti, nagu tume režiim) */
+const VOL_KEY = 'mesiraadio_vol';
+function loadVolume(){
+  try{
+    const v = parseFloat(localStorage.getItem(VOL_KEY));
+    if (!isNaN(v) && v >= 0 && v <= 1) return v;
+  }catch(e){}
+  return 1;
+}
+audio.volume = volEl.value = loadVolume();
+
+volEl.addEventListener('input', e => {
+  audio.volume = e.target.value;
+  if (ytPlayer && ytPlayer.setVolume) ytPlayer.setVolume(Math.round(e.target.value * 100));
+  volPct.textContent = Math.round(e.target.value * 100) + '%';
+  volPct.classList.add('show');
+  clearTimeout(volPctTimer);
+  volPctTimer = setTimeout(() => volPct.classList.remove('show'), 1000);
+  try{ localStorage.setItem(VOL_KEY, e.target.value); }catch(err){}
+});
+searchEl.addEventListener('input', render);
+
+const diceBtn = document.getElementById('diceBtn');
+diceBtn.addEventListener('click', () => {
+  if (diceOverheated) return;
+  registerRoll();
+  diceBtn.classList.remove('rolling');
+  void diceBtn.offsetWidth;              // taaskäivitab animatsiooni
+  diceBtn.classList.add('rolling');
+  let names = [...allGrid.querySelectorAll('.card')].map(c => c.dataset.name);
+  if (!names.length) names = allStations().map(s => s[0]);
+  const pool = names.filter(n => n !== current);
+  const pick = (pool.length ? pool : names)[Math.floor(Math.random() * (pool.length || names.length))];
+  if (pick) playStation(pick);
+});
+
+/* Media Session — lukustuskuva nupud telefonis */
+if ('mediaSession' in navigator){
+  navigator.mediaSession.setActionHandler('play', togglePlay);
+  navigator.mediaSession.setActionHandler('pause', togglePlay);
+  try{
+    navigator.mediaSession.setActionHandler('previoustrack', () => { if (ytMode && ytPlayer) ytPlayer.previousVideo(); });
+    navigator.mediaSession.setActionHandler('nexttrack', () => { if (ytMode && ytPlayer) ytPlayer.nextVideo(); });
+  }catch(e){}
+  audio.addEventListener('playing', () => {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: current || 'Mesiraadio', artist: 'Mesiraadio · otse-eetris'
+    });
+  });
+}
+
+/* ---------- oma kanali lisamine / kustutamine ---------- */
+function openModal(){
+  modalErr.textContent = '';
+  stName.value = '';
+  stUrl.value = '';
+  modalBack.hidden = false;
+  stName.focus();
+}
+function closeModal(){
+  modalBack.hidden = true;
+  document.getElementById('addBtn').focus();
+}
+function addCustom(){
+  const name = stName.value.trim();
+  let url = stUrl.value.trim();
+  if (!name){ modalErr.textContent = 'Pane kanalile nimi.'; stName.focus(); return; }
+  if (!url){ modalErr.textContent = 'Striimi URL on puudu.'; stUrl.focus(); return; }
+  if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+  try{ new URL(url); }
+  catch(e){ modalErr.textContent = 'See ei paista korrektne URL olevat.'; stUrl.focus(); return; }
+  if (location.protocol === 'https:' && url.startsWith('http://')){
+    modalErr.textContent = 'HTTPS-lehel saab mängida ainult https:// striime.';
+    stUrl.focus(); return;
+  }
+  if (allStations().some(([n]) => n.toLowerCase() === name.toLowerCase())){
+    modalErr.textContent = 'Sellenimeline kanal on juba olemas.';
+    stName.focus(); return;
+  }
+  custom = [...custom, [name, url]];
+  saveCustom(custom);
+  if (!allVisible){ allVisible = true; saveAllVisible(true); }  // et uus kanal oleks näha
+  closeModal();
+  render();
+  playStation(name);   // proovime kohe — nii on kuulda, kas striim töötab
+}
+function removeCustom(name){
+  if (!confirm('Kustutan kanali \u201E' + name + '\u201C?')) return;
+  custom = custom.filter(([n]) => n !== name);
+  saveCustom(custom);
+  if (favs.includes(name)){
+    favs = favs.filter(f => f !== name);
+    saveFavs(favs);
+  }
+  if (current === name){
+    audio.pause();
+    audio.removeAttribute('src');
+    current = null;
+    player.classList.remove('open','loading');
+  }
+  render();
+}
+
+document.getElementById('addBtn').addEventListener('click', openModal);
+document.getElementById('modalCancel').addEventListener('click', closeModal);
+document.getElementById('modalSave').addEventListener('click', addCustom);
+modalBack.addEventListener('click', e => { if (e.target === modalBack) closeModal(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !modalBack.hidden) closeModal();
+});
+[stName, stUrl].forEach(el => el.addEventListener('keydown', e => {
+  if (e.key === 'Enter'){ e.preventDefault(); addCustom(); }
+}));
+
+
+/* ---------- tume/hele režiim ---------- */
+const THEME_KEY = 'mesiraadio_theme';
+const themeBtn = document.getElementById('themeBtn');
+const SUNICON = `<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M116,36V20a12,12,0,0,1,24,0V36a12,12,0,0,1-24,0Zm80,92a68,68,0,1,1-68-68A68.07,68.07,0,0,1,196,128Zm-24,0a44,44,0,1,0-44,44A44.05,44.05,0,0,0,172,128ZM51.51,68.49a12,12,0,1,0,17-17l-12-12a12,12,0,0,0-17,17Zm0,119-12,12a12,12,0,0,0,17,17l12-12a12,12,0,1,0-17-17ZM196,72a12,12,0,0,0,8.49-3.51l12-12a12,12,0,0,0-17-17l-12,12A12,12,0,0,0,196,72Zm8.49,115.51a12,12,0,0,0-17,17l12,12a12,12,0,0,0,17-17ZM48,128a12,12,0,0,0-12-12H20a12,12,0,0,0,0,24H36A12,12,0,0,0,48,128Zm80,80a12,12,0,0,0-12,12v16a12,12,0,0,0,24,0V220A12,12,0,0,0,128,208Zm108-92H220a12,12,0,0,0,0,24h16a12,12,0,0,0,0-24Z"/></svg>`;
+const MOONICON = `<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M236.37,139.4a12,12,0,0,0-12-3A84.07,84.07,0,0,1,119.6,31.59a12,12,0,0,0-15-15A108.86,108.86,0,0,0,49.69,55.07,108,108,0,0,0,136,228a107.09,107.09,0,0,0,64.93-21.69,108.86,108.86,0,0,0,38.44-54.94A12,12,0,0,0,236.37,139.4Zm-49.88,47.74A84,84,0,0,1,68.86,69.51,84.93,84.93,0,0,1,92.27,48.29Q92,52.13,92,56A108.12,108.12,0,0,0,200,164q3.87,0,7.71-.27A84.79,84.79,0,0,1,186.49,187.14Z"/></svg>`;
+function applyTheme(dark){
+  document.body.classList.toggle('dark', dark);
+  themeBtn.innerHTML = dark ? SUNICON : MOONICON;
+}
+function loadTheme(){
+  try{
+    const v = localStorage.getItem(THEME_KEY);
+    if (v !== null) return v === 'dark';
+  }catch(e){}
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+applyTheme(loadTheme());
+document.body.classList.add('sleeping');   // leht avaneb magava mesilasega
+themeBtn.addEventListener('click', () => {
+  const dark = !document.body.classList.contains('dark');
+  applyTheme(dark);
+  try{ localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light'); }catch(e){}
+});
+
+
+/* ================= ÜLLATUSMUNAD ================= */
+const heroEl = document.querySelector('.hero-art');
+
+/* --- klikitav maskott + vihastamine --- */
+const REACTIONS = ['react-spin','react-wave','react-bow'];
+let clickTimes = [];
+let angryUntil = 0;
+heroEl.addEventListener('click', () => {
+  const now = Date.now();
+  if (now < angryUntil) return;                 // vihasena ignoreerib
+  clickTimes = clickTimes.filter(t => now - t < 3000);
+  clickTimes.push(now);
+  if (clickTimes.length >= 5){                  // 5 kiiret klikki -> pahane
+    clickTimes = [];
+    angryUntil = now + 2600;
+    document.body.classList.add('angry');
+    setTimeout(() => document.body.classList.remove('angry'), 2600);
+    return;
+  }
+  const r = REACTIONS[Math.floor(Math.random() * REACTIONS.length)];
+  heroEl.classList.remove(...REACTIONS);
+  void heroEl.offsetWidth;
+  heroEl.classList.add(r);
+  heroEl.addEventListener('animationend', () => heroEl.classList.remove(r), {once:true});
+});
+
+/* --- öörežiim (23-06): öömüts + unine groove --- */
+function setNight(hOverride){
+  const h = (hOverride !== undefined) ? hOverride : new Date().getHours();
+  document.body.classList.toggle('nighttime', h >= 23 || h < 6);
+}
+setNight();
+setInterval(setNight, 60000);
+
+/* --- diskorežiim: Konami VÕI 7 kiiret klikki logol --- */
+const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let kIdx = 0, discoTimer = null, confettiTimer = null;
+document.addEventListener('keydown', e => {
+  kIdx = (e.key === KONAMI[kIdx]) ? kIdx + 1 : (e.key === KONAMI[0] ? 1 : 0);
+  if (kIdx === KONAMI.length){ kIdx = 0; startDisco(); }
+});
+let logoClicks = [];
+document.querySelector('.logo').addEventListener('click', e => {
+  if (e.target.closest('.theme-btn')) return;
+  const now = Date.now();
+  logoClicks = logoClicks.filter(t => now - t < 3000);
+  logoClicks.push(now);
+  if (logoClicks.length >= 7){ logoClicks = []; startDisco(); }
+});
+function confettiOrigins(){
+  const cones = [...document.querySelectorAll('.cone')];
+  if (cones.length) return cones.map(c => { const r = c.getBoundingClientRect(); return [r.left + r.width/2, r.top]; });
+  const r = heroEl.getBoundingClientRect();
+  return [[r.left + 20, r.top + 30], [r.right - 20, r.top + 30]];
+}
+function confettiBurst(){
+  const colors = ['#FFC933','#E4573D','#5E9C52','#BFD8F5','#E8C7F0','#F5B71E'];
+  confettiOrigins().forEach(([x, y]) => {
+    for (let i = 0; i < 14; i++){
+      const p = document.createElement('div');
+      p.className = 'confetti-p';
+      p.style.left = (x + (Math.random()*60 - 30)) + 'px';
+      p.style.top = (y - Math.random()*30) + 'px';
+      p.style.background = colors[Math.floor(Math.random()*colors.length)];
+      p.style.animationDuration = (1.2 + Math.random()*1.2) + 's';
+      document.body.appendChild(p);
+      p.addEventListener('animationend', () => p.remove());
+    }
+  });
+}
+function startDisco(){
+  if (document.body.classList.contains('disco')) return;
+  document.body.classList.add('disco');
+  confettiBurst();
+  confettiTimer = setInterval(confettiBurst, 1600);
+  discoTimer = setTimeout(stopDisco, 20000);
+}
+function stopDisco(){
+  document.body.classList.remove('disco');
+  clearInterval(confettiTimer);
+  clearTimeout(discoTimer);
+}
+
+/* --- otsingumunad --- */
+let lastEggWord = '';
+searchEl.addEventListener('input', () => {
+  const v = searchEl.value.trim().toLowerCase();
+  if (v === lastEggWord) return;
+  lastEggWord = v;
+  if (v === 'mesi' || v === 'honey'){
+    for (let i = 0; i < 8; i++){
+      const d = document.createElement('div');
+      d.className = 'honeydrop';
+      d.style.left = (5 + Math.random()*90) + 'vw';
+      d.style.animationDelay = (Math.random()*1.2) + 's';
+      document.body.appendChild(d);
+      d.addEventListener('animationend', () => d.remove());
+    }
+  }
+  if (v === 'sipelgad' || v === 'ants'){
+    const row = document.createElement('div');
+    row.className = 'antrow';
+    row.textContent = '🐜🐜🐜🐜🐜🐜🐜🐜';
+    document.body.appendChild(row);
+    row.addEventListener('animationend', () => row.remove());
+  }
+});
+
+/* --- täringu ülekuumenemine --- */
+let rollTimes = [];
+let diceOverheated = false;
+function registerRoll(){
+  const now = Date.now();
+  rollTimes = rollTimes.filter(t => now - t < 60000);
+  rollTimes.push(now);
+  if (rollTimes.length >= 10){
+    rollTimes = [];
+    diceOverheated = true;
+    diceBtn.classList.add('hot');
+    document.body.classList.add('dizzy');
+    const r = diceBtn.getBoundingClientRect();
+    const makePuff = () => {
+      const sm = document.createElement('div');
+      sm.className = 'smoke';
+      sm.style.left = (r.left + r.width/2 - 8 + (Math.random()*20 - 10)) + 'px';
+      sm.style.top = (r.top - 8) + 'px';
+      document.body.appendChild(sm);
+      sm.addEventListener('animationend', () => sm.remove());
+    };
+    makePuff();
+    const puff = setInterval(makePuff, 350);
+    setTimeout(() => {
+      clearInterval(puff);
+      diceOverheated = false;
+      diceBtn.classList.remove('hot');
+      document.body.classList.remove('dizzy');
+    }, 5000);
+  }
+}
+
+/* --- jõulud: detsembris või jõulujaama mängides sajab, mesilane saab salli --- */
+let snowTimer = null;
+function startSnow(){
+  if (snowTimer) return;
+  snowTimer = setInterval(() => {
+    const f = document.createElement('div');
+    f.className = 'snowflake';
+    f.textContent = Math.random() < .5 ? '❄' : '❅';
+    f.style.left = Math.random()*100 + 'vw';
+    f.style.fontSize = (10 + Math.random()*12) + 'px';
+    f.style.animationDuration = (5 + Math.random()*6) + 's';
+    f.style.opacity = .5 + Math.random()*.5;
+    document.body.appendChild(f);
+    f.addEventListener('animationend', () => f.remove());
+  }, 350);
+}
+function stopSnow(){ clearInterval(snowTimer); snowTimer = null; }
+function updateXmas(stationName){
+  const dec = new Date().getMonth() === 11;
+  const xmasStation = !!stationName && /christmas|jõulu/i.test(stationName);
+  const on = dec || xmasStation;
+  document.body.classList.toggle('xmas', on);
+  on ? startSnow() : stopSnow();
+}
+updateXmas(null);
+
+/* --- Eesti pühad: jaanipäev (23.-24.06) ja iseseisvuspäev (24.02) --- */
+function updateHolidays(now){
+  const d = now || new Date();
+  const m = d.getMonth(), day = d.getDate();
+  document.body.classList.toggle('jaanipaev', m === 5 && (day === 23 || day === 24));
+  document.body.classList.toggle('ev24', m === 1 && day === 24);
+}
+updateHolidays();
+setInterval(updateHolidays, 3600000);
+
+
+/* ================= SILMAD JÄRGIVAD KURSORIT ================= */
+const eyesOpenEl = document.getElementById('eyes-open');
+let eyeRaf = null;
+document.addEventListener('pointermove', e => {
+  if (eyeRaf || document.body.classList.contains('sleeping')) return;
+  eyeRaf = requestAnimationFrame(() => {
+    eyeRaf = null;
+    const r = heroEl.getBoundingClientRect();
+    const vb = heroEl.viewBox.baseVal;
+    const cx = r.left + (150 / vb.width) * r.width;
+    const cy = r.top + (70 / vb.height) * r.height;
+    const dx = e.clientX - cx, dy = e.clientY - cy;
+    const d = Math.hypot(dx, dy) || 1;
+    const m = Math.min(d / 40, 3);           // max 3 ühikut nihkumist
+    eyesOpenEl.style.transform = 'translate(' + (dx/d*m).toFixed(1) + 'px,' + (dy/d*m).toFixed(1) + 'px)';
+  });
+});
+
+/* ================= ŽANRIPÕHINE TANTS ================= */
+const DANCE_MAP = {rock:'dance-rock', classical:'dance-classical', dance:'dance-electronic', folk:'dance-folk'};
+const DANCE_CLASSES = ['dance-rock','dance-classical','dance-electronic','dance-folk'];
+function setDanceStyle(name){
+  const g = GENRE[name] || '';
+  document.body.classList.remove(...DANCE_CLASSES);
+  if (DANCE_MAP[g]) document.body.classList.add(DANCE_MAP[g]);
+}
+
+/* ================= SÜGAV UNI + HAIGUTUS + EHMATUS ================= */
+let sleepSince = Date.now();
+let yawnTimer = null;
+const DEEP_SLEEP_MS = 10 * 60 * 1000;
+function doYawn(){
+  if (!document.body.classList.contains('sleeping')) return;
+  document.body.classList.add('yawning');
+  setTimeout(() => document.body.classList.remove('yawning'), 1700);
+}
+function checkDeepSleep(){
+  if (document.body.classList.contains('sleeping') && Date.now() - sleepSince >= DEEP_SLEEP_MS)
+    document.body.classList.add('deep-sleep');
+}
+setInterval(checkDeepSleep, 30000);
+function onStateChange(isPlaying){
+  if (isPlaying){
+    if (document.body.classList.contains('deep-sleep')){   // ehmatusega ärkamine
+      document.body.classList.remove('deep-sleep');
+      document.body.classList.add('startle');
+      setTimeout(() => document.body.classList.remove('startle'), 700);
+    }
+    clearInterval(yawnTimer); yawnTimer = null;
+    eyesOpenEl.style.transform = '';
+  } else {
+    sleepSince = Date.now();
+    eyesOpenEl.style.transform = '';
+    if (!yawnTimer) yawnTimer = setInterval(doYawn, 40000);
+  }
+}
+onStateChange(false);   // leht avaneb magades
+
+
+/* ================= KELLAAJA TERVITUS ================= */
+function greet(hourOverride){
+  const h = (hourOverride !== undefined) ? hourOverride : new Date().getHours();
+  let msg;
+  if (h >= 6 && h < 11) msg = 'Tere hommikust!';
+  else if (h >= 11 && h < 16) msg = 'Head lõunat!';
+  else if (h >= 16 && h < 22) msg = 'Ilusat õhtut!';
+  else if (h >= 22 || h < 4) msg = 'Öödisko!';
+  else msg = 'Oi kui varajane';
+  const old = document.querySelector('.greet-bubble');
+  if (old) old.remove();
+  const b = document.createElement('div');
+  b.className = 'greet-bubble';
+  b.textContent = msg;
+  document.querySelector('.hero').appendChild(b);
+  requestAnimationFrame(() => requestAnimationFrame(() => b.classList.add('show')));
+  setTimeout(() => {
+    b.classList.remove('show');
+    setTimeout(() => b.remove(), 400);
+  }, 3000);
+}
+greet();
+
+
+/* ================= FAVICON SÜNKROONIS OLEKUGA ================= */
+const FAV_AWAKE = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M11 9C9 6 7 5 7 5M21 9c2-3 4-4 4-4" stroke="#241B04" stroke-width="2.4" fill="none" stroke-linecap="round"/><circle cx="7" cy="5" r="2.2" fill="#241B04"/><circle cx="25" cy="5" r="2.2" fill="#241B04"/><circle cx="16" cy="19" r="12" fill="#FFC933" stroke="#241B04" stroke-width="2.4"/><circle cx="12" cy="17" r="1.9" fill="#241B04"/><circle cx="20" cy="17" r="1.9" fill="#241B04"/><path d="M12 23c2.5 2 5.5 2 8 0" stroke="#241B04" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>';
+const FAV_SLEEP = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M11 9C9 6 7 5 7 5M21 9c2-3 4-4 4-4" stroke="#241B04" stroke-width="2.4" fill="none" stroke-linecap="round"/><circle cx="7" cy="5" r="2.2" fill="#241B04"/><circle cx="25" cy="5" r="2.2" fill="#241B04"/><circle cx="16" cy="19" r="12" fill="#FFC933" stroke="#241B04" stroke-width="2.4"/><path d="M9.5 17c1.5 1.6 3.5 1.6 5 0M17.5 17c1.5 1.6 3.5 1.6 5 0" stroke="#241B04" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="16" cy="23.5" r="1.7" fill="none" stroke="#241B04" stroke-width="1.8"/></svg>';
+let favLink = document.querySelector('link[rel="icon"]');
+if (!favLink){
+  favLink = document.createElement('link');
+  favLink.rel = 'icon';
+  document.head.appendChild(favLink);
+}
+function setFavicon(awake){
+  favLink.href = 'data:image/svg+xml,' + encodeURIComponent(awake ? FAV_AWAKE : FAV_SLEEP);
+}
+
+/* ================= JUHUSLIK PILGUTAMINE ================= */
+let blinkTimer = null;
+function doBlink(){
+  const b = document.body;
+  if (b.classList.contains('sleeping') || b.classList.contains('angry') || b.classList.contains('dizzy')) return;
+  b.classList.add('blink');
+  setTimeout(() => b.classList.remove('blink'), 150);
+}
+function scheduleBlink(){
+  blinkTimer = setTimeout(() => { doBlink(); scheduleBlink(); }, 4000 + Math.random() * 3000);
+}
+function stopBlink(){ clearTimeout(blinkTimer); blinkTimer = null; }
+
+/* olekuvahetus: favicon + pilgutus */
+const _onStateChange = onStateChange;
+onStateChange = function(isPlaying){
+  _onStateChange(isPlaying);
+  setFavicon(isPlaying);
+  if (isPlaying){ if (!blinkTimer) scheduleBlink(); }
+  else stopBlink();
+};
+setFavicon(false);
+
+/* ================= HÄÄLETU = PAHUR ================= */
+function updateMuted(){
+  document.body.classList.toggle('muted', audio.volume === 0);
+}
+document.getElementById('vol').addEventListener('input', updateMuted);
+audio.addEventListener('volumechange', updateMuted);
+
+/* ================= LEMMIKU SÜDA LENDU ================= */
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.fav-btn');
+  if (!btn || btn.classList.contains('on')) return;   // ainult lisamisel
+  const r = btn.getBoundingClientRect();
+  const h = document.createElement('div');
+  h.className = 'fly-heart';
+  h.textContent = '\u2665';
+  h.style.left = (r.left + r.width / 2) + 'px';
+  h.style.top = (r.top - 2) + 'px';
+  document.body.appendChild(h);
+  h.addEventListener('animationend', () => h.remove());
+}, true);   // capture-faas: fav-nupu stopPropagation ei sega
+
+
+/* ================= TAB'I TIITEL + JAGAMISLINK ================= */
+const SITE_NAME = 'Mesiraadio';
+function updateTitle(isPlaying){
+  const label = (typeof ytMode !== 'undefined' && ytMode) ? (ytVideoTitle || YT_CHANNEL_NAME) : current;
+  document.title = (isPlaying && label)
+    ? '\u25B6 ' + label + ' \u00B7 ' + SITE_NAME
+    : '\uD83D\uDCA4 ' + SITE_NAME;
+}
+const _osc2 = onStateChange;
+onStateChange = function(isPlaying){
+  _osc2(isPlaying);
+  updateTitle(isPlaying);
+};
+updateTitle(false);
+/* topeltkindlus: tiitel uueneb ka otse audio-sündmustelt */
+audio.addEventListener('playing', () => updateTitle(true));
+audio.addEventListener('pause', () => updateTitle(false));
+audio.addEventListener('error', () => updateTitle(false));
+
+function playFromHash(){
+  if (location.hash === '#jaam=youtube'){ playYouTube(); return; }
+  const m = location.hash.match(/^#jaam=(.+)$/);
+  if (!m) return;
+  let name;
+  try{ name = decodeURIComponent(m[1]); }catch(e){ return; }
+  if (allStations().some(s => s[0] === name)) playStation(name);
+}
+window.addEventListener('hashchange', playFromHash);
+playFromHash();
+
+
+/* ================= PWA ================= */
+if ('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+
+
+/* ================= YOUTUBE KANAL ================= */
+function ensureYouTubeAPI(cb){
+  if (window.YT && window.YT.Player){ cb(); return; }
+  const prev = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = () => { if (typeof prev === 'function') prev(); cb(); };
+  if (!document.getElementById('ytApiScript')){
+    const el = document.createElement('script');
+    el.id = 'ytApiScript';
+    el.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(el);
+  }
+}
+
+function startYtWatchdog(){
+  clearTimeout(ytWatchdog);
+  ytWatchdog = setTimeout(() => {
+    if (ytMode && !playing){
+      player.classList.remove('loading');
+      nowStatus.textContent = 'YouTube ei vasta — proovi hiljem uuesti.';
+      nowStatus.classList.add('err');
+    }
+  }, 9000);
+}
+
+function ytOnReady(){
+  if (ytPlayer.setShuffle) ytPlayer.setShuffle(true);   // juhuslik järgnevus
+  if (ytPlayer.setLoop) ytPlayer.setLoop(true);
+  if (ytPlayer.setVolume) ytPlayer.setVolume(Math.round((audio.volume || 1) * 100));
+  const list = ytPlayer.getPlaylist && ytPlayer.getPlaylist();
+  if (list && list.length){
+    ytPlayer.playVideoAt(Math.floor(Math.random() * list.length));   // avab suvalise loo
+  } else if (ytPendingPlay){
+    ytPlayer.playVideo();
+  }
+  ytPendingPlay = false;
+}
+
+function ytOnStateChange(e){
+  const S = window.YT.PlayerState;
+  if (e.data === S.PLAYING){
+    clearTimeout(ytWatchdog);
+    playing = true;
+    player.classList.remove('loading');
+    nowStatus.textContent = 'YouTube · esitusloend';
+    nowStatus.classList.remove('err');
+    const vd = ytPlayer.getVideoData && ytPlayer.getVideoData();
+    ytVideoTitle = (vd && vd.title) || '';
+    nowTrack.hidden = !ytVideoTitle;
+    nowTrack.textContent = ytVideoTitle;
+    if ('mediaSession' in navigator){
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: ytVideoTitle || YT_CHANNEL_NAME, artist: 'YouTube · esitusloend'
+      });
+    }
+    setIcon(true);
+    markPlaying();
+  } else if (e.data === S.PAUSED){
+    playing = false;
+    if (!nowStatus.classList.contains('err')) nowStatus.textContent = 'Paus';
+    setIcon(false);
+    markPlaying();
+  } else if (e.data === S.BUFFERING){
+    player.classList.add('loading');
+  } else if (e.data === S.ENDED){
+    ytPlayer.nextVideo();
+  }
+}
+
+function ytOnError(){
+  document.body.classList.add('oops');
+  setTimeout(() => document.body.classList.remove('oops'), 1600);
+  nowStatus.textContent = 'Video ei ole saadaval — liigun edasi…';
+  nowStatus.classList.add('err');
+  if (ytPlayer) ytPlayer.nextVideo();
+}
+
+function createYtPlayer(){
+  ytPlayer = new YT.Player('ytFrame', {
+    host: 'https://www.youtube-nocookie.com',
+    playerVars: { listType: 'playlist', list: YT_PLAYLIST_ID, autoplay: 0, loop: 1, playsinline: 1, rel: 0, modestbranding: 1, origin: location.origin },
+    events: { onReady: ytOnReady, onStateChange: ytOnStateChange, onError: ytOnError }
+  });
+}
+
+function playYouTube(){
+  if (!ytMode){ audio.pause(); stopTrackPolling(); }
+  ytMode = true;
+  current = YT_SENTINEL;
+  document.body.classList.remove(...DANCE_CLASSES);
+  updateXmas(null);
+  try{ history.replaceState(null, '', '#jaam=youtube'); }catch(e){}
+  player.classList.add('open', 'loading', 'yt-active');
+  ytBox.hidden = false;
+  nowTitle.textContent = YT_CHANNEL_NAME;
+  nowStatus.textContent = 'Ühendan…';
+  nowStatus.classList.remove('err');
+  nowTrack.hidden = true;
+  nowTrack.textContent = '';
+  startYtWatchdog();
+  if (ytPlayer) ytPlayer.playVideo();
+  else { ytPendingPlay = true; ensureYouTubeAPI(createYtPlayer); }
+  markPlaying();
+}
+
+function exitYouTube(){
+  if (!ytMode) return;
+  ytMode = false;
+  if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
+  ytBox.hidden = true;
+  player.classList.remove('yt-active');
+  clearTimeout(ytWatchdog);
+}
+
+ytCard.addEventListener('click', () => { ytMode ? togglePlay() : playYouTube(); });
+
+
+/* ================= JAAMADE TERVISEKONTROLL ================= */
+/* status.json kirjutab .github/workflows/station-healthcheck.yml iga päev.
+   Jaam märgitakse "maas" alles pärast mitut järjestikust ebaõnnestunud
+   kontrolli (vt scripts/check_stations.py), et vältida vale-alarme. */
+let offlineStations = new Set();
+let statusTracks = {};
+
+function applyOfflineMarks(){
+  if (!offlineStations.size) return;
+  document.querySelectorAll('.card').forEach(c => {
+    if (!offlineStations.has(c.dataset.name)) return;
+    c.classList.add('offline');
+    if (!c.querySelector('.offline-tag')){
+      const tag = document.createElement('span');
+      tag.className = 'offline-tag';
+      tag.textContent = 'Hetkel maas';
+      const nameEl = c.querySelector('.name');
+      if (nameEl) nameEl.insertAdjacentElement('afterend', tag);
+    }
+  });
+}
+
+
+fetch('status.json', {cache: 'no-store'})
+  .then(r => r.ok ? r.json() : null)
+  .then(data => {
+    if (!data || !data.stations) return;
+    offlineStations = new Set(Object.keys(data.stations).filter(n => !data.stations[n].ok));
+    applyOfflineMarks();
+    for (const [name, info] of Object.entries(data.stations)){
+      if (info.track) statusTracks[name] = info.track;
+    }
+    if (current && !NOWPLAYING[current] && statusTracks[current] && nowTrack.hidden){
+      nowTrack.hidden = false;
+      nowTrack.textContent = statusTracks[current];
+    }
+  })
+  .catch(() => {});
+
+render();
+</script>
+<script data-goatcounter="https://mesiraadio.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
