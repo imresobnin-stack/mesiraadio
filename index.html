@@ -179,6 +179,8 @@ main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:22px 20px
 .play-btn:focus-visible{outline:4px solid var(--leaf);outline-offset:3px}
 .vol{display:flex;align-items:center;gap:8px}
 .vol{position:relative}
+.mute-btn{background:none;border:0;padding:0;margin:0;cursor:pointer;display:inline-flex;line-height:0;color:inherit}
+.mute-btn:focus-visible{outline:3px solid var(--leaf);outline-offset:3px;border-radius:6px}
 .vol input[type=range]{width:110px;accent-color:var(--ink)}
 .vol-pct{
   position:absolute;top:-34px;left:50%;transform:translateX(-50%) translateY(4px);
@@ -740,7 +742,7 @@ body.dark .card.offline .offline-tag{color:#F0A99E}
     </button>
     <div class="vol">
       <span class="vol-pct" id="volPct" aria-hidden="true">100%</span>
-      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h4l5 4V4L7 8H3z" fill="#241B04"/><path d="M14.5 7c1 1 1.6 1.9 1.6 3s-.6 2-1.6 3" fill="none" stroke="#241B04" stroke-width="2" stroke-linecap="round"/></svg>
+      <button class="mute-btn" id="muteBtn" type="button" aria-label="Vaigista heli"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h4l5 4V4L7 8H3z" fill="#241B04"/><path d="M14.5 7c1 1 1.6 1.9 1.6 3s-.6 2-1.6 3" fill="none" stroke="#241B04" stroke-width="2" stroke-linecap="round"/></svg></button>
       <input type="range" id="vol" min="0" max="1" step="0.01" value="1" aria-label="Helitugevus">
     </div>
     <button class="play-btn" id="playBtn" aria-label="Mängi / paus">
@@ -1184,7 +1186,11 @@ async function updateTrack(){
   nowTrack.textContent = clean || '';
   if (clean && 'mediaSession' in navigator){
     navigator.mediaSession.metadata = new MediaMetadata({
-      title: clean, artist: current
+      title: clean, artist: current,
+      artwork: [
+        {src: 'icon-192.png', sizes: '192x192', type: 'image/png'},
+        {src: 'icon-512.png', sizes: '512x512', type: 'image/png'}
+      ]
     });
   }
 }
@@ -1237,6 +1243,32 @@ function loadVolume(){
 }
 audio.volume = volEl.value = loadVolume();
 
+/* mute-nupp: üks klõps vaigistab, teine taastab eelmise helitugevuse */
+const muteBtn = document.getElementById('muteBtn');
+const SPEAKER_ICON = '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h4l5 4V4L7 8H3z" fill="#241B04"/><path d="M14.5 7c1 1 1.6 1.9 1.6 3s-.6 2-1.6 3" fill="none" stroke="#241B04" stroke-width="2" stroke-linecap="round"/></svg>';
+const MUTED_ICON = '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h4l5 4V4L7 8H3z" fill="#241B04"/><path d="M14 7l4.5 4.5M18.5 7L14 11.5" stroke="#241B04" stroke-width="2" stroke-linecap="round"/></svg>';
+let mutedVolume = 1;
+function updateMuteIcon(){
+  muteBtn.innerHTML = audio.volume > 0 ? SPEAKER_ICON : MUTED_ICON;
+}
+updateMuteIcon();
+muteBtn.addEventListener('click', () => {
+  if (audio.volume > 0){
+    mutedVolume = audio.volume;
+    audio.volume = 0;
+  } else {
+    audio.volume = mutedVolume > 0 ? mutedVolume : 1;
+  }
+  volEl.value = audio.volume;
+  if (ytPlayer && ytPlayer.setVolume) ytPlayer.setVolume(Math.round(audio.volume * 100));
+  volPct.textContent = Math.round(audio.volume * 100) + '%';
+  volPct.classList.add('show');
+  clearTimeout(volPctTimer);
+  volPctTimer = setTimeout(() => volPct.classList.remove('show'), 1000);
+  try{ localStorage.setItem(VOL_KEY, audio.volume); }catch(err){}
+  updateMuteIcon();
+});
+
 volEl.addEventListener('input', e => {
   audio.volume = e.target.value;
   if (ytPlayer && ytPlayer.setVolume) ytPlayer.setVolume(Math.round(e.target.value * 100));
@@ -1245,6 +1277,7 @@ volEl.addEventListener('input', e => {
   clearTimeout(volPctTimer);
   volPctTimer = setTimeout(() => volPct.classList.remove('show'), 1000);
   try{ localStorage.setItem(VOL_KEY, e.target.value); }catch(err){}
+  updateMuteIcon();
 });
 searchEl.addEventListener('input', render);
 
@@ -1272,7 +1305,11 @@ if ('mediaSession' in navigator){
   }catch(e){}
   audio.addEventListener('playing', () => {
     navigator.mediaSession.metadata = new MediaMetadata({
-      title: current || 'Mesiraadio', artist: 'Mesiraadio · otse-eetris'
+      title: current || 'Mesiraadio', artist: 'Mesiraadio · otse-eetris',
+      artwork: [
+        {src: 'icon-192.png', sizes: '192x192', type: 'image/png'},
+        {src: 'icon-512.png', sizes: '512x512', type: 'image/png'}
+      ]
     });
   });
 }
@@ -1774,7 +1811,11 @@ function ytOnStateChange(e){
     nowTrack.textContent = ytVideoTitle;
     if ('mediaSession' in navigator){
       navigator.mediaSession.metadata = new MediaMetadata({
-        title: ytVideoTitle || YT_CHANNEL_NAME, artist: 'YouTube · esitusloend'
+        title: ytVideoTitle || YT_CHANNEL_NAME, artist: 'YouTube · esitusloend',
+        artwork: [
+        {src: 'icon-192.png', sizes: '192x192', type: 'image/png'},
+        {src: 'icon-512.png', sizes: '512x512', type: 'image/png'}
+      ]
       });
     }
     setIcon(true);
