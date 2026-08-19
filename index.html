@@ -1193,18 +1193,9 @@ function startTrackPolling(){
   stopTrackPolling();
   nowTrack.hidden = true;
   nowTrack.textContent = '';
-  if (!current) return;
-  if (NOWPLAYING[current]){
-    updateTrack();
-    trackTimer = setInterval(updateTrack, 20000);
-    return;
-  }
-  // live-pollimist pole seadistatud — näitan status.json-i viimati teada olnud lugu, kui leidub
-  const snap = statusTracks[current];
-  if (snap){
-    nowTrack.hidden = false;
-    nowTrack.textContent = snap;
-  }
+  if (!current || !NOWPLAYING[current]) return;
+  updateTrack();
+  trackTimer = setInterval(updateTrack, 20000);
 }
 function stopTrackPolling(){
   if (trackTimer){ clearInterval(trackTimer); trackTimer = null; }
@@ -1853,7 +1844,6 @@ ytCard.addEventListener('click', () => { ytMode ? togglePlay() : playYouTube(); 
    Jaam märgitakse "maas" alles pärast mitut järjestikust ebaõnnestunud
    kontrolli (vt scripts/check_stations.py), et vältida vale-alarme. */
 let offlineStations = new Set();
-let statusTracks = {};
 
 function applyOfflineMarks(){
   if (!offlineStations.size) return;
@@ -1884,13 +1874,6 @@ fetch('status.json', {cache: 'no-store'})
     if (!data || !data.stations) return;
     offlineStations = new Set(Object.keys(data.stations).filter(n => !data.stations[n].ok));
     applyOfflineMarks();
-    for (const [name, info] of Object.entries(data.stations)){
-      if (info.track) statusTracks[name] = info.track;
-    }
-    if (current && !NOWPLAYING[current] && statusTracks[current] && nowTrack.hidden){
-      nowTrack.hidden = false;
-      nowTrack.textContent = statusTracks[current];
-    }
   })
   .catch(() => {});
 
