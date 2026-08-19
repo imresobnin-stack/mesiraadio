@@ -1,0 +1,6 @@
+name = "mesiraadio-nowplaying"
+main = "nowplaying-worker.js"
+compatibility_date = "2026-08-19"
+
+# Tasuta Workers-pakett sobib sellele hästi (100 000 päringut/päev,
+# serva-vahemäluga jagavad samal ajal sama jaama kuulajad üht vastust).

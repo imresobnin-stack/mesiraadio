@@ -1168,50 +1168,21 @@ function setIcon(isPlaying){
 }
 
 /* ---------- loo nimi (kliendipoolne, ainult CORS-iga serverid) ---------- */
-const NOWPLAYING = {
-  'doubleclap':          {type:'radioco',  id:'scfd7273b2'},
-  'finest fm':           {type:'radioco',  id:'sadb37cbdb'},
-  'ruut fm':             {type:'azura',    base:'https://a1.asurahosting.com',      station:'ruut_fm'},
-  'hps bassline':        {type:'azura',    base:'https://azura.hpsbassline.club',   station:'haapsaly_bassline'},
-  'hardcore predictor':  {type:'azura',    base:'https://azura.hpsbassline.club',   station:'hardcore_predictorfm'},
-  'tunitemusic':         {type:'radiojar', id:'6x51bmzpfy3vv'},
-  'ring fm':             {type:'icecast',  base:'https://cdn.treraadio.ee',         mount:'/ringfm'},
-  'tre raadio':          {type:'icecast',  base:'https://cdn.treraadio.ee',         mount:'/pohja-tre'}
-};
+/* "Praegu mängib" — läbi Cloudflare Workeri (CORS proksi + serva vahemälu).
+   Vaheta oma Workeri URL-iga pärast selle deployimist (vt worker/README.md). */
+const NOWPLAYING_WORKER = 'https://mesiraadio-nowplaying.imresobnin.workers.dev/track';
 
 let trackTimer = null;
 let trackFetchSeq = 0;
 
 async function fetchTrack(name){
-  const cfg = NOWPLAYING[name];
-  if (!cfg) return null;
   try{
-    if (cfg.type === 'radioco'){
-      const r = await fetch('https://public.radio.co/stations/' + cfg.id + '/status');
-      const d = await r.json();
-      return (d.current_track && d.current_track.title) || null;
-    }
-    if (cfg.type === 'azura'){
-      const r = await fetch(cfg.base + '/api/nowplaying/' + cfg.station);
-      const d = await r.json();
-      return (d.now_playing && d.now_playing.song && d.now_playing.song.text) || null;
-    }
-    if (cfg.type === 'radiojar'){
-      const r = await fetch('https://www.radiojar.com/api/stations/' + cfg.id + '/now_playing/');
-      const d = await r.json();
-      if (d.artist && d.title) return d.artist + ' - ' + d.title;
-      return d.title || null;
-    }
-    if (cfg.type === 'icecast'){
-      const r = await fetch(cfg.base + '/status-json.xsl');
-      const d = await r.json();
-      let srcs = d.icestats && d.icestats.source;
-      if (!srcs) return null;
-      if (!Array.isArray(srcs)) srcs = [srcs];
-      const s = srcs.find(x => (x.listenurl || '').endsWith(cfg.mount));
-      return s ? (s.title || s.yp_currently_playing || null) : null;
-    }
-  }catch(e){ /* võrguviga või blokk — lihtsalt ei näita */ }
+    const qs = '?station=' + encodeURIComponent(name) + '&url=' + encodeURIComponent(urlOf(name));
+    const r = await fetch(NOWPLAYING_WORKER + qs);
+    if (!r.ok) return null;
+    const d = await r.json();
+    return d.track || null;
+  }catch(e){ /* võrguviga või Worker ajutiselt maas — lihtsalt ei näita */ }
   return null;
 }
 
@@ -1239,7 +1210,7 @@ function startTrackPolling(){
   stopTrackPolling();
   nowTrack.hidden = true;
   nowTrack.textContent = '';
-  if (!current || !NOWPLAYING[current]) return;
+  if (!current) return;
   updateTrack();
   trackTimer = setInterval(updateTrack, 20000);
 }
