@@ -1217,6 +1217,7 @@ audio.addEventListener('playing', () => {
   nowStatus.classList.remove('err');
   setIcon(true);
   markPlaying();
+  applyOfflineMarks();
   startTrackPolling();
 });
 audio.addEventListener('pause', () => {
@@ -1858,11 +1859,18 @@ function applyOfflineMarks(){
   if (!offlineStations.size) return;
   document.querySelectorAll('.card').forEach(c => {
     if (!offlineStations.has(c.dataset.name)) return;
+    // kui jaam PÄRISELT mängib, on see tugevam tõend kui eilne automaatkontroll
+    if (playing && c.dataset.name === current){
+      c.classList.remove('offline');
+      const oldTag = c.querySelector('.offline-tag');
+      if (oldTag) oldTag.remove();
+      return;
+    }
     c.classList.add('offline');
     if (!c.querySelector('.offline-tag')){
       const tag = document.createElement('span');
       tag.className = 'offline-tag';
-      tag.textContent = 'Hetkel maas';
+      tag.textContent = 'Võimalikud ühendusprobleemid';
       const nameEl = c.querySelector('.name');
       if (nameEl) nameEl.insertAdjacentElement('afterend', tag);
     }
