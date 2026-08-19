@@ -59,6 +59,15 @@ body{
   transition:background .3s ease, color .3s ease;
 }
 h1,h2,h3,.btn,.chip{font-family:'Baloo 2',cursive}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+#genreChips{margin:10px 0 16px}
+.chip{
+  border:3px solid var(--ink);border-radius:999px;background:var(--paper);color:var(--ink);
+  font-weight:700;font-size:.85rem;padding:6px 14px;cursor:pointer;
+  box-shadow:0 3px 0 rgba(36,27,4,.15);
+}
+.chip:hover{background:var(--cream)}
+.chip.on{background:var(--ink);color:var(--page-bg)}
 
 
 /* ---------- päis ---------- */
@@ -689,6 +698,16 @@ body.dark .card.offline .offline-tag{color:#F0A99E}
     <span class="count-pill" id="allCount">0</span>
     <button class="btn add-btn" id="toggleAllBtn" type="button" aria-expanded="true" aria-controls="allGrid">Peida kanalid</button>
   </div>
+  <div class="chips" id="genreChips">
+    <button class="chip on" data-g="">Kõik</button>
+    <button class="chip" data-g="pop">Pop</button>
+    <button class="chip" data-g="dance">Tants</button>
+    <button class="chip" data-g="alleaa">Alleaa</button>
+    <button class="chip" data-g="jutt">Jutt</button>
+    <button class="chip" data-g="rock">Rock</button>
+    <button class="chip" data-g="retro">Retro</button>
+    <button class="chip" data-g="classical">Klassika</button>
+  </div>
   <div class="grid" id="allGrid"></div>
 
   <section id="ytSection">
@@ -900,6 +919,15 @@ let custom = loadCustom();          // [[nimi, url], ...]
 function allStations(){ return STATIONS.concat(custom); }
 function isCustom(name){ return custom.some(([n]) => n === name); }
 
+let fGenre = "";
+const GENRE_GROUPS = { alleaa: ['folk','kids'], jutt: ['talk','faith'], classical: ['classical','jazz'] };
+document.getElementById('genreChips').addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if (!b) return;
+  fGenre = b.dataset.g;
+  document.querySelectorAll('#genreChips .chip').forEach(x => x.classList.toggle('on', x === b));
+  render();
+});
+
 
 
 /* ---------- olek ---------- */
@@ -1027,7 +1055,15 @@ function makeCard([name,url]){
 /* ---------- renderdamine ---------- */
 function render(){
   const q = searchEl.value.trim().toLowerCase();
-  const match = ([n]) => n.toLowerCase().includes(q);
+  const match = ([n]) => {
+    if (!n.toLowerCase().includes(q)) return false;
+    if (isCustom(n)) return true;           // oma jaamad läbivad žanrifiltri alati
+    if (fGenre){
+      const bucket = GENRE_GROUPS[fGenre] || [fGenre];
+      if (!bucket.includes(GENRE[n] || '')) return false;
+    }
+    return true;
+  };
 
   const sortEt = (a, b) => a[0].localeCompare(b[0], 'et');
 
