@@ -1,0 +1,16 @@
+name = "mesiraadio-admin"
+main = "admin-worker.js"
+compatibility_date = "2026-08-19"
+
+# Asenda "id" väärtus oma tegeliku KV namespace ID-ga (vt README.md samm 1).
+kv_namespaces = [
+  { binding = "OVERRIDES", id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID" }
+]
+
+# Kaks teed samale Workerile sinu enda domeenil — vt README.md samm 3.
+# (zone_name eeldab, et imresobnin.com on juba Cloudflare'is, mis su
+#  praeguse Pages-seadistuse juures juba kehtib.)
+routes = [
+  { pattern = "raadio.imresobnin.com/admin/api/*", zone_name = "imresobnin.com" },
+  { pattern = "raadio.imresobnin.com/overrides.json", zone_name = "imresobnin.com" }
+]
