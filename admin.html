@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Mesiraadio — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page-bg:#FFC933; --honey:#FFC933; --honey-deep:#F5B71E; --honey-pale:#FFE08A;
+  --ink:#241B04; --ink-soft:#6B5B2A; --paper:#FFFFFF; --cream:#FFF8E4;
+  --leaf:#5E9C52; --leaf-deep:#3F7A36; --berry:#E4573D;
+  --shadow:0 6px 0 rgba(36,27,4,.14); --radius:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+body{
+  font-family:'Nunito',sans-serif;background:var(--page-bg);color:var(--ink);
+  min-height:100vh;padding-bottom:60px;
+}
+h1,h2,h3,.btn,.chip{font-family:'Baloo 2',cursive}
+
+header{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  padding:20px;max-width:900px;margin:0 auto;
+}
+.logo{font-weight:800;font-size:1.3rem;letter-spacing:.02em}
+.logo small{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.7rem;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase}
+
+main{max-width:900px;margin:0 auto;padding:0 20px}
+
+.search{
+  display:flex;align-items:center;gap:10px;background:var(--paper);
+  border:3px solid var(--ink);border-radius:999px;padding:12px 18px;box-shadow:var(--shadow);
+  margin-bottom:22px;
+}
+.search input{border:0;outline:0;flex:1;font:inherit;font-weight:700;background:transparent;color:var(--ink)}
+.search input::placeholder{color:var(--ink-soft)}
+
+.section-head{display:flex;align-items:center;gap:10px;margin:26px 0 12px;flex-wrap:wrap}
+.section-head h2{font-size:1.1rem}
+.count-pill{background:var(--ink);color:var(--page-bg);font-weight:800;font-size:.8rem;border-radius:999px;padding:3px 11px}
+.section-head .btn{margin-left:auto}
+.section-note{color:var(--ink-soft);font-weight:700;font-size:.85rem;margin:-6px 0 14px}
+
+.list{display:flex;flex-direction:column;gap:10px}
+
+.row{
+  background:var(--paper);border:3px solid var(--ink);border-radius:18px;
+  padding:12px 16px;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.row .name{font-weight:800;flex:1;min-width:140px;overflow-wrap:anywhere}
+.row .site{font-size:.72rem;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;background:var(--cream);border-radius:999px;padding:2px 9px}
+
+.badge{
+  font-weight:800;font-size:.78rem;border-radius:999px;padding:4px 12px;
+  border:2px solid var(--ink);white-space:nowrap;
+}
+.badge.ok{background:var(--leaf);color:#fff;border-color:var(--leaf-deep)}
+.badge.down{background:var(--berry);color:#fff;border-color:#a8331e}
+.badge.override-ok{background:var(--paper);color:var(--leaf-deep);border-color:var(--leaf)}
+.badge.override-down{background:var(--paper);color:var(--berry);border-color:var(--berry)}
+
+.actions{display:flex;gap:6px;flex-wrap:wrap}
+.btn{
+  border:3px solid var(--ink);border-radius:999px;background:var(--paper);color:var(--ink);
+  font-weight:700;font-size:.82rem;padding:7px 15px;cursor:pointer;
+  box-shadow:0 4px 0 rgba(36,27,4,.15);transition:transform .1s ease, background .1s ease;
+}
+.btn:hover{background:var(--cream)}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(36,27,4,.15)}
+.btn.small{padding:6px 12px;font-size:.76rem}
+.btn.ok-btn:hover{background:var(--leaf);color:#fff;border-color:var(--leaf-deep)}
+.btn.down-btn:hover{background:var(--berry);color:#fff;border-color:#a8331e}
+.btn.clear-btn{opacity:.75}
+
+.empty{
+  background:var(--cream);border:3px dashed var(--ink-soft);border-radius:18px;
+  padding:22px;text-align:center;color:var(--ink-soft);font-weight:700;
+}
+
+.toggle-all{width:100%;text-align:center;margin-top:6px}
+
+.status-line{
+  position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--page-bg);
+  font-weight:700;font-size:.85rem;padding:10px 20px;text-align:center;
+  transform:translateY(120%);transition:transform .25s ease;z-index:20;
+}
+.status-line.show{transform:translateY(0)}
+.status-line.err{background:var(--berry)}
+
+.spinner{
+  width:16px;height:16px;border:3px solid var(--page-bg);border-top-color:transparent;
+  border-radius:50%;display:inline-block;animation:spin .7s linear infinite;vertical-align:-3px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media (max-width:480px){
+  .row{padding:12px}
+  .actions{width:100%}
+  .btn.small{flex:1}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">MESIRAADIO<small>Admin — jaamade tervis</small></div>
+  <span class="count-pill" id="lastChecked">—</span>
+</header>
+
+<main>
+  <div class="search">
+    <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="#241B04" stroke-width="2.6"/><path d="M13 13l5 5" stroke="#241B04" stroke-width="2.6" stroke-linecap="round"/></svg>
+    <input id="search" type="search" placeholder="Otsi jaama…">
+  </div>
+
+  <div class="section-head">
+    <h2>Käsitsi märgitud</h2>
+    <span class="count-pill" id="overrideCount">0</span>
+  </div>
+  <p class="section-note">Need jaamad EI järgi automaatkontrolli — sina otsustad, mis siin näidatakse.</p>
+  <div class="list" id="overrideList"></div>
+  <div class="empty" id="overrideEmpty" hidden>Ühtegi käsitsi märget pole. Kui automaatkontroll eksib, saad selle siin parandada.</div>
+
+  <div class="section-head">
+    <h2>Automaatselt probleemsed</h2>
+    <span class="count-pill" id="downCount">0</span>
+  </div>
+  <p class="section-note">Vähemalt 3 järjestikust päeva ebaõnnestunud kontroll — lehel näidatakse "Võimalikud ühendusprobleemid".</p>
+  <div class="list" id="downList"></div>
+  <div class="empty" id="downEmpty" hidden>Kõik jaamad vastavad praegu korralikult. 🎉</div>
+
+  <div class="section-head">
+    <h2>Kõik jaamad</h2>
+    <span class="count-pill" id="allCount">0</span>
+    <button class="btn" id="toggleAllBtn" type="button">Näita kõiki</button>
+  </div>
+  <div class="list" id="allList" hidden></div>
+</main>
+
+<div class="status-line" id="statusLine"></div>
+
+<script>
+const OVERRIDES_API = '/admin/api/overrides';
+const STATUS_JSON = '/status.json';
+
+const overrideList = document.getElementById('overrideList');
+const overrideEmpty = document.getElementById('overrideEmpty');
+const overrideCount = document.getElementById('overrideCount');
+const downList = document.getElementById('downList');
+const downEmpty = document.getElementById('downEmpty');
+const downCount = document.getElementById('downCount');
+const allList = document.getElementById('allList');
+const allCount = document.getElementById('allCount');
+const toggleAllBtn = document.getElementById('toggleAllBtn');
+const searchEl = document.getElementById('search');
+const statusLine = document.getElementById('statusLine');
+const lastChecked = document.getElementById('lastChecked');
+
+let stations = {};   // { name: {ok, fail_streak} }  status.json-ist
+let overrides = {};  // { name: {override, updated_at} }  admin API-st
+let allVisible = false;
+
+function showStatus(msg, isErr){
+  statusLine.textContent = msg;
+  statusLine.classList.toggle('err', !!isErr);
+  statusLine.classList.add('show');
+  clearTimeout(showStatus._t);
+  showStatus._t = setTimeout(() => statusLine.classList.remove('show'), 2600);
+}
+
+function esc(s){
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+async function loadAll(){
+  const [statusRes, overridesRes] = await Promise.all([
+    fetch(STATUS_JSON, {cache:'no-store'}),
+    fetch(OVERRIDES_API, {cache:'no-store'}),
+  ]);
+  const statusData = await statusRes.json();
+  stations = statusData.stations || {};
+  lastChecked.textContent = statusData.checked_at
+    ? 'Viimane kontroll: ' + statusData.checked_at.replace('T',' ').replace('Z',' UTC')
+    : '—';
+  overrides = await overridesRes.json();
+  render();
+}
+
+function effectiveBadge(name){
+  const ov = overrides[name];
+  const auto = stations[name];
+  if (ov){
+    return ov.override === 'ok'
+      ? '<span class="badge override-ok">✓ Käsitsi OK</span>'
+      : '<span class="badge override-down">✕ Käsitsi maas</span>';
+  }
+  if (!auto) return '<span class="badge">Tundmatu</span>';
+  return auto.ok
+    ? '<span class="badge ok">OK</span>'
+    : `<span class="badge down">Ei vasta (${auto.fail_streak || 0}p)</span>`;
+}
+
+function rowHtml(name){
+  const ov = overrides[name];
+  return `
+    <div class="row" data-name="${esc(name)}">
+      <span class="name">${esc(name)}</span>
+      ${effectiveBadge(name)}
+      <div class="actions">
+        <button class="btn small ok-btn" data-action="ok">Määra OK</button>
+        <button class="btn small down-btn" data-action="down">Määra maas</button>
+        ${ov ? '<button class="btn small clear-btn" data-action="clear">Tühista</button>' : ''}
+      </div>
+    </div>`;
+}
+
+function render(){
+  const q = searchEl.value.trim().toLowerCase();
+  const names = Object.keys(stations).sort((a,b) => a.localeCompare(b,'et'));
+  const matches = n => n.toLowerCase().includes(q);
+
+  const overrideNames = names.filter(n => overrides[n] && matches(n));
+  overrideList.innerHTML = overrideNames.map(rowHtml).join('');
+  overrideCount.textContent = overrideNames.length;
+  overrideEmpty.hidden = overrideNames.length > 0 || q !== '';
+
+  const downNames = names.filter(n => !overrides[n] && stations[n] && !stations[n].ok && matches(n));
+  downList.innerHTML = downNames.map(rowHtml).join('');
+  downCount.textContent = downNames.length;
+  downEmpty.hidden = downNames.length > 0 || q !== '';
+
+  const allNames = names.filter(matches);
+  allCount.textContent = allNames.length;
+  const showAll = allVisible || q !== '';
+  allList.hidden = !showAll;
+  toggleAllBtn.textContent = showAll ? 'Peida' : 'Näita kõiki';
+  if (showAll) allList.innerHTML = allNames.map(rowHtml).join('');
+}
+
+async function setOverride(name, override){
+  try{
+    const r = await fetch(OVERRIDES_API, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({station: name, override}),
+    });
+    if (!r.ok){
+      const err = await r.json().catch(() => ({}));
+      throw new Error(err.error || ('HTTP ' + r.status));
+    }
+    if (override) overrides[name] = {override, updated_at: new Date().toISOString()};
+    else delete overrides[name];
+    render();
+    showStatus(override
+      ? `„${name}" märgitud: ${override === 'ok' ? 'alati OK' : 'alati maas'}`
+      : `„${name}" käsitsi märge tühistatud`);
+  }catch(e){
+    showStatus('Viga: ' + e.message, true);
+  }
+}
+
+[overrideList, downList, allList].forEach(list => {
+  list.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn) return;
+    const name = btn.closest('.row').dataset.name;
+    const action = btn.dataset.action;
+    setOverride(name, action === 'clear' ? null : action);
+  });
+});
+
+searchEl.addEventListener('input', render);
+toggleAllBtn.addEventListener('click', () => { allVisible = !allVisible; render(); });
+
+loadAll().catch(e => showStatus('Laadimine ebaõnnestus: ' + e.message, true));
+</script>
+</body>
+</html>
