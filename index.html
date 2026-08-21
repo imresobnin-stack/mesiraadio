@@ -9,13 +9,13 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M11%209C9%206%207%205%207%205M21%209c2-3%204-4%204-4%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222.4%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%227%22%20cy%3D%225%22%20r%3D%222.2%22%20fill%3D%22%23241B04%22/%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%225%22%20r%3D%222.2%22%20fill%3D%22%23241B04%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2219%22%20r%3D%2212%22%20fill%3D%22%23FFC933%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222.4%22/%3E%3Cpath%20d%3D%22M9.5%2017c1.5%201.6%203.5%201.6%205%200M17.5%2017c1.5%201.6%203.5%201.6%205%200%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2223.5%22%20r%3D%221.7%22%20fill%3D%22none%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%221.8%22/%3E%3C/svg%3E">
-<meta name="description" content="Kuula 93 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
+<meta name="description" content="Kuula 95 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
 
 <!-- Open Graph (Facebook, Messenger, LinkedIn jt) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mesiraadio">
 <meta property="og:title" content="Mesiraadio — Eesti netiraadiod">
-<meta property="og:description" content="Kuula 93 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
+<meta property="og:description" content="Kuula 95 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
 <meta property="og:url" content="https://raadio.imresobnin.com/">
 <meta property="og:image" content="https://raadio.imresobnin.com/mesiraadio-og.png">
 <meta property="og:image:width" content="1200">
@@ -26,7 +26,7 @@
 <!-- Twitter/X kaart -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mesiraadio — Eesti netiraadiod">
-<meta name="twitter:description" content="Kuula 93 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine.">
+<meta name="twitter:description" content="Kuula 95 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine.">
 <meta name="twitter:image" content="https://raadio.imresobnin.com/mesiraadio-og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -319,6 +319,43 @@ body.dark .hero-art > circle:nth-of-type(2){fill:var(--honey-pale)}
 
 /* ================= HERO: tants & uni ================= */
 #bee{transform-origin:150px 185px;transition:transform .8s ease}
+
+/* ================= SISENEMINE: mesilane lendab kaugelt kohale ================= */
+.halo{opacity:1;transform:scale(1);transform-origin:150px 120px}
+body.flying-in .halo-outer{animation:heroHaloBloom .8s cubic-bezier(.25,.85,.35,1) .45s both}
+body.flying-in .halo-inner{animation:heroHaloBloom .8s cubic-bezier(.25,.85,.35,1) .58s both}
+@keyframes heroHaloBloom{
+  0%{opacity:0;transform:scale(.2)}
+  60%{opacity:1;transform:scale(1.07)}
+  100%{opacity:1;transform:scale(1)}
+}
+.speedline{opacity:0;stroke:#241B04;stroke-width:3;stroke-linecap:round}
+body.flying-in .speedline{animation:heroSpeedFade 1.35s ease-out forwards}
+@keyframes heroSpeedFade{0%,10%{opacity:0}20%{opacity:.55}70%{opacity:.35}100%{opacity:0}}
+.dust{opacity:0;transform-origin:150px 190px}
+body.flying-in .dust{animation:heroDustPuff .5s ease-out .95s forwards}
+@keyframes heroDustPuff{0%{opacity:0;transform:scale(.3)}30%{opacity:.5}100%{opacity:0;transform:scale(1.8)}}
+body.flying-in #bee{
+  opacity:0;
+  animation:heroFlyIn 1.35s cubic-bezier(.2,.7,.35,1) forwards;
+}
+@keyframes heroFlyIn{
+  0%{   transform:translate(-380px,-260px) scale(.22) rotate(-35deg); opacity:0; }
+  8%{   opacity:1; }
+  55%{  transform:translate(40px,-30px) scale(.85) rotate(8deg); }
+  78%{  transform:translate(-14px,6px) scale(1.06) rotate(-4deg); }
+  90%{  transform:translate(4px,-4px) scale(.97) rotate(2deg); }
+  100%{ transform:translate(0,0) scale(1) rotate(0deg); opacity:1; }
+}
+body.flying-in #wing-l{animation:heroFlapFastL .09s linear infinite}
+body.flying-in #wing-r{animation:heroFlapFastR .09s linear infinite}
+@keyframes heroFlapFastL{0%,100%{transform:rotate(10deg)}50%{transform:rotate(-30deg)}}
+@keyframes heroFlapFastR{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(30deg)}}
+@media (prefers-reduced-motion:reduce){
+  body.flying-in #bee{animation:none;opacity:1}
+  .halo{opacity:1;transform:scale(1)}
+  body.flying-in #wing-l,body.flying-in #wing-r,.speedline,.dust{animation:none}
+}
 body.dancing #bee{animation:hero-rock 1.1s ease-in-out infinite}
 @keyframes hero-rock{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 #wing-l{transform-origin:120px 86px}
@@ -344,6 +381,8 @@ body.sleeping #wing-r{transform:rotate(-14deg)}
 body.sleeping #eyes-open{opacity:0}
 body.sleeping #eyes-closed{opacity:1}
 body:not(.sleeping) #eyes-open,body:not(.sleeping) #eyes-closed{transition-delay:0s}
+body.just-landed #eyes-open,body.just-landed #eyes-closed,
+body.just-landed #mouth-smile,body.just-landed #mouth-sleep{transition-delay:0s!important}
 #mouth-sleep{opacity:0}
 #mouth-smile,#mouth-sleep{transition:opacity .25s ease .6s}
 body.sleeping #mouth-smile{opacity:0}
@@ -555,7 +594,7 @@ body.dark .card.yt-card.playing .yt-meta{color:#241B04}
 body.dark .card.offline .offline-tag{color:#F0A99E}
 </style>
 </head>
-<body>
+<body class="flying-in">
 
 
 <header>
@@ -573,8 +612,14 @@ body.dark .card.offline .offline-tag{color:#F0A99E}
   <div class="hero">
     <!-- mesilane raadioga -->
     <svg class="hero-art" viewBox="0 0 300 240" role="img" aria-label="Mesilane hoiab raadiot">
-      <circle cx="150" cy="120" r="100" fill="#FFE08A"/>
-      <circle cx="150" cy="120" r="76" fill="#FFF3C9"/>
+      <circle class="halo halo-outer" cx="150" cy="120" r="100" fill="#FFE08A"/>
+      <circle class="halo halo-inner" cx="150" cy="120" r="76" fill="#FFF3C9"/>
+      <g class="speedline">
+        <path d="M40 30 L90 60"/>
+        <path d="M55 65 L100 85"/>
+        <path d="M35 90 L85 98"/>
+      </g>
+      <circle class="dust" cx="150" cy="190" r="26" fill="none" stroke="#241B04" stroke-width="3"/>
       <g id="bee">
       <!-- tiivad -->
       <g stroke="#241B04" stroke-width="4" stroke-linejoin="round">
@@ -813,6 +858,7 @@ const STATIONS = [
  ["hitmix","https://stream.hitmix.ee:8443/HIT_320"],
  ["hits radio","https://stream1.rcast.net/66833"],
  ["ring fm","https://cdn.treraadio.ee/ringfm"],
+ ["top fm","https://cdn.treraadio.ee/topfm"],
  ["tre raadio","https://cdn.treraadio.ee/pohja-tre"],
  ["ruut fm","https://a1.asurahosting.com/listen/ruut_fm/radio.mp3"],
  ["rock fm","https://skymedia-live.bitflip.ee/rck"],
@@ -838,6 +884,7 @@ const STATIONS = [
  ["kiss eurovision","https://stream.skymedia.ee/live/KissEurovisioon"],
  ["kiss pride","https://edge01.cdn.bitflip.ee:8888/KissPride"],
  ["finest fm","https://s2.radio.co/sadb37cbdb/listen"],
+ ["spacefm","https://stream.spacefm.ee/live"],
  ["taifuun fm","https://eagle.streemlion.com/proxy/taifuunfm?mp=/stream"],
  ["happyu","https://radio.streemlion.com:2525/stream"],
  ["estonian party radio","https://maggie.torontocast.com:8110/stream"],
@@ -871,7 +918,7 @@ const STATIONS = [
 ];
 
 /* ---------- žanrid ja ikoonid (Phosphor Icons, MIT) ---------- */
-const GENRE = {"vikerraadio": "talk", "raadio tallinn": "pop", "raadio 2": "pop", "r2 eesti": "folk", "r2 millennium": "retro", "r2 pop": "pop", "r2 rap": "dance", "r2 altpop": "rock", "r2 chill": "dance", "r2 rock": "rock", "klassikaraadio": "classical", "klara jazz": "jazz", "klara nostalgia": "retro", "klara meditatsioon": "classical", "klara klassika": "classical", "raadio 4": "talk", "elmar": "folk", "elmari kuld": "folk", "elmari tantsuõhtu": "folk", "elmari ballaadid": "folk", "kuku": "talk", "äripäev": "talk", "doubleclap": "dance", "legendaarne": "retro", "ida raadio": "dance", "hps bassline": "dance", "hardcore predictor": "dance", "nrj fm": "pop", "xfm": "rock", "big fm": "pop", "retro fm": "retro", "retro fm disco": "retro", "retro fm eestikas": "retro", "retro fm love": "retro", "sunlight fm": "pop", "hitmix": "pop", "hits radio": "pop", "ring fm": "pop", "tre raadio": "pop", "ruut fm": "pop", "rock fm": "rock", "rock fm metal": "rock", "sooviraadio": "folk", "meie raadio": "folk", "raadio kadi": "pop", "raadio remix": "dance", "võmba fm": "folk", "sky plus": "pop", "sky plus dnb": "dance", "sky radio": "pop", "power hit radio": "pop", "myhits": "pop", "myhits dance": "dance", "myhits rock": "rock", "circle k": "pop", "star fm": "pop", "star fm eesti": "folk", "kiss fm": "pop", "kiss eurovision": "pop", "kiss pride": "pop", "finest fm": "pop", "taifuun fm": "pop", "happyu": "pop", "estonian party radio": "folk", "xl raadio": "folk", "raadio duo": "pop", "duo gold": "retro", "duo hitmix": "pop", "duo rock": "rock", "duo party": "dance", "duo softmix": "pop", "duo country": "pop", "duo christmas": "pop", "raadio kidzone": "kids", "relax fm": "retro", "relax cafe": "retro", "relax international": "retro", "relax instrumental": "retro", "relax spa": "retro", "chat raadio": "talk", "hits show": "pop", "raadio x": "rock", "tagatuba fm": "rock", "raadio 7": "faith", "pereraadio tallinn": "faith", "pereraadio tartu": "faith", "pereraadio kuressaare": "faith", "radio eli": "faith", "semeinoje radio": "faith", "nikradofem": "pop", "radio azathoth revival": "rock", "rahvaraadio": "folk", "raadio 11": "pop"};
+const GENRE = {"vikerraadio": "talk", "raadio tallinn": "pop", "raadio 2": "pop", "r2 eesti": "folk", "r2 millennium": "retro", "r2 pop": "pop", "r2 rap": "dance", "r2 altpop": "rock", "r2 chill": "dance", "r2 rock": "rock", "klassikaraadio": "classical", "klara jazz": "jazz", "klara nostalgia": "retro", "klara meditatsioon": "classical", "klara klassika": "classical", "raadio 4": "talk", "elmar": "folk", "elmari kuld": "folk", "elmari tantsuõhtu": "folk", "elmari ballaadid": "folk", "kuku": "talk", "äripäev": "talk", "doubleclap": "dance", "legendaarne": "retro", "ida raadio": "dance", "hps bassline": "dance", "hardcore predictor": "dance", "nrj fm": "pop", "xfm": "rock", "big fm": "pop", "retro fm": "retro", "retro fm disco": "retro", "retro fm eestikas": "retro", "retro fm love": "retro", "sunlight fm": "pop", "hitmix": "pop", "hits radio": "pop", "ring fm": "pop", "top fm": "pop", "tre raadio": "pop", "ruut fm": "pop", "rock fm": "rock", "rock fm metal": "rock", "sooviraadio": "folk", "meie raadio": "folk", "raadio kadi": "pop", "raadio remix": "dance", "võmba fm": "folk", "sky plus": "pop", "sky plus dnb": "dance", "sky radio": "pop", "power hit radio": "pop", "myhits": "pop", "myhits dance": "dance", "myhits rock": "rock", "circle k": "pop", "star fm": "pop", "star fm eesti": "folk", "kiss fm": "pop", "kiss eurovision": "pop", "kiss pride": "pop", "finest fm": "pop", "spacefm": "pop", "taifuun fm": "pop", "happyu": "pop", "estonian party radio": "folk", "xl raadio": "folk", "raadio duo": "pop", "duo gold": "retro", "duo hitmix": "pop", "duo rock": "rock", "duo party": "dance", "duo softmix": "pop", "duo country": "pop", "duo christmas": "pop", "raadio kidzone": "kids", "relax fm": "retro", "relax cafe": "retro", "relax international": "retro", "relax instrumental": "retro", "relax spa": "retro", "chat raadio": "talk", "hits show": "pop", "raadio x": "rock", "tagatuba fm": "rock", "raadio 7": "faith", "pereraadio tallinn": "faith", "pereraadio tartu": "faith", "pereraadio kuressaare": "faith", "radio eli": "faith", "semeinoje radio": "faith", "nikradofem": "pop", "radio azathoth revival": "rock", "rahvaraadio": "folk", "raadio 11": "pop"};
 const GICON = {
 talk: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M168,12A75.9,75.9,0,0,0,92.49,96.33L23.91,189.85a19.89,19.89,0,0,0,2,26l14.29,14.29a19.89,19.89,0,0,0,26,2l93.52-68.58A76,76,0,1,0,168,12Zm52,76a51.66,51.66,0,0,1-7.75,27.27L140.74,43.75A52,52,0,0,1,220,88ZM54.72,210.71l-9.43-9.43,56.19-76.63a76.46,76.46,0,0,0,29.87,29.87ZM116,88a51.63,51.63,0,0,1,7.75-27.27l71.51,71.51A52,52,0,0,1,116,88Z"/></svg>`,
 pop: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M243,96a20.33,20.33,0,0,0-17.74-14l-56.59-4.57L146.83,24.62a20.36,20.36,0,0,0-37.66,0L87.35,77.44,30.76,82A20.45,20.45,0,0,0,19.1,117.88l43.18,37.24-13.2,55.7A20.37,20.37,0,0,0,79.57,233L128,203.19,176.43,233a20.39,20.39,0,0,0,30.49-22.15l-13.2-55.7,43.18-37.24A20.43,20.43,0,0,0,243,96ZM172.53,141.7a12,12,0,0,0-3.84,11.86L181.58,208l-47.29-29.08a12,12,0,0,0-12.58,0L74.42,208l12.89-54.4a12,12,0,0,0-3.84-11.86L41.2,105.24l55.4-4.47a12,12,0,0,0,10.13-7.38L128,41.89l21.27,51.5a12,12,0,0,0,10.13,7.38l55.4,4.47Z"/></svg>`,
@@ -1170,7 +1217,7 @@ function setIcon(isPlaying){
 /* ---------- loo nimi (kliendipoolne, ainult CORS-iga serverid) ---------- */
 /* "Praegu mängib" — läbi Cloudflare Workeri (CORS proksi + serva vahemälu).
    Vaheta oma Workeri URL-iga pärast selle deployimist (vt worker/README.md). */
-const NOWPLAYING_WORKER = 'https://mesiraadio-nowplaying.imresobnin.workers.dev/track';
+const NOWPLAYING_WORKER = 'https://mesiraadio-nowplaying.YOUR-SUBDOMAIN.workers.dev/track';
 
 let trackTimer = null;
 let trackFetchSeq = 0;
@@ -1406,7 +1453,16 @@ function loadTheme(){
   return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 applyTheme(loadTheme());
-document.body.classList.add('sleeping');   // leht avaneb magava mesilasega
+/* leht avaneb "flying-in" klassiga (vt <body>) — mesilane lendab kaugelt kohale
+   ja jääb siis rahulikult magama, nagu lehe tavapärane vaikeolek.
+   "just-landed" sunnib silmade/suu üleminekut korraks kiireks (vt CSS), et
+   vältida kokkupõrget olemasoleva 0.6s "vaikselt uinub" viivitusega, mis on
+   mõeldud hoopis mängimise-pausile, mitte esmakordsele saabumisele. */
+setTimeout(() => {
+  document.body.classList.remove('flying-in');
+  document.body.classList.add('sleeping', 'just-landed');
+  setTimeout(() => document.body.classList.remove('just-landed'), 60);
+}, 1500);
 themeBtn.addEventListener('click', () => {
   const dark = !document.body.classList.contains('dark');
   applyTheme(dark);
