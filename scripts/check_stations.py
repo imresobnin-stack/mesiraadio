@@ -12,12 +12,18 @@ alles pärast mitut järjestikust päeva (FAIL_THRESHOLD). See vähendab
 vale-alarme, aga tähendab ka, et päris tõrge jõuab lehele nähtavale
 mõne päevaga, mitte kohe.
 
+Enne status.json kirjutamist küsitakse ka käsitsi ülekirjutused
+admin-Workerilt (vt worker-admin/) — kui admin.html kaudu on jaam
+märgitud "alati OK" või "alati maas", jääb see otsus kehtima ka siis,
+kui automaatkontroll järgmisel korral midagi muud arvaks.
+
 Käivitamine: python3 scripts/check_stations.py
 Eeldab, et see jookseb repo juurkataloogist (kus index.html/world.html asuvad).
 """
 import re
 import json
 import sys
+import os
 import datetime
 import urllib.request
 import urllib.error
@@ -28,6 +34,7 @@ TIMEOUT = 10
 WORKERS = 15
 FAIL_THRESHOLD = 3   # mitu järjestikust ebaõnnestumist enne "maas" märkimist
 UA = "Mozilla/5.0 (compatible; Mesiraadio-HealthCheck/1.0; +https://raadio.imresobnin.com)"
+OVERRIDES_URL = os.environ.get("OVERRIDES_URL", "https://raadio.imresobnin.com/overrides.json")
 
 
 def parse_stations(path, cols):
@@ -79,6 +86,19 @@ def load_previous():
         return {}
 
 
+def load_overrides():
+    """Küsib käsitsi ülekirjutused admin-Workerilt. Kui Worker pole veel
+    deploy'itud või ajutiselt kättesaamatu, jätkab lihtsalt ilma nendeta —
+    see EI TOHI kunagi katkestada tervisekontrolli tervikuna."""
+    try:
+        req = urllib.request.Request(OVERRIDES_URL, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=8) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        print(f"HOIATUS: ülekirjutusi ei õnnestunud laadida ({e}) — jätkan ilma nendeta.", file=sys.stderr)
+        return {}
+
+
 def main():
     stations = []
     seen = set()
@@ -94,6 +114,7 @@ def main():
         sys.exit(1)
 
     previous = load_previous()
+    overrides = load_overrides()
 
     raw = {}
     with cf.ThreadPoolExecutor(max_workers=WORKERS) as ex:
@@ -117,6 +138,19 @@ def main():
 
         results[name] = {"ok": not flagged, "fail_streak": streak}
 
+    # käsitsi ülekirjutused võidavad automaatkontrolli, aga ei riku
+    # taustal käivat streak-arvestust — kui ülekirjutus hiljem eemaldatakse,
+    # peegeldub õige automaatne seis kohe uuesti
+    override_applied = []
+    for name, ov in overrides.items():
+        if name not in results:
+            continue  # jaam, mida enam STATIONS massiivides pole
+        forced_ok = ov.get("override") == "ok"
+        if results[name]["ok"] != forced_ok:
+            override_applied.append((name, ov.get("override")))
+        results[name]["ok"] = forced_ok
+        results[name]["override"] = ov.get("override")
+
     out = {
         "checked_at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "stations": results,
@@ -126,6 +160,10 @@ def main():
 
     live_fails = [n for n, ok in raw.items() if not ok]
     print(f"Kontrollitud {len(stations)} jaama. Selle korra tõrkeid: {len(live_fails)}.")
+    if override_applied:
+        print(f"Käsitsi ülekirjutusi rakendatud ({len(override_applied)}):")
+        for n, ov in override_applied:
+            print(f"  - {n}: sunnitud '{ov}'")
     if newly_flagged:
         print(f"UUED 'maas' märgid ({FAIL_THRESHOLD}+ päeva järjest ebaõnnestunud):")
         for n in newly_flagged:
