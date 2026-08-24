@@ -9,13 +9,13 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M11%209C9%206%207%205%207%205M21%209c2-3%204-4%204-4%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222.4%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%227%22%20cy%3D%225%22%20r%3D%222.2%22%20fill%3D%22%23241B04%22/%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%225%22%20r%3D%222.2%22%20fill%3D%22%23241B04%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2219%22%20r%3D%2212%22%20fill%3D%22%23FFC933%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222.4%22/%3E%3Cpath%20d%3D%22M9.5%2017c1.5%201.6%203.5%201.6%205%200M17.5%2017c1.5%201.6%203.5%201.6%205%200%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2223.5%22%20r%3D%221.7%22%20fill%3D%22none%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%221.8%22/%3E%3C/svg%3E">
-<meta name="description" content="Kuula 95 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
+<meta name="description" content="Kuula 94 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
 
 <!-- Open Graph (Facebook, Messenger, LinkedIn jt) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mesiraadio">
 <meta property="og:title" content="Mesiraadio — Eesti netiraadiod">
-<meta property="og:description" content="Kuula 95 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
+<meta property="og:description" content="Kuula 94 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
 <meta property="og:url" content="https://raadio.imresobnin.com/">
 <meta property="og:image" content="https://raadio.imresobnin.com/mesiraadio-og.png">
 <meta property="og:image:width" content="1200">
@@ -26,7 +26,7 @@
 <!-- Twitter/X kaart -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mesiraadio — Eesti netiraadiod">
-<meta name="twitter:description" content="Kuula 95 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine.">
+<meta name="twitter:description" content="Kuula 94 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine.">
 <meta name="twitter:image" content="https://raadio.imresobnin.com/mesiraadio-og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -927,8 +927,8 @@ const STATIONS = [
  ["star fm","https://ice.leviracloud.eu/star96-aac"],
  ["star fm eesti","https://ice.leviracloud.eu/starFMEesti128-aac"],
  ["kiss fm","https://stream.skymedia.ee/live/KISS_AAC"],
- ["kiss eurovision","https://stream.skymedia.ee/live/KissEurovisioon"],
- ["kiss pride","https://edge01.cdn.bitflip.ee:8888/KissPride"],
+ ["kiss eurovision","https://stream.skymedia.ee/live/KissEurovision"],
+ ["kiss pride","https://stream.skymedia.ee/live/KissPride"],
  ["finest fm","https://s2.radio.co/sadb37cbdb/listen"],
  ["spacefm","https://stream.spacefm.ee/live"],
  ["taifuun fm","https://eagle.streemlion.com/proxy/taifuunfm?mp=/stream"],
@@ -959,12 +959,11 @@ const STATIONS = [
  ["pereraadio kuressaare","https://icecast.pereraadio.ee:9000/Kuressaare"],
  ["radio eli","https://icecast.pereraadio.ee:9000/RadioEli"],
  ["semeinoje radio","https://icecast.pereraadio.ee:9000/Semeinoje"],
- ["nikradofem","https://live.nikradofem.online/live"],
  ["radio azathoth revival","https://cast4.asurahosting.com/proxy/aadu/stream"]
 ];
 
 /* ---------- žanrid ja ikoonid (Phosphor Icons, MIT) ---------- */
-const GENRE = {"vikerraadio": "talk", "raadio tallinn": "pop", "raadio 2": "pop", "r2 eesti": "folk", "r2 millennium": "retro", "r2 pop": "pop", "r2 rap": "dance", "r2 altpop": "rock", "r2 chill": "dance", "r2 rock": "rock", "klassikaraadio": "classical", "klara jazz": "jazz", "klara nostalgia": "retro", "klara meditatsioon": "classical", "klara klassika": "classical", "raadio 4": "talk", "elmar": "folk", "elmari kuld": "folk", "elmari tantsuõhtu": "folk", "elmari ballaadid": "folk", "kuku": "talk", "äripäev": "talk", "doubleclap": "dance", "legendaarne": "retro", "ida raadio": "dance", "hps bassline": "dance", "hardcore predictor": "dance", "nrj fm": "pop", "xfm": "rock", "big fm": "pop", "retro fm": "retro", "retro fm disco": "retro", "retro fm eestikas": "retro", "retro fm love": "retro", "sunlight fm": "pop", "hitmix": "pop", "hits radio": "pop", "ring fm": "pop", "top fm": "pop", "tre raadio": "pop", "ruut fm": "pop", "rock fm": "rock", "rock fm metal": "rock", "sooviraadio": "folk", "meie raadio": "folk", "raadio kadi": "pop", "raadio remix": "dance", "võmba fm": "folk", "sky plus": "pop", "sky plus dnb": "dance", "sky radio": "pop", "power hit radio": "pop", "myhits": "pop", "myhits dance": "dance", "myhits rock": "rock", "circle k": "pop", "star fm": "pop", "star fm eesti": "folk", "kiss fm": "pop", "kiss eurovision": "pop", "kiss pride": "pop", "finest fm": "pop", "spacefm": "pop", "taifuun fm": "pop", "happyu": "pop", "estonian party radio": "folk", "xl raadio": "folk", "raadio duo": "pop", "duo gold": "retro", "duo hitmix": "pop", "duo rock": "rock", "duo party": "dance", "duo softmix": "pop", "duo country": "pop", "duo christmas": "pop", "raadio kidzone": "kids", "relax fm": "retro", "relax cafe": "retro", "relax international": "retro", "relax instrumental": "retro", "relax spa": "retro", "chat raadio": "talk", "hits show": "pop", "raadio x": "rock", "tagatuba fm": "rock", "raadio 7": "faith", "pereraadio tallinn": "faith", "pereraadio tartu": "faith", "pereraadio kuressaare": "faith", "radio eli": "faith", "semeinoje radio": "faith", "nikradofem": "pop", "radio azathoth revival": "rock", "rahvaraadio": "folk", "raadio 11": "pop"};
+const GENRE = {"vikerraadio": "talk", "raadio tallinn": "pop", "raadio 2": "pop", "r2 eesti": "folk", "r2 millennium": "retro", "r2 pop": "pop", "r2 rap": "dance", "r2 altpop": "rock", "r2 chill": "dance", "r2 rock": "rock", "klassikaraadio": "classical", "klara jazz": "jazz", "klara nostalgia": "retro", "klara meditatsioon": "classical", "klara klassika": "classical", "raadio 4": "talk", "elmar": "folk", "elmari kuld": "folk", "elmari tantsuõhtu": "folk", "elmari ballaadid": "folk", "kuku": "talk", "äripäev": "talk", "doubleclap": "dance", "legendaarne": "retro", "ida raadio": "dance", "hps bassline": "dance", "hardcore predictor": "dance", "nrj fm": "pop", "xfm": "rock", "big fm": "pop", "retro fm": "retro", "retro fm disco": "retro", "retro fm eestikas": "retro", "retro fm love": "retro", "sunlight fm": "pop", "hitmix": "pop", "hits radio": "pop", "ring fm": "pop", "top fm": "pop", "tre raadio": "pop", "ruut fm": "pop", "rock fm": "rock", "rock fm metal": "rock", "sooviraadio": "folk", "meie raadio": "folk", "raadio kadi": "pop", "raadio remix": "dance", "võmba fm": "folk", "sky plus": "pop", "sky plus dnb": "dance", "sky radio": "pop", "power hit radio": "pop", "myhits": "pop", "myhits dance": "dance", "myhits rock": "rock", "circle k": "pop", "star fm": "pop", "star fm eesti": "folk", "kiss fm": "pop", "kiss eurovision": "pop", "kiss pride": "pop", "finest fm": "pop", "spacefm": "pop", "taifuun fm": "pop", "happyu": "pop", "estonian party radio": "folk", "xl raadio": "folk", "raadio duo": "pop", "duo gold": "retro", "duo hitmix": "pop", "duo rock": "rock", "duo party": "dance", "duo softmix": "pop", "duo country": "pop", "duo christmas": "pop", "raadio kidzone": "kids", "relax fm": "retro", "relax cafe": "retro", "relax international": "retro", "relax instrumental": "retro", "relax spa": "retro", "chat raadio": "talk", "hits show": "pop", "raadio x": "rock", "tagatuba fm": "rock", "raadio 7": "faith", "pereraadio tallinn": "faith", "pereraadio tartu": "faith", "pereraadio kuressaare": "faith", "radio eli": "faith", "semeinoje radio": "faith", "radio azathoth revival": "rock", "rahvaraadio": "folk", "raadio 11": "pop"};
 const GICON = {
 talk: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M168,12A75.9,75.9,0,0,0,92.49,96.33L23.91,189.85a19.89,19.89,0,0,0,2,26l14.29,14.29a19.89,19.89,0,0,0,26,2l93.52-68.58A76,76,0,1,0,168,12Zm52,76a51.66,51.66,0,0,1-7.75,27.27L140.74,43.75A52,52,0,0,1,220,88ZM54.72,210.71l-9.43-9.43,56.19-76.63a76.46,76.46,0,0,0,29.87,29.87ZM116,88a51.63,51.63,0,0,1,7.75-27.27l71.51,71.51A52,52,0,0,1,116,88Z"/></svg>`,
 pop: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M243,96a20.33,20.33,0,0,0-17.74-14l-56.59-4.57L146.83,24.62a20.36,20.36,0,0,0-37.66,0L87.35,77.44,30.76,82A20.45,20.45,0,0,0,19.1,117.88l43.18,37.24-13.2,55.7A20.37,20.37,0,0,0,79.57,233L128,203.19,176.43,233a20.39,20.39,0,0,0,30.49-22.15l-13.2-55.7,43.18-37.24A20.43,20.43,0,0,0,243,96ZM172.53,141.7a12,12,0,0,0-3.84,11.86L181.58,208l-47.29-29.08a12,12,0,0,0-12.58,0L74.42,208l12.89-54.4a12,12,0,0,0-3.84-11.86L41.2,105.24l55.4-4.47a12,12,0,0,0,10.13-7.38L128,41.89l21.27,51.5a12,12,0,0,0,10.13,7.38l55.4,4.47Z"/></svg>`,
