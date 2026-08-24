@@ -70,6 +70,18 @@ header{position:relative;z-index:2;padding:26px 20px 6px;max-width:960px;margin:
 .logo{display:flex;align-items:center;gap:10px;font-family:'Baloo 2',cursive;font-weight:800;font-size:1.5rem;letter-spacing:.02em}
 .logo svg{width:44px;height:44px}
 .hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 0 4px}
+.hero-title-row{display:inline-flex;align-items:center;gap:8px}
+.hero-toggle{
+  flex:none;width:22px;height:22px;border:0;background:none;
+  color:var(--ink);cursor:pointer;display:grid;place-items:center;padding:0;opacity:.85;
+}
+.hero-toggle:hover{opacity:1}
+.hero-toggle svg{width:13px;height:13px;transition:transform .2s ease;display:block}
+body.hero-hidden .hero-toggle svg{transform:rotate(45deg)}
+body.hero-hidden .hero-art{display:none}
+body.hero-hidden .hero>p{display:none}
+body.hero-hidden .greet-bubble{display:none}
+
 .hero-art{width:min(320px,72vw);height:auto;filter:drop-shadow(0 10px 0 rgba(27,36,8,.10))}
 .hero h1{font-size:clamp(1.7rem,5vw,2.5rem);font-weight:800;line-height:1.1;margin-top:6px}
 .hero p{color:var(--ink-soft);font-weight:700;margin-top:4px}
@@ -660,7 +672,12 @@ body.dark .card.offline .offline-tag{color:#F0A99E}
         <text class="zzz z3" x="228" y="32" font-size="32">Z</text>
       </g>
     </svg>
-    <h1>Tune the whole planet</h1>
+    <div class="hero-title-row">
+      <h1>Tune the whole planet</h1>
+      <button class="hero-toggle" id="heroToggle" type="button" aria-label="Hide mascot" title="Hide mascot">
+        <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
     <p>World radio stations, hand-picked and prickly fresh.</p>
   </div>
 </header>
@@ -1560,6 +1577,26 @@ function loadTheme(){
   return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 applyTheme(loadTheme());
+
+/* ================= MASKOTI PEITMINE/NÄITAMINE ================= */
+const HERO_KEY = 'mesiraadio_hero_hidden';
+const heroToggle = document.getElementById('heroToggle');
+function loadHeroHidden(){
+  try{ return localStorage.getItem(HERO_KEY) === '1'; }catch(e){ return false; }
+}
+function applyHeroHidden(hidden){
+  document.body.classList.toggle('hero-hidden', hidden);
+  const label = hidden ? 'Show mascot' : 'Hide mascot';
+  heroToggle.setAttribute('aria-label', label);
+  heroToggle.title = label;
+}
+let heroHidden = loadHeroHidden();
+applyHeroHidden(heroHidden);
+heroToggle.addEventListener('click', () => {
+  heroHidden = !heroHidden;
+  applyHeroHidden(heroHidden);
+  try{ localStorage.setItem(HERO_KEY, heroHidden ? '1' : '0'); }catch(e){}
+});
 document.body.classList.add('sleeping');   // leht avaneb magava kaktusega
 themeBtn.addEventListener('click', () => {
   const dark = !document.body.classList.contains('dark');
@@ -1821,7 +1858,7 @@ function greet(hourOverride){
     setTimeout(() => b.remove(), 400);
   }, 3000);
 }
-greet();
+if (!heroHidden) greet();
 
 
 /* ================= FAVICON SÜNKROONIS OLEKUGA ================= */
