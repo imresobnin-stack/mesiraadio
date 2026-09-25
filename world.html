@@ -571,6 +571,43 @@ body.dark .card.offline .offline-tag{color:#F0A99E}
   .card.puzzle-go{transition:none!important}
   .card.puzzle-landed{animation:none!important}
 }
+
+/* ================= KAKTUSE TUJUD (kellaaja ja nädalapäeva järgi) ================= */
+/* Tujud on ainult lisakihid. Müts ja kiiver käivad õie alla, nii et õis jääb
+   alles ja vingerdab/norgub/hüppab edasi nagu enne. */
+.mood{opacity:0;transition:opacity .5s ease}
+body.mood-hommik #mood-hommik,
+body.mood-ohtu   #mood-ohtu,
+body.mood-oo     #mood-oo-bg,
+body.mood-too    #mood-too,
+body.mood-puhke  #mood-puhke,
+body.mood-puhke  #mood-puhke-glasses{opacity:1}
+
+#eyes-drowsy{opacity:0;transition:opacity .35s ease}
+body.mood-oo:not(.sleeping):not(.angry):not(.dizzy):not(.blink) #eyes-drowsy{opacity:1}
+body.mood-oo:not(.sleeping):not(.angry):not(.dizzy):not(.blink) #eyes-open{opacity:0}
+
+body.mood-puhke:not(.angry):not(.dizzy):not(.blink) #eyes-open,
+body.mood-puhke:not(.angry):not(.dizzy):not(.blink) #eyes-closed{opacity:0}
+body.angry #mood-puhke-glasses,
+body.dizzy #mood-puhke-glasses{opacity:0}
+
+.steam{animation:moodSteam 2.6s ease-in-out infinite}
+.steam.s2{animation-delay:.9s}
+@keyframes moodSteam{
+  0%{opacity:0;transform:translateY(4px)}
+  30%{opacity:.75}
+  100%{opacity:0;transform:translateY(-12px)}
+}
+.twinkle{animation:moodTwinkle 2.8s ease-in-out infinite}
+.twinkle.t2{animation-delay:.8s}
+.twinkle.t3{animation-delay:1.7s}
+@keyframes moodTwinkle{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+#cap-pom{transform-origin:189px 74px;animation:moodPom 3s ease-in-out infinite}
+@keyframes moodPom{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){
+  .steam,.twinkle,#cap-pom{animation:none}
+}
 </style>
 </head>
 <body>
@@ -593,6 +630,15 @@ body.dark .card.offline .offline-tag{color:#F0A99E}
     <svg class="hero-art" viewBox="0 0 300 250" role="img" aria-label="Cactus with speakers">
       <circle cx="150" cy="125" r="100" fill="#CBDF8B"/>
       <circle cx="150" cy="125" r="76" fill="#E9F3C8"/>
+      <!-- tuju: öö — kuu ja tähed -->
+      <g class="mood" id="mood-oo-bg">
+        <path d="M250 15a13 13 0 1 0 10 24 10 10 0 1 1-10-24z" fill="#F6FAE6" stroke="#1B2408" stroke-width="3.4" stroke-linejoin="round"/>
+        <g fill="#1B2408">
+          <path class="twinkle" d="M206 24l2.6 6.3 6.3 2.6-6.3 2.6-2.6 6.3-2.6-6.3-6.3-2.6 6.3-2.6z"/>
+          <path class="twinkle t2" d="M278 62l2.1 5.1 5.1 2.1-5.1 2.1-2.1 5.1-2.1-5.1-5.1-2.1 5.1-2.1z"/>
+          <path class="twinkle t3" d="M30 46l1.9 4.6 4.6 1.9-4.6 1.9-1.9 4.6-1.9-4.6-4.6-1.9 4.6-1.9z"/>
+        </g>
+      </g>
       <!-- kõlarid külgedel, potiga samal joonel -->
       <g stroke="#1B2408" stroke-width="4" stroke-linejoin="round">
         <rect x="34" y="158" width="52" height="72" rx="10" fill="#F6FAE6"/>
@@ -633,6 +679,12 @@ body.dark .card.offline .offline-tag{color:#F0A99E}
           <path d="M138 112c3 3 7 3 10 0"/>
           <path d="M156 112c3 3 7 3 10 0"/>
         </g>
+        <g id="eyes-drowsy" stroke="#1B2408" stroke-width="3.2" fill="none">
+          <path d="M137 110h12"/>
+          <path d="M155 110h12"/>
+          <path d="M139 114.5c3 2.5 7 2.5 9 0" stroke-width="2.6"/>
+          <path d="M157 114.5c3 2.5 7 2.5 9 0" stroke-width="2.6"/>
+        </g>
         <path id="mouth-smile" d="M144 124c4 3 10 3 14 0" fill="none" stroke="#1B2408" stroke-width="4"/>
         <circle id="mouth-sleep" cx="151" cy="126" r="3.4" fill="none" stroke="#1B2408" stroke-width="3.4"/>
         <g id="eyes-angry" stroke="#1B2408" stroke-width="3.4">
@@ -643,6 +695,41 @@ body.dark .card.offline .offline-tag{color:#F0A99E}
           <path d="M143 112m-5 0a5 5 0 1 1 10 0a3.5 3.5 0 1 1 -7 0a2 2 0 1 1 4 0"/>
           <path d="M159 112m-5 0a5 5 0 1 1 10 0a3.5 3.5 0 1 1 -7 0a2 2 0 1 1 4 0"/>
         </g>
+        <!-- tuju: puhkepäev — päikeseprillid -->
+        <g class="mood" id="mood-puhke-glasses" stroke="#1B2408" stroke-width="3.4" stroke-linejoin="round">
+          <rect x="132" y="105" width="17" height="13" rx="6" fill="#1B2408"/>
+          <rect x="153" y="105" width="17" height="13" rx="6" fill="#1B2408"/>
+          <path d="M149 110h4" stroke-width="3"/>
+          <path d="M132 109l-7-3M170 109l7-3" fill="none" stroke-linecap="round"/>
+        </g>
+        <!-- tuju: õhtu — öömüts (õis jääb peale) -->
+        <g class="mood" id="mood-ohtu" stroke="#1B2408" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M130 76C130 50 172 50 172 76z" fill="#BFD8F5"/>
+          <path d="M166 57c14-1 26 7 27 17" fill="none"/>
+          <g id="cap-pom"><circle cx="195" cy="76" r="8.5" fill="#F6FAE6"/></g>
+          <rect x="126" y="70" width="50" height="11" rx="5.5" fill="#F6FAE6"/>
+        </g>
+        <!-- tuju: tööpäev — kiiver (õis jääb peale) -->
+        <g class="mood" id="mood-too" stroke="#1B2408" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M122 74C122 44 180 44 180 74z" fill="#E4573D"/>
+          <rect x="116" y="69" width="70" height="11" rx="5.5" fill="#E4573D"/>
+        </g>
+        <!-- tuju: hommik — kohvitass -->
+        <g class="mood" id="mood-hommik" stroke="#1B2408" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+          <path class="steam" d="M92 62c5-6-5-10 0-16" fill="none" stroke-width="3.4"/>
+          <path class="steam s2" d="M103 60c5-6-5-10 0-16" fill="none" stroke-width="3.4"/>
+          <path d="M84 68h28l-4 18a4 4 0 0 1-4 3h-12a4 4 0 0 1-4-3z" fill="#F6FAE6"/>
+          <path d="M84 74a8 8 0 0 0 0 12" fill="none"/>
+          <path d="M84 68h28" stroke-width="4.5"/>
+        </g>
+        <!-- tuju: puhkepäev — kokteil -->
+        <g class="mood" id="mood-puhke" stroke="#1B2408" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M100 60l-8-16" fill="none"/>
+          <path d="M83 38l20 4-11 6z" fill="#E4573D" stroke-width="3.2"/>
+          <path d="M85 60h26l-5 27a4 4 0 0 1-4 3h-8a4 4 0 0 1-4-3z" fill="#BFD8F5"/>
+          <path d="M85 60h26" stroke-width="4.5"/>
+        </g>
+
         <!-- õis -->
         <g id="flower" stroke="#1B2408" stroke-width="4">
           <circle cx="141" cy="54" r="6" fill="#F08BA0"/>
@@ -1644,6 +1731,24 @@ function setNight(hOverride){
 }
 setNight();
 setInterval(setNight, 60000);
+
+/* ================= KAKTUSE TUJUD ================= */
+/* 05-11 morning · 21-00 evening · 00-05 night · 11-21 weekday/weekend */
+const MOOD_CLASSES = ['mood-hommik','mood-ohtu','mood-oo','mood-too','mood-puhke'];
+function updateMood(nowOverride){
+  const d = nowOverride || new Date();
+  const h = d.getHours();
+  const weekend = d.getDay() === 0 || d.getDay() === 6;
+  let mood;
+  if (h >= 5 && h < 11)  mood = 'mood-hommik';
+  else if (h >= 21)      mood = 'mood-ohtu';
+  else if (h < 5)        mood = 'mood-oo';
+  else                   mood = weekend ? 'mood-puhke' : 'mood-too';
+  MOOD_CLASSES.forEach(c => document.body.classList.toggle(c, c === mood));
+}
+updateMood();
+setInterval(updateMood, 60000);
+
 
 /* --- diskorežiim: Konami VÕI 7 kiiret klikki logol --- */
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
