@@ -9,13 +9,13 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M11%209C9%206%207%205%207%205M21%209c2-3%204-4%204-4%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222.4%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%227%22%20cy%3D%225%22%20r%3D%222.2%22%20fill%3D%22%23241B04%22/%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%225%22%20r%3D%222.2%22%20fill%3D%22%23241B04%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2219%22%20r%3D%2212%22%20fill%3D%22%23FFC933%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222.4%22/%3E%3Cpath%20d%3D%22M9.5%2017c1.5%201.6%203.5%201.6%205%200M17.5%2017c1.5%201.6%203.5%201.6%205%200%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%222%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2223.5%22%20r%3D%221.7%22%20fill%3D%22none%22%20stroke%3D%22%23241B04%22%20stroke-width%3D%221.8%22/%3E%3C/svg%3E">
-<meta name="description" content="Kuula 93 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
+<meta name="description" content="Kuula 98 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
 
 <!-- Open Graph (Facebook, Messenger, LinkedIn jt) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mesiraadio">
 <meta property="og:title" content="Mesiraadio — Eesti netiraadiod">
-<meta property="og:description" content="Kuula 93 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
+<meta property="og:description" content="Kuula 98 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine — sumin garanteeritud.">
 <meta property="og:url" content="https://raadio.imresobnin.com/">
 <meta property="og:image" content="https://raadio.imresobnin.com/mesiraadio-og.png">
 <meta property="og:image:width" content="1200">
@@ -26,7 +26,7 @@
 <!-- Twitter/X kaart -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mesiraadio — Eesti netiraadiod">
-<meta name="twitter:description" content="Kuula 93 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine.">
+<meta name="twitter:description" content="Kuula 98 Eesti netiraadiot ühelt lehelt. Lemmikud, otsing ja oma kanalite lisamine.">
 <meta name="twitter:image" content="https://raadio.imresobnin.com/mesiraadio-og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -953,6 +953,16 @@ body.dizzy #mood-puhke-glasses{opacity:0}
 <audio id="audio" preload="none"></audio>
 
 <script>
+/* ================= AUTOMAATNE TAASÜHENDUS — olek =================
+   Deklareeritud skripti alguses, sest leht võib avaneda jaamalingiga ja
+   playStation() käivituda enne, kui ülejäänud skript on läbi loetud. */
+let wantPlaying = false;        // kas KASUTAJA tahab, et raadio mängiks
+let hasPlayed = false;          // kas see ühendus on vähemalt korra mängima saanud
+let reconnecting = false;
+let reconnectAttempts = 0;
+let reconnectTimer = null, attemptTimer = null, stableTimer = null;
+let lastCT = 0, lastProgress = 0;
+const RECONNECT_MAX = 5;
 const STATIONS = [
  ["vikerraadio","https://icecast.err.ee/vikerraadiokorge.mp3"],
  ["raadio tallinn","https://icecast.err.ee/raadiotallinnkorge.mp3"],
@@ -970,6 +980,7 @@ const STATIONS = [
  ["klara meditatsioon","https://icecast.err.ee/klarameditatsioonkorge.mp3"],
  ["klara klassika","https://icecast.err.ee/klaraklassikakorge.mp3"],
  ["raadio 4","https://icecast.err.ee/raadio4korge.mp3"],
+ ["r4 retro","https://icecast.err.ee/r4retrokorge.mp3"],
  ["elmar","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/elmar.aac"],
  ["elmari kuld","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/elmarikuld.aac"],
  ["elmari tantsuõhtu","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/elmaritantsuohtu.aac"],
@@ -982,7 +993,7 @@ const STATIONS = [
  ["hps bassline","https://azura.hpsbassline.club/listen/haapsaly_bassline/radio.mp3"],
  ["hardcore predictor","https://azura.hpsbassline.club/listen/hardcore_predictorfm/radio.mp3"],
  ["nrj fm","https://skymedia-live.bitflip.ee/NRJ"],
- ["xfm","https://stream4.rcast.net/73328"],
+ ["xfm","https://sc2.flamebox.org/xfm-tallinn"],
  ["big fm","https://sc2.flamebox.org/bigfm-hd"],
  ["retro fm","https://skymedia-live.bitflip.ee/RETRO"],
  ["retro fm disco","https://skymedia-live.bitflip.ee/retro1.mp3"],
@@ -993,7 +1004,6 @@ const STATIONS = [
  ["hits radio","https://stream1.rcast.net/66833"],
  ["ring fm","https://cdn.treraadio.ee/ringfm"],
  ["top fm","https://cdn.treraadio.ee/topfm"],
- ["tre raadio","https://cdn.treraadio.ee/pohja-tre"],
  ["ruut fm","https://a1.asurahosting.com/listen/ruut_fm/radio.mp3"],
  ["rock fm","https://skymedia-live.bitflip.ee/rck"],
  ["rock fm metal","https://skymedia-live.bitflip.ee/rckmetal"],
@@ -1021,7 +1031,7 @@ const STATIONS = [
  ["taifuun fm","https://eagle.streemlion.com/proxy/taifuunfm?mp=/stream"],
  ["happyu","https://radio.streemlion.com:2525/stream"],
  ["estonian party radio","https://maggie.torontocast.com:8110/stream"],
- ["xl raadio","https://stream2.rcast.net/69794"],
+ ["xl raadio","https://stream.rcast.net/69794"],
  ["raadio duo","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/radioduo.aac"],
  ["duo gold","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/kuld.aac"],
  ["duo hitmix","https://router.euddn.net/8103046e16b71d15d692b57c187875c7/DuoGH.aac"],
@@ -1038,7 +1048,6 @@ const STATIONS = [
  ["relax spa","https://stream.relaxfm.ee/spa"],
  ["chat raadio","https://puma.streemlion.com:1830/stream"],
  ["hits show","https://stream.zeno.fm/dghp9excl67vv"],
- ["raadio x","https://stream1.rcast.net/73328"],
  ["tagatuba fm","https://mcr.streams.gr/listen/tagatubaraadio"],
  ["raadio 7","https://edge05.cdn.bitflip.ee:8888/R7"],
  ["pereraadio tallinn","https://icecast.pereraadio.ee:9000/Tallinn"],
@@ -1046,11 +1055,17 @@ const STATIONS = [
  ["pereraadio kuressaare","https://icecast.pereraadio.ee:9000/Kuressaare"],
  ["radio eli","https://icecast.pereraadio.ee:9000/RadioEli"],
  ["semeinoje radio","https://icecast.pereraadio.ee:9000/Semeinoje"],
- ["radio azathoth revival","https://cast4.asurahosting.com/proxy/aadu/stream"]
+ ["radio azathoth revival","https://cast4.asurahosting.com/proxy/aadu/stream"],
+ ["punk fm","https://sapircast.caster.fm:11309/OsZpV"],
+ ["radio nostalgia","https://c16.radioboss.fm/stream/327"],
+ ["radio maximum","https://stream.radiomaximum.ee/stream"],
+ ["sss-radio","https://uvn-67-97.tll01.zonevs.eu/sss-radio"],
+ ["pcr.fm","https://pcrfm.radiocult.fm/stream"],
+ ["jumor fm","https://a10.asurahosting.com:7640/radio.mp3"]
 ];
 
 /* ---------- žanrid ja ikoonid (Phosphor Icons, MIT) ---------- */
-const GENRE = {"vikerraadio": "talk", "raadio tallinn": "pop", "raadio 2": "pop", "r2 eesti": "folk", "r2 millennium": "retro", "r2 pop": "pop", "r2 rap": "dance", "r2 altpop": "rock", "r2 chill": "dance", "r2 rock": "rock", "klassikaraadio": "classical", "klara jazz": "jazz", "klara nostalgia": "retro", "klara meditatsioon": "classical", "klara klassika": "classical", "raadio 4": "talk", "elmar": "folk", "elmari kuld": "folk", "elmari tantsuõhtu": "folk", "elmari ballaadid": "folk", "kuku": "talk", "äripäev": "talk", "doubleclap": "dance", "legendaarne": "retro", "ida raadio": "dance", "hps bassline": "dance", "hardcore predictor": "dance", "nrj fm": "pop", "xfm": "rock", "big fm": "pop", "retro fm": "retro", "retro fm disco": "retro", "retro fm eestikas": "retro", "retro fm love": "retro", "sunlight fm": "pop", "hitmix": "pop", "hits radio": "pop", "ring fm": "pop", "top fm": "pop", "tre raadio": "pop", "ruut fm": "pop", "rock fm": "rock", "rock fm metal": "rock", "sooviraadio": "folk", "meie raadio": "folk", "raadio kadi": "pop", "raadio remix": "dance", "võmba fm": "folk", "sky plus": "pop", "sky plus dnb": "dance", "sky radio": "pop", "power hit radio": "pop", "myhits": "pop", "myhits dance": "dance", "myhits rock": "rock", "circle k": "pop", "star fm": "pop", "star fm eesti": "folk", "super raadio": "pop", "kiss fm": "pop", "finest fm": "pop", "spacefm": "pop", "taifuun fm": "pop", "happyu": "pop", "estonian party radio": "folk", "xl raadio": "folk", "raadio duo": "pop", "duo gold": "retro", "duo hitmix": "pop", "duo rock": "rock", "duo party": "dance", "duo softmix": "pop", "duo country": "pop", "duo christmas": "pop", "raadio kidzone": "kids", "relax fm": "retro", "relax cafe": "retro", "relax international": "retro", "relax instrumental": "retro", "relax spa": "retro", "chat raadio": "talk", "hits show": "pop", "raadio x": "rock", "tagatuba fm": "rock", "raadio 7": "faith", "pereraadio tallinn": "faith", "pereraadio tartu": "faith", "pereraadio kuressaare": "faith", "radio eli": "faith", "semeinoje radio": "faith", "radio azathoth revival": "rock", "rahvaraadio": "folk", "raadio 11": "pop"};
+const GENRE = {"vikerraadio": "talk", "raadio tallinn": "pop", "raadio 2": "pop", "r2 eesti": "folk", "r2 millennium": "retro", "r2 pop": "pop", "r2 rap": "dance", "r2 altpop": "rock", "r2 chill": "dance", "r2 rock": "rock", "klassikaraadio": "classical", "klara jazz": "jazz", "klara nostalgia": "retro", "klara meditatsioon": "classical", "klara klassika": "classical", "raadio 4": "talk", "r4 retro": "retro", "elmar": "folk", "elmari kuld": "folk", "elmari tantsuõhtu": "folk", "elmari ballaadid": "folk", "kuku": "talk", "äripäev": "talk", "doubleclap": "dance", "legendaarne": "retro", "ida raadio": "dance", "hps bassline": "dance", "hardcore predictor": "dance", "nrj fm": "pop", "xfm": "rock", "big fm": "pop", "retro fm": "retro", "retro fm disco": "retro", "retro fm eestikas": "retro", "retro fm love": "retro", "sunlight fm": "pop", "hitmix": "pop", "hits radio": "pop", "ring fm": "pop", "top fm": "pop", "ruut fm": "pop", "rock fm": "rock", "rock fm metal": "rock", "sooviraadio": "folk", "meie raadio": "folk", "raadio kadi": "pop", "raadio remix": "dance", "võmba fm": "folk", "sky plus": "pop", "sky plus dnb": "dance", "sky radio": "pop", "power hit radio": "pop", "myhits": "pop", "myhits dance": "dance", "myhits rock": "rock", "circle k": "pop", "star fm": "pop", "star fm eesti": "folk", "super raadio": "pop", "kiss fm": "pop", "finest fm": "pop", "spacefm": "pop", "taifuun fm": "pop", "happyu": "pop", "estonian party radio": "folk", "xl raadio": "folk", "raadio duo": "pop", "duo gold": "retro", "duo hitmix": "pop", "duo rock": "rock", "duo party": "dance", "duo softmix": "pop", "duo country": "pop", "duo christmas": "pop", "raadio kidzone": "kids", "relax fm": "retro", "relax cafe": "retro", "relax international": "retro", "relax instrumental": "retro", "relax spa": "retro", "chat raadio": "talk", "hits show": "pop", "tagatuba fm": "rock", "raadio 7": "faith", "pereraadio tallinn": "faith", "pereraadio tartu": "faith", "pereraadio kuressaare": "faith", "radio eli": "faith", "semeinoje radio": "faith", "radio azathoth revival": "rock", "rahvaraadio": "folk", "raadio 11": "pop", "punk fm": "rock", "radio nostalgia": "retro", "radio maximum": "pop", "sss-radio": "talk", "pcr.fm": "dance", "jumor fm": "talk"};
 const GICON = {
 talk: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M168,12A75.9,75.9,0,0,0,92.49,96.33L23.91,189.85a19.89,19.89,0,0,0,2,26l14.29,14.29a19.89,19.89,0,0,0,26,2l93.52-68.58A76,76,0,1,0,168,12Zm52,76a51.66,51.66,0,0,1-7.75,27.27L140.74,43.75A52,52,0,0,1,220,88ZM54.72,210.71l-9.43-9.43,56.19-76.63a76.46,76.46,0,0,0,29.87,29.87ZM116,88a51.63,51.63,0,0,1,7.75-27.27l71.51,71.51A52,52,0,0,1,116,88Z"/></svg>`,
 pop: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M243,96a20.33,20.33,0,0,0-17.74-14l-56.59-4.57L146.83,24.62a20.36,20.36,0,0,0-37.66,0L87.35,77.44,30.76,82A20.45,20.45,0,0,0,19.1,117.88l43.18,37.24-13.2,55.7A20.37,20.37,0,0,0,79.57,233L128,203.19,176.43,233a20.39,20.39,0,0,0,30.49-22.15l-13.2-55.7,43.18-37.24A20.43,20.43,0,0,0,243,96ZM172.53,141.7a12,12,0,0,0-3.84,11.86L181.58,208l-47.29-29.08a12,12,0,0,0-12.58,0L74.42,208l12.89-54.4a12,12,0,0,0-3.84-11.86L41.2,105.24l55.4-4.47a12,12,0,0,0,10.13-7.38L128,41.89l21.27,51.5a12,12,0,0,0,10.13,7.38l55.4,4.47Z"/></svg>`,
@@ -1288,6 +1303,10 @@ function toggleFav(name){
 /* ---------- mängimine ---------- */
 function playStation(name){
   exitYouTube();
+  cancelReconnect();
+  reconnectAttempts = 0;
+  hasPlayed = false;
+  wantPlaying = true;
   current = name;
   updateXmas(name);
   setDanceStyle(name);
@@ -1316,17 +1335,63 @@ function togglePlay(){
     return;
   }
   if (!current) return;
-  if (playing){ audio.pause(); }
+  if (playing || reconnecting){ userStop(); }
   else {
+    cancelReconnect();
+    reconnectAttempts = 0;
+    hasPlayed = false;
+    wantPlaying = true;
     player.classList.add('loading');
     nowStatus.textContent = 'Ühendan…';
     nowStatus.classList.remove('err');
-    if (!audio.src) audio.src = urlOf(current);
+    // otseraadio: jätkamisel ALATI uus ühendus, muidu mängib brauser vana puhvrit
+    audio.src = urlOf(current);
     audio.play().catch(err => { if (err.name !== 'AbortError') streamError(); });
   }
 }
 
+/* ================= AUTOMAATNE TAASÜHENDUS ================= */
+function isYtMode(){ return typeof ytMode !== 'undefined' && ytMode; }
+function cancelReconnect(){
+  reconnecting = false;
+  clearTimeout(reconnectTimer); clearTimeout(attemptTimer); clearTimeout(stableTimer);
+}
+function userStop(){
+  wantPlaying = false;
+  cancelReconnect();
+  audio.pause();
+  // kui ühendus oli juba katkenud, pausi-sündmust ei tule — uuendame ise
+  playing = false;
+  player.classList.remove('loading');
+  nowStatus.classList.remove('err');
+  nowStatus.textContent = 'Paus';
+  setIcon(false);
+  markPlaying();
+  stopTrackPolling();
+}
+function reconnect(){
+  if (!wantPlaying || !current || isYtMode()) return;
+  clearTimeout(reconnectTimer); clearTimeout(attemptTimer); clearTimeout(stableTimer);
+  reconnectAttempts++;
+  if (reconnectAttempts > RECONNECT_MAX){ streamError(); return; }
+  reconnecting = true;
+  player.classList.add('loading');
+  nowStatus.classList.remove('err');
+  nowStatus.textContent = 'Ühendus katkes — ühendan uuesti…';
+  stopTrackPolling();
+  const delay = Math.min(1000 * Math.pow(2, reconnectAttempts - 1), 8000);
+  reconnectTimer = setTimeout(() => {
+    if (!wantPlaying || !current) { reconnecting = false; return; }
+    lastProgress = Date.now();
+    audio.src = urlOf(current);
+    audio.play().catch(() => {});      // viga tuleb 'error'-sündmusena või katse-taimerist
+    attemptTimer = setTimeout(reconnect, 10000);   // katse jäi rippuma
+  }, delay);
+}
+
 function streamError(){
+  wantPlaying = false;
+  cancelReconnect();
   playing = false;
   document.body.classList.add('oops');
   setTimeout(() => document.body.classList.remove('oops'), 1600);
@@ -1350,6 +1415,10 @@ function setIcon(isPlaying){
 /* "Praegu mängib" — läbi Cloudflare Workeri (CORS proksi + serva vahemälu).
    Vaheta oma Workeri URL-iga pärast selle deployimist (vt worker/README.md). */
 const NOWPLAYING_WORKER = 'https://mesiraadio-nowplaying.imresobnin.workers.dev/track';
+/* Kui Worker vastab järjest tühjalt (jaam ei avalda loo nime), küsitakse harvem —
+   hoiab Workeri tasuta limiidi kaitstuna. Esimene päris vastus taastab kiire tempo. */
+const TRACK_FAST = 20000, TRACK_SLOW = 120000, TRACK_NULLS_BEFORE_SLOW = 3;
+let trackNullStreak = 0;
 
 let trackTimer = null;
 let trackFetchSeq = 0;
@@ -1383,21 +1452,32 @@ async function updateTrack(){
       ]
     });
   }
+  trackNullStreak = clean ? 0 : trackNullStreak + 1;
+  clearTimeout(trackTimer);
+  trackTimer = setTimeout(updateTrack,
+    trackNullStreak >= TRACK_NULLS_BEFORE_SLOW ? TRACK_SLOW : TRACK_FAST);
 }
 
 function startTrackPolling(){
   stopTrackPolling();
   nowTrack.hidden = true;
   nowTrack.textContent = '';
+  trackNullStreak = 0;
   if (!current) return;
   updateTrack();
-  trackTimer = setInterval(updateTrack, 20000);
 }
 function stopTrackPolling(){
-  if (trackTimer){ clearInterval(trackTimer); trackTimer = null; }
+  clearTimeout(trackTimer); trackTimer = null;
+  trackFetchSeq++;   // pooleli olev päring visatakse vastuse saabudes minema
 }
 
 audio.addEventListener('playing', () => {
+  reconnecting = false;
+  hasPlayed = true;
+  clearTimeout(attemptTimer);
+  lastCT = audio.currentTime; lastProgress = Date.now();
+  clearTimeout(stableTimer);
+  stableTimer = setTimeout(() => { reconnectAttempts = 0; }, 30000);   // 30 s stabiilset = arvesti nulli
   playing = true;
   player.classList.remove('loading');
   nowStatus.textContent = 'Otse-eetris';
@@ -1408,13 +1488,26 @@ audio.addEventListener('playing', () => {
   startTrackPolling();
 });
 audio.addEventListener('pause', () => {
+  if (reconnecting || (wantPlaying && audio.ended)) return;
   playing = false;
   if (!nowStatus.classList.contains('err')) nowStatus.textContent = 'Paus';
   setIcon(false);
   markPlaying();
   stopTrackPolling();
 });
-audio.addEventListener('error', () => { if (current) streamError(); });
+audio.addEventListener('error', () => {
+  if (!current || isYtMode()) return;
+  if (wantPlaying && hasPlayed) reconnect();
+  else streamError();
+});
+// server sulges ühenduse
+audio.addEventListener('ended', () => { if (wantPlaying && hasPlayed) reconnect(); });
+// vaikne seisak: heli ei liigu edasi, aga ükski sündmus ei tule
+setInterval(() => {
+  if (!wantPlaying || !hasPlayed || reconnecting || !current || isYtMode() || audio.paused) return;
+  if (audio.currentTime !== lastCT){ lastCT = audio.currentTime; lastProgress = Date.now(); }
+  else if (Date.now() - lastProgress > 12000) reconnect();
+}, 3000);
 
 playBtn.addEventListener('click', togglePlay);
 playerFav.addEventListener('click', () => { if (current && current !== YT_SENTINEL) toggleFav(current); });
@@ -1548,6 +1641,8 @@ function removeCustom(name){
     saveFavs(favs);
   }
   if (current === name){
+    wantPlaying = false;
+    cancelReconnect();
     audio.pause();
     audio.removeAttribute('src');
     current = null;
@@ -1974,7 +2069,7 @@ onStateChange = function(isPlaying){
 updateTitle(false);
 /* topeltkindlus: tiitel uueneb ka otse audio-sündmustelt */
 audio.addEventListener('playing', () => updateTitle(true));
-audio.addEventListener('pause', () => updateTitle(false));
+audio.addEventListener('pause', () => { if (!(reconnecting || (wantPlaying && audio.ended))) updateTitle(false); });
 audio.addEventListener('error', () => updateTitle(false));
 
 function playFromHash(){
@@ -2086,7 +2181,7 @@ function createYtPlayer(){
 }
 
 function playYouTube(){
-  if (!ytMode){ audio.pause(); stopTrackPolling(); }
+  if (!ytMode){ wantPlaying = false; cancelReconnect(); audio.pause(); stopTrackPolling(); }
   ytMode = true;
   current = YT_SENTINEL;
   document.body.classList.remove(...DANCE_CLASSES);

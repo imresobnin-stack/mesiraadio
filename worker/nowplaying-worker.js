@@ -36,7 +36,6 @@ const NOWPLAYING = {
   'hardcore predictor':   { type: 'azura',    base: 'https://azura.hpsbassline.club', station: 'hardcore_predictorfm' },
   'tunitemusic':          { type: 'radiojar', id: '6x51bmzpfy3vv' },
   'ring fm':              { type: 'icecast',  base: 'https://cdn.treraadio.ee',       mount: '/ringfm' },
-  'tre raadio':           { type: 'icecast',  base: 'https://cdn.treraadio.ee',       mount: '/pohja-tre' },
 };
 
 function corsHeaders() {
