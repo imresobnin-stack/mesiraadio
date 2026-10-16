@@ -733,6 +733,74 @@ body.view-list #favGrid{column-count:1}
 @media (min-width:720px){body.view-list #favGrid{column-count:2}}
 @media (max-width:640px){body.view-list .grid,body.view-list #favGrid{column-count:1}}
 @media (prefers-reduced-motion:reduce){.drag-ghost.dropping,.card.pressing,.order-reset{transition:none!important}}
+
+/* ================= SEADED (satelliitnupp + modaal) ================= */
+.theme-wrap{position:relative;flex:none;display:inline-grid}
+.set-btn{
+  position:absolute;left:-9px;top:-9px;z-index:3;width:24px;height:24px;border-radius:50%;
+  border:2.5px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;
+  display:grid;place-items:center;padding:0;box-shadow:0 2px 0 rgba(0,0,0,.18);
+  transition:transform .25s ease;
+}
+.set-btn svg{width:14px;height:14px}
+.set-btn:hover{transform:rotate(60deg) scale(1.08)}
+.set-btn:focus-visible{outline:3px solid var(--leaf);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.set-btn{transition:none}}
+
+.set-modal{width:min(480px,100%);max-height:min(86vh,720px);display:flex;flex-direction:column;padding:22px 22px 18px}
+.set-modal .set-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.set-modal .set-head h3{margin:0;flex:1}
+.set-x{width:36px;height:36px;border-radius:50%;border:3px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.set-x svg{width:14px;height:14px}
+.set-tabs{display:flex;background:var(--cream);border:3px solid var(--ink);border-radius:999px;padding:3px;margin-bottom:14px}
+.set-tabs button{flex:1;font:inherit;font-weight:800;font-size:.88rem;color:var(--ink);background:transparent;border:0;border-radius:999px;padding:7px 10px;cursor:pointer}
+.set-tabs button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.set-body{overflow:auto;margin:0 -6px;padding:2px 6px 4px}
+.set-pane[hidden]{display:none}
+
+.set-row{display:flex;align-items:center;gap:12px;padding:10px 4px;border-bottom:2px dashed rgba(36,27,4,.15);cursor:pointer}
+.set-row:last-of-type{border-bottom:0}
+.set-row .ic{flex:none;width:38px;height:38px;border-radius:12px;border:2.5px solid var(--ink);display:grid;place-items:center;font-size:1.15rem;background:var(--honey-pale)}
+.set-row .t{flex:1;min-width:0}
+.set-row .t b{display:block;font-weight:800;font-size:.95rem}
+.set-row .t small{display:block;font-weight:700;font-size:.78rem;color:var(--ink-soft)}
+.sw{position:relative;flex:none;width:52px;height:30px}
+.sw input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.sw i{position:absolute;inset:0;border-radius:999px;border:3px solid var(--ink);background:var(--cream);transition:background .18s}
+.sw i::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--ink);transition:transform .18s ease}
+.sw input:checked + i{background:var(--leaf)}
+.sw input:checked + i::after{transform:translateX(22px);background:var(--paper)}
+.sw input:focus-visible + i{outline:3px solid var(--leaf);outline-offset:2px}
+.set-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px}
+.set-foot .hint{font-weight:700;font-size:.78rem;color:var(--ink-soft)}
+.set-reset{font:inherit;font-weight:800;font-size:.82rem;color:var(--ink);background:var(--paper);border:2.5px solid var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+
+.tip-h{font-family:'Baloo 2',cursive;font-weight:800;font-size:1rem;margin:4px 2px 8px}
+.tip-h:not(:first-child){margin-top:16px}
+.keys{display:grid;grid-template-columns:auto 1fr;gap:8px 12px;align-items:center;margin:0 2px}
+kbd{font-family:'Baloo 2',cursive;font-weight:800;font-size:.85rem;min-width:34px;text-align:center;padding:3px 9px;border:2.5px solid var(--ink);border-bottom-width:5px;border-radius:10px;background:var(--paper);color:var(--ink)}
+.keys span{font-weight:700;font-size:.88rem}
+.egg{border:2.5px solid var(--ink);border-radius:16px;padding:10px 12px;margin-bottom:8px;background:var(--cream)}
+.egg summary{list-style:none;cursor:pointer;display:flex;gap:10px;align-items:center;font-weight:800;font-size:.9rem}
+.egg summary::-webkit-details-marker{display:none}
+.egg summary .e{font-size:1.2rem;flex:none}
+.egg summary .q{flex:1}
+.egg summary .peek{flex:none;font-size:.72rem;font-weight:800;background:var(--ink);color:var(--paper);border-radius:999px;padding:2px 9px}
+.egg[open] summary .peek{background:var(--leaf)}
+.egg p{font-weight:700;font-size:.84rem;color:var(--ink-soft);margin:8px 0 0 32px}
+.egg-count{font-weight:800;font-size:.8rem;color:var(--ink-soft);margin:0 2px 10px}
+
+/* peidetavad osad */
+body.hide-bee .hero-art, body.hide-bee .greet-bubble{display:none}
+body.hide-herotext .hero-title-row h1, body.hide-herotext .hero > p{display:none}
+body.hide-herotext .hero-title-row{min-height:0}
+body.hide-search .search-wrap{display:none}
+body.hide-yt #ytSection{display:none}
+body.hide-chips #genreChips{display:none}
+body.hide-bee.hide-herotext .hero{padding:0}
+
+body.hide-chips .filters{display:none}
+.hero-toggle{display:none}   /* asendatud seadete lülitiga */
 </style>
 </head>
 <body class="flying-in">
@@ -741,7 +809,7 @@ body.view-list #favGrid{column-count:1}
 <header>
   <div class="topbar">
     <div class="logo">
-      <button class="theme-btn" id="themeBtn" type="button" aria-label="Vaheta heledat ja tumedat režiimi"></button>
+      <span class="theme-wrap"><button class="theme-btn" id="themeBtn" type="button" aria-label="Vaheta heledat ja tumedat režiimi"></button><button class="set-btn" id="setBtn" type="button" aria-label="Seaded ja nipid" title="Seaded ja nipid" aria-haspopup="dialog"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M128,76a52,52,0,1,0,52,52A52.06,52.06,0,0,0,128,76Zm0,80a28,28,0,1,1,28-28A28,28,0,0,1,128,156Zm113.86-49.57A12,12,0,0,0,236,98.34L208.21,82.49l-.11-31.31a12,12,0,0,0-4.25-9.12,116,116,0,0,0-38-21.41,12,12,0,0,0-9.68.89L128,37.27,99.83,21.53a12,12,0,0,0-9.7-.9,116.06,116.06,0,0,0-38,21.47,12,12,0,0,0-4.24,9.1l-.14,31.34L20,98.35a12,12,0,0,0-5.85,8.11,110.7,110.7,0,0,0,0,43.11A12,12,0,0,0,20,157.66l27.82,15.85.11,31.31a12,12,0,0,0,4.25,9.12,116,116,0,0,0,38,21.41,12,12,0,0,0,9.68-.89L128,218.73l28.14,15.74a12,12,0,0,0,9.7.9,116.06,116.06,0,0,0,38-21.47,12,12,0,0,0,4.24-9.1l.14-31.34,27.81-15.81a12,12,0,0,0,5.85-8.11A110.7,110.7,0,0,0,241.86,106.43Zm-22.63,33.18-26.88,15.28a11.94,11.94,0,0,0-4.55,4.59c-.54,1-1.11,1.93-1.7,2.88a12,12,0,0,0-1.82,6.32l-.14,30.28a91.83,91.83,0,0,1-21.07,11.87l-27.15-15.19a12,12,0,0,0-5.86-1.53h-.29c-1.14,0-2.3,0-3.44,0a12.08,12.08,0,0,0-6.14,1.51L93.3,210.82A92.27,92.27,0,0,1,72.21,199L72.1,168.69a12,12,0,0,0-1.82-6.32c-.58-.94-1.16-1.91-1.7-2.88A11.92,11.92,0,0,0,64,154.95L37.12,139.61a86.53,86.53,0,0,1,0-23.24l26.83-15.28a12,12,0,0,0,4.55-4.58c.54-1,1.11-1.94,1.7-2.89a12,12,0,0,0,1.82-6.32l.14-30.28a91.83,91.83,0,0,1,21.07-11.87L120.4,60.34a12,12,0,0,0,6.15,1.52c1.14,0,2.3,0,3.44,0a12,12,0,0,0,6.14-1.51L162.7,45.18A92.27,92.27,0,0,1,183.79,57l.11,30.27a12,12,0,0,0,1.82,6.32c.58.94,1.16,1.91,1.7,2.88A11.92,11.92,0,0,0,192,101.05l26.88,15.33A86.53,86.53,0,0,1,219.23,139.61Z"/></svg></button></span>
       MESIRAADIO
     </div>
     <div style="display:flex;gap:10px;align-items:center">
@@ -967,6 +1035,58 @@ body.view-list #favGrid{column-count:1}
 </main>
 
 <!-- kanali lisamise modaal -->
+
+<div class="modal-back" id="setBack" hidden>
+  <div class="modal set-modal" role="dialog" aria-modal="true" aria-labelledby="setTitle">
+    <div class="set-head">
+      <h3 id="setTitle">Mesitaru seaded</h3>
+      <button class="set-x" id="setClose" type="button" aria-label="Sulge"><svg viewBox="0 0 14 14"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="set-tabs" role="tablist">
+      <button type="button" role="tab" aria-selected="true" data-tab="view">Mida näidata</button>
+      <button type="button" role="tab" aria-selected="false" data-tab="tips">Nipid ja munad</button>
+    </div>
+    <div class="set-body">
+      <div class="set-pane" data-pane="view">
+        <label class="set-row"><span class="ic">🐝</span><span class="t"><b>Mesilane</b><small>Suur sumisev maskott lehe tipus</small></span><span class="sw"><input type="checkbox" data-hide="bee" checked><i></i></span></label>
+        <label class="set-row"><span class="ic">✍️</span><span class="t"><b>Pealkiri ja tutvustus</b><small>„Kõige kiirem raadio" ja alltekst</small></span><span class="sw"><input type="checkbox" data-hide="herotext" checked><i></i></span></label>
+        <label class="set-row"><span class="ic">🔎</span><span class="t"><b>Otsing ja täring</b><small>Peidetuna veeretab täringut ikka klahv r</small></span><span class="sw"><input type="checkbox" data-hide="search" checked><i></i></span></label>
+        <label class="set-row"><span class="ic">📺</span><span class="t"><b>YouTube'i kanal</b><small>Karvase Õhtusöögi esitusloend</small></span><span class="sw"><input type="checkbox" data-hide="yt" checked><i></i></span></label>
+        <label class="set-row"><span class="ic">🏷️</span><span class="t"><b>Stiilinupud</b><small>Pop, Tants, Alleaa… (peitmisel näeb jälle kõiki)</small></span><span class="sw"><input type="checkbox" data-hide="chips" checked><i></i></span></label>
+        <div class="set-foot">
+          <span class="hint">Valikud jäävad sellesse brauserisse meelde.</span>
+          <button class="set-reset" id="setReset" type="button">Näita kõike</button>
+        </div>
+      </div>
+
+      <div class="set-pane" data-pane="tips" hidden>
+        <div class="tip-h">⌨️ Kiirklahvid</div>
+        <div class="keys">
+          <kbd>Tühik</kbd><span>Mängi / paus. Klaviatuuri suurim nupp, lõpuks ometi kasulik.</span>
+          <kbd>/</kbd><span>Hüppa otsingusse — sõrmed ei pea hiireni rändama.</span>
+          <kbd>r</kbd><span>Suvaline jaam. Las täring otsustab.</span>
+          <kbd>v</kbd><span>Kaardid ⇄ nimekiri. Vahel tahad suurt pilti, vahel lihtsalt nimesid.</span>
+          <kbd>Esc</kbd><span>Paneb akna kinni (ka selle siin).</span>
+        </div>
+
+        <div class="tip-h">🥚 Üllatusmunad</div>
+        <p class="egg-count" id="eggCount">Vajuta „piilu", kui uudishimu võitu saab.</p>
+        <details class="egg"><summary><span class="e">🐝</span><span class="q">Mesilane on kõdi­kartlik.</span><span class="peek">piilu</span></summary><p>Klõpsa teda — ta keerutab, lehvitab või kummardab. Aga ära liialda: viis kiiret klõpsu järjest ja ta solvub.</p></details>
+        <details class="egg"><summary><span class="e">🪩</span><span class="q">Mesitarus käib vahel salajane pidu.</span><span class="peek">piilu</span></summary><p>Sisesta Konami kood <b>↑ ↑ ↓ ↓ ← → ← → B A</b> või klõpsa logo seitse korda kiiresti. 20 sekundit diskot ja konfetit.</p></details>
+        <details class="egg"><summary><span class="e">🍯</span><span class="q">Otsingukast on maiasmokk.</span><span class="peek">piilu</span></summary><p>Kirjuta „mesi" ja vaata, mis taevast tilgub. „Sipelgad" toob kohale terve rivi.</p></details>
+        <details class="egg"><summary><span class="e">🎲</span><span class="q">Täringul on ka piirid.</span><span class="peek">piilu</span></summary><p>Kümme veeretust minutiga ja täring läheb kuumaks — suitseb ja mesilasel hakkab pea ringi käima.</p></details>
+        <details class="egg"><summary><span class="e">😴</span><span class="q">Vaikus teeb unisaks.</span><span class="peek">piilu</span></summary><p>Kui muusika ei mängi, mesilane haigutab. Kümne minuti pärast vajub ta sügavasse unne ja ärkab muusika peale ehmatusega.</p></details>
+        <details class="egg"><summary><span class="e">🔇</span><span class="q">Ära keera talle häält kinni.</span><span class="peek">piilu</span></summary><p>Helitugevus nulli ja mesilane muutub pahuraks. Keera tagasi ja tuju taastub.</p></details>
+        <details class="egg"><summary><span class="e">👀</span><span class="q">Keegi jälgib sind.</span><span class="peek">piilu</span></summary><p>Liiguta hiirt — mesilase silmad käivad kursoriga kaasas. Ja vahel ta pilgutab.</p></details>
+        <details class="egg"><summary><span class="e">💃</span><span class="q">Igal žanril oma tantsusamm.</span><span class="peek">piilu</span></summary><p>Rock, tants, klassika… mesilane tantsib vastavalt sellele, mis mängib.</p></details>
+        <details class="egg"><summary><span class="e">🕰️</span><span class="q">Mesilasel on päevarütm.</span><span class="peek">piilu</span></summary><p>Hommikul virge, tööpäeval tõsine, nädalavahetusel puhkusel, õhtul rahulik. Kella 23–06 paneb ta öömütsi pähe.</p></details>
+        <details class="egg"><summary><span class="e">🎄</span><span class="q">Talvel läheb külmaks.</span><span class="peek">piilu</span></summary><p>Detsembris (või jõulujaama mängides) sajab lund ja mesilane saab salli kaela.</p></details>
+        <details class="egg"><summary><span class="e">🇪🇪</span><span class="q">Ta teab Eesti tähtpäevi.</span><span class="peek">piilu</span></summary><p>Iseseisvuspäeval ja jaanipäeval on mesilane pidulikult riides.</p></details>
+        <details class="egg"><summary><span class="e">💛</span><span class="q">Lemmikuid ei lisata vaikselt.</span><span class="peek">piilu</span></summary><p>Pane jaamale süda ja vaata, kuhu see lendab.</p></details>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal-back" id="modalBack" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <h3 id="modalTitle">Lisa oma kanal</h3>
@@ -2579,6 +2699,58 @@ favGrid.addEventListener('keydown', e => {
   const g = [...favGrid.querySelectorAll('.card')].find(c => c.dataset.name === name);
   if (g) g.querySelector('.grip').focus();
 });
+
+
+/* ================= SEADED ================= */
+const SET_KEY = 'mesiraadio_hidden_parts';
+const setBack = document.getElementById('setBack');
+const setBtnEl = document.getElementById('setBtn');
+const HIDE_PARTS = ['bee','herotext','search','yt','chips'];
+let hiddenParts = [];
+try{ hiddenParts = JSON.parse(localStorage.getItem(SET_KEY)) || []; }catch(e){}
+// vana "peida maskott" (×) valik -> uus seade; × nupp on nüüd peidus
+try{
+  if (localStorage.getItem(SET_KEY) === null && localStorage.getItem('mesiraadio_hero_hidden') === '1') hiddenParts = ['bee'];
+}catch(e){}
+if (typeof applyHeroHidden === 'function') applyHeroHidden(false);
+
+function applyHiddenParts(){
+  HIDE_PARTS.forEach(p => document.body.classList.toggle('hide-' + p, hiddenParts.includes(p)));
+  setBack.querySelectorAll('input[data-hide]').forEach(i => { i.checked = !hiddenParts.includes(i.dataset.hide); });
+  // stiilinupud peidus -> filter maha, et ükski jaam "kaduma" ei jääks
+  if (hiddenParts.includes('chips')){
+    const all = document.querySelector('#genreChips .chip[data-g=""]');
+    if (all && !all.classList.contains('on')) all.click();
+  }
+}
+setBack.addEventListener('change', e => {
+  const i = e.target.closest('input[data-hide]'); if (!i) return;
+  hiddenParts = i.checked ? hiddenParts.filter(p => p !== i.dataset.hide) : [...new Set([...hiddenParts, i.dataset.hide])];
+  try{ localStorage.setItem(SET_KEY, JSON.stringify(hiddenParts)); }catch(_){}
+  applyHiddenParts();
+});
+document.getElementById('setReset').addEventListener('click', () => {
+  hiddenParts = [];
+  try{ localStorage.removeItem(SET_KEY); }catch(_){}
+  applyHiddenParts();
+});
+setBack.querySelectorAll('.set-tabs [data-tab]').forEach(t => t.addEventListener('click', () => {
+  setBack.querySelectorAll('.set-tabs [data-tab]').forEach(x => x.setAttribute('aria-selected', x === t));
+  setBack.querySelectorAll('.set-pane').forEach(p => { p.hidden = p.dataset.pane !== t.dataset.tab; });
+}));
+function openSettings(){ setBack.hidden = false; setBack.querySelector('.set-tabs [aria-selected="true"]').focus(); }
+function closeSettings(){ setBack.hidden = true; setBtnEl.focus(); }
+setBtnEl.addEventListener('click', e => { e.stopPropagation(); openSettings(); });
+document.getElementById('setClose').addEventListener('click', closeSettings);
+setBack.addEventListener('click', e => { if (e.target === setBack) closeSettings(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !setBack.hidden) closeSettings(); });
+const eggs = [...setBack.querySelectorAll('.egg')];
+function updEggCount(){
+  const n = eggs.filter(d => d.open).length;
+  document.getElementById('eggCount').textContent = n ? `Piilutud ${n}/${eggs.length} — ülejäänud jäävad saladuseks?` : 'Vajuta „piilu", kui uudishimu võitu saab.';
+}
+eggs.forEach(d => d.addEventListener('toggle', updEggCount));
+applyHiddenParts();
 
 /* ================= KLAVIATUURIKIIRKLAHVID ================= */
 document.addEventListener('keydown', e => {
