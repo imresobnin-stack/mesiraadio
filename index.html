@@ -668,6 +668,71 @@ body.dizzy #mood-puhke-glasses{opacity:0}
 @media (prefers-reduced-motion:reduce){
   .steam,.twinkle,#cap-pom{animation:none}
 }
+
+/* ================= VAADE (kaardid / nimekiri) + LEMMIKUTE JÄRJEKORD ================= */
+.view-toggle{display:inline-flex;flex:none;background:var(--paper);border:3px solid var(--ink);border-radius:999px;padding:3px;box-shadow:0 4px 0 rgba(36,27,4,.14)}
+.view-toggle button{width:38px;height:30px;border:0;border-radius:999px;background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:background .15s}
+.view-toggle button svg{width:19px;height:19px}
+.view-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.view-toggle button:focus-visible{outline:3px solid var(--leaf);outline-offset:2px}
+.section-head .head-spacer{flex:1}
+.head-actions{display:inline-flex;align-items:center;gap:10px;margin-left:auto}
+.order-reset{width:30px;height:30px;flex:none;border-radius:50%;border:2.5px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;display:grid;place-items:center;box-shadow:0 3px 0 rgba(36,27,4,.14);transition:transform .15s}
+.order-reset svg{width:16px;height:16px}
+.order-reset:hover{transform:rotate(-40deg)}
+.order-reset:focus-visible{outline:3px solid var(--leaf);outline-offset:2px}
+.order-reset[hidden]{display:none}
+
+/* sikutamise käepide (ainult lemmikutes) */
+.grip{display:none}
+#favGrid .grip{
+  display:grid;place-items:center;position:absolute;left:-3px;top:50%;transform:translate(-50%,-50%);
+  width:22px;height:38px;border-radius:8px;background:var(--ink);color:var(--page-bg);
+  cursor:grab;touch-action:none;opacity:0;transition:opacity .15s;z-index:2;
+}
+#favGrid .grip svg{width:14px;height:14px}
+#favGrid .card:hover .grip,#favGrid .grip:focus-visible{opacity:1}
+#favGrid .grip:focus-visible{outline:3px solid var(--leaf);outline-offset:2px}
+@media (hover:none){#favGrid .grip{opacity:1}}
+#favGrid.no-drag .grip{display:none}
+#favGrid .card{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.card.placeholder{background:transparent!important;border-style:dashed;box-shadow:none;transform:none!important;animation:none!important}
+.card.placeholder > *{visibility:hidden}
+.drag-ghost{position:fixed!important;z-index:300;pointer-events:none;margin:0;transform:rotate(-2.5deg) scale(1.04)!important;box-shadow:0 14px 0 rgba(36,27,4,.2)!important;transition:none!important;animation:none!important}
+.drag-ghost.dropping{transition:left .18s ease, top .18s ease, transform .18s ease!important;transform:none!important}
+body.dragging,body.dragging *{cursor:grabbing!important}
+body.dragging .card:hover{transform:none}
+.card.pressing{transform:scale(.97)!important;transition:transform .3s ease}
+
+/* nimekirjavaade */
+.lmeta{display:none}
+body.view-list .grid{display:block;column-count:2;column-gap:10px;background:var(--paper);border:3px solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow);padding:6px}
+body.view-list .grid[hidden]{display:none}
+body.view-list .grid .card{
+  break-inside:avoid;flex-direction:row;align-items:center;gap:10px;margin:0;
+  border:0;border-radius:12px;box-shadow:none;padding:6px 8px;background:transparent;
+}
+body.view-list .grid .card:hover{transform:none;box-shadow:none;background:var(--cream)}
+body.view-list .grid .card.playing{background:var(--ink)}
+body.dark.view-list .grid .card.playing{background:var(--honey)}
+body.view-list .grid .badge{width:30px;height:30px;border-radius:9px;border-width:2.5px;font-size:.9rem}
+body.view-list .grid .badge svg{width:18px;height:18px}
+body.view-list .grid .card > .txt{flex:1;display:flex;align-items:baseline;gap:8px;min-width:0}
+body.view-list .grid .card .name{font-size:.92rem;padding-right:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+body.view-list .grid .card .meta,body.view-list .grid .lmeta{display:inline;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.74rem;font-weight:700;color:var(--ink-soft);margin:0;flex:0 1 auto}
+body.view-list .grid .card.playing .meta,body.view-list .grid .card.playing .lmeta{color:inherit;opacity:.75}
+body.view-list .grid .card.offline .offline-tag{display:inline;white-space:nowrap;margin:0}
+body.view-list .grid .eq{margin:0;flex:none}
+body.view-list .grid .fav-btn,body.view-list .grid .del-btn{position:static;width:30px;height:30px;flex:none}
+body.view-list .grid .fav-btn svg,body.view-list .grid .del-btn svg{width:18px;height:18px}
+body.view-list .grid .card.placeholder{border:2.5px dashed var(--ink)}
+body.view-list .drag-ghost{background:var(--paper);border:3px solid var(--ink)}
+body.view-list #favGrid .grip{position:static;transform:none;opacity:.45;width:16px;height:30px;background:transparent;color:inherit;flex:none;margin-right:-4px}
+body.view-list #favGrid .card:hover .grip,body.view-list #favGrid .grip:focus-visible{opacity:1}
+body.view-list #favGrid{column-count:1}
+@media (min-width:720px){body.view-list #favGrid{column-count:2}}
+@media (max-width:640px){body.view-list .grid,body.view-list #favGrid{column-count:1}}
+@media (prefers-reduced-motion:reduce){.drag-ghost.dropping,.card.pressing,.order-reset{transition:none!important}}
 </style>
 </head>
 <body class="flying-in">
@@ -1079,6 +1144,7 @@ kids: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 2
 faith: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M230.17,141.71,196,121.21V104A12,12,0,0,0,190,93.58L140,65V52h12a12,12,0,0,0,0-24H140V16a12,12,0,0,0-24,0V28H104a12,12,0,0,0,0,24h12V65L66.05,93.58A12,12,0,0,0,60,104v17.21l-34.17,20.5A12,12,0,0,0,20,152v64a12,12,0,0,0,12,12h76a12,12,0,0,0,12-12V172a8,8,0,0,1,16,0v44a12,12,0,0,0,12,12h76a12,12,0,0,0,12-12V152A12,12,0,0,0,230.17,141.71ZM44,158.79l16-9.6V204H44ZM128,140a32,32,0,0,0-32,32v32H84V111l44-25.14L172,111v93H160V172A32,32,0,0,0,128,140Zm84,64H196V149.19l16,9.6Z"/></svg>`,
 custom: `<svg fill="#241B04" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M160,172a36,36,0,1,0-36-36A36,36,0,0,0,160,172Zm0-48a12,12,0,1,1-12,12A12,12,0,0,1,160,124Zm56-64H113.76l81.69-24.5a12,12,0,0,0-6.9-23l-160,48A12,12,0,0,0,20,72V192a20,20,0,0,0,20,20H216a20,20,0,0,0,20-20V80A20,20,0,0,0,216,60Zm-4,128H44V84H212ZM60,116a12,12,0,0,1,12-12H96a12,12,0,0,1,0,24H72A12,12,0,0,1,60,116Zm0,40a12,12,0,0,1,12-12H96a12,12,0,0,1,0,24H72A12,12,0,0,1,60,156Z"/></svg>`
 };
+const GLABEL = {talk:'Jutt',pop:'Pop',rock:'Rock',jazz:'Jazz',classical:'Klassika',dance:'Tants',retro:'Retro',folk:'Alleaa',kids:'Lastele',faith:'Usk',custom:'Oma kanal'};
 const GCOLOR = {
   talk:"#BFD8F5", pop:"#FFE08A", rock:"#F4A88E", jazz:"#E8C7F0",
   classical:"#FFF3C9", dance:"#A8D8A0", retro:"#FFC933",
@@ -1220,7 +1286,8 @@ function makeCard([name,url]){
   const safe = esc(name);
   card.innerHTML =
     '<span class="badge" style="background:'+GCOLOR[g]+'">'+GICON[g]+'</span>' +
-    '<span><span class="name">'+safe+'</span>' +
+    '<span class="txt"><span class="name">'+safe+'</span>' +
+    '<span class="lmeta">'+(GLABEL[g]||'')+'</span>' +
     '<span class="eq" aria-hidden="true"><span></span><span></span><span></span></span></span>' +
     (isCustom(name)
       ? '<span class="del-btn" role="button" tabindex="0" aria-label="Kustuta kanal: '+safe+'">' +
@@ -1266,7 +1333,8 @@ function render(){
   const sortEt = (a, b) => a[0].localeCompare(b[0], 'et');
 
   favGrid.innerHTML = '';
-  const favList = allStations().filter(([n]) => favs.includes(n)).filter(matchFav).sort(sortEt);
+  const favAll = allStations().filter(([n]) => favs.includes(n));
+  const favList = orderFavList(favAll.filter(matchFav), sortEt);
   favList.forEach(s => favGrid.appendChild(makeCard(s)));
   favCount.textContent = favs.length;
   favSection.hidden = favs.length === 0;
@@ -1284,6 +1352,7 @@ function render(){
 
   markPlaying();
   applyOfflineMarks();
+  afterRenderFavs(favList.length === favAll.length && favList.length > 1);
 }
 
 function markPlaying(){
@@ -2294,6 +2363,223 @@ searchClear.addEventListener('click', () => {
 });
 updateSearchClear();
 
+
+/* ================= VAADE (kaardid / nimekiri) ================= */
+const LS_VIEW = 'mesiraadio_view';
+let viewMode = 'cards';
+try{ if (localStorage.getItem(LS_VIEW) === 'list') viewMode = 'list'; }catch(e){}
+const viewToggle = document.createElement('div');
+viewToggle.className = 'view-toggle';
+viewToggle.setAttribute('role','group');
+viewToggle.setAttribute('aria-label', 'Vaade');
+viewToggle.innerHTML =
+  '<button type="button" data-v="cards" title="Kaardid (v)" aria-label="Kaardid"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M104,36H56A20,20,0,0,0,36,56v48a20,20,0,0,0,20,20h48a20,20,0,0,0,20-20V56A20,20,0,0,0,104,36Zm-4,64H60V60h40Zm100-64H152a20,20,0,0,0-20,20v48a20,20,0,0,0,20,20h48a20,20,0,0,0,20-20V56A20,20,0,0,0,200,36Zm-4,64H156V60h40ZM104,132H56a20,20,0,0,0-20,20v48a20,20,0,0,0,20,20h48a20,20,0,0,0,20-20V152A20,20,0,0,0,104,132Zm-4,64H60V156h40Zm100-64H152a20,20,0,0,0-20,20v48a20,20,0,0,0,20,20h48a20,20,0,0,0,20-20V152A20,20,0,0,0,200,132Zm-4,64H156V156h40Z"/></svg></button>' +
+  '<button type="button" data-v="list" title="Nimekiri (v)" aria-label="Nimekiri"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M228,128a12,12,0,0,1-12,12H96a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128ZM96,76H216a12,12,0,0,0,0-24H96a12,12,0,0,0,0,24ZM216,180H96a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24ZM56,48A16,16,0,1,0,72,64,16,16,0,0,0,56,48Zm0,64a16,16,0,1,0,16,16A16,16,0,0,0,56,112Zm0,64a16,16,0,1,0,16,16A16,16,0,0,0,56,176Z"/></svg></button>';
+viewToggle.addEventListener('click', e => {
+  const b = e.target.closest('button[data-v]');
+  if (b) setView(b.dataset.v);
+});
+function setView(v){
+  viewMode = v;
+  document.body.classList.toggle('view-list', v === 'list');
+  viewToggle.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === v));
+  try{ localStorage.setItem(LS_VIEW, v); }catch(e){}
+}
+const favHead = favSection.querySelector('.section-head');
+const allHead = toggleAllBtn.closest('.section-head');
+const headSpacer = document.createElement('span');
+headSpacer.className = 'head-spacer';
+favHead.append(headSpacer);
+/* lüliti on lemmikute päises; kui lemmikuid pole, siis "kõik kanalid" päises */
+const headActions = document.createElement('span');
+headActions.className = 'head-actions';
+toggleAllBtn.replaceWith(headActions);
+headActions.append(toggleAllBtn);
+function placeViewToggle(){
+  if (!favSection.hidden){ if (viewToggle.parentNode !== favHead) favHead.append(viewToggle); }
+  else if (viewToggle.parentNode !== headActions) headActions.prepend(viewToggle);
+}
+setView(viewMode);
+
+/* ================= LEMMIKUTE JÄRJEKORD ================= */
+const LS_FAV_ORDER = 'mesiraadio_fav_order';
+let favCustomOrder = false;
+try{ favCustomOrder = localStorage.getItem(LS_FAV_ORDER) === '1'; }catch(e){}
+function setFavCustomOrder(on){
+  favCustomOrder = on;
+  try{ on ? localStorage.setItem(LS_FAV_ORDER, '1') : localStorage.removeItem(LS_FAV_ORDER); }catch(e){}
+}
+function orderFavList(list, sortFn){
+  return favCustomOrder ? list.sort((a, b) => favs.indexOf(a[0]) - favs.indexOf(b[0])) : list.sort(sortFn);
+}
+const orderReset = document.createElement('button');
+orderReset.type = 'button';
+orderReset.className = 'order-reset';
+orderReset.hidden = true;
+orderReset.title = 'Taasta tähestikuline järjekord';
+orderReset.setAttribute('aria-label', 'Taasta tähestikuline järjekord');
+orderReset.innerHTML = '<svg viewBox="0 0 256 256" fill="currentColor"><path d="M228,128a100,100,0,0,1-98.66,100H128a99.39,99.39,0,0,1-68.62-27.29,12,12,0,0,1,16.48-17.45,76,76,0,1,0-1.57-109c-.13.13-.25.25-.39.37L54.89,92H72a12,12,0,0,1,0,24H24a12,12,0,0,1-12-12V56a12,12,0,0,1,24,0V76.72L57.48,57.06A100,100,0,0,1,228,128Z"/></svg>';
+favCount.insertAdjacentElement('afterend', orderReset);
+orderReset.addEventListener('click', () => {
+  favFlip(() => { setFavCustomOrder(false); render(); });
+  orderReset.blur();
+});
+const GRIP_SVG = '<svg viewBox="0 0 256 256" fill="currentColor"><circle cx="92" cy="60" r="18"/><circle cx="164" cy="60" r="18"/><circle cx="92" cy="128" r="18"/><circle cx="164" cy="128" r="18"/><circle cx="92" cy="196" r="18"/><circle cx="164" cy="196" r="18"/></svg>';
+/* kutsutakse render() lõpus */
+function afterRenderFavs(canDrag){
+  favGrid.classList.toggle('no-drag', !canDrag);
+  favGrid.querySelectorAll('.card').forEach(c => {
+    if (c.querySelector('.grip')) return;
+    const g = document.createElement('span');
+    g.className = 'grip';
+    g.setAttribute('role', 'button');
+    g.tabIndex = canDrag ? 0 : -1;
+    g.title = 'Sikuta';
+    g.setAttribute('aria-label', 'Liiguta (nooleklahvid): ' + c.dataset.name);
+    g.innerHTML = GRIP_SVG;
+    c.prepend(g);
+  });
+  orderReset.hidden = !favCustomOrder;
+  placeViewToggle();
+}
+/* FLIP: sujuv liikumine järjekorra muutumisel */
+function favFlip(mutate){
+  const before = new Map([...favGrid.children].map(c => [c.dataset.name, c.getBoundingClientRect()]));
+  mutate();
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  [...favGrid.children].forEach(c => {
+    const b = before.get(c.dataset.name);
+    if (!b || c.classList.contains('placeholder')) return;
+    const a = c.getBoundingClientRect();
+    const dx = b.left - a.left, dy = b.top - a.top;
+    if (!dx && !dy) return;
+    c.animate([{transform:`translate(${dx}px,${dy}px)`}, {transform:'none'}], {duration:160, easing:'ease-out'});
+  });
+}
+function saveFavOrderFromDom(){
+  const shown = [...favGrid.querySelectorAll('.card')].map(c => c.dataset.name);
+  const changed = shown.some((n, i) => n !== favs.filter(f => shown.includes(f))[i]) || !favCustomOrder;
+  favs = [...shown, ...favs.filter(f => !shown.includes(f))];
+  saveFavs(favs);
+  if (changed) setFavCustomOrder(true);
+  render();
+}
+
+/* sikutamine: pointer events (hiir + puude + pliiats) */
+let favDrag = null, favSuppressClick = false;
+favGrid.addEventListener('click', e => {
+  if (favSuppressClick){ favSuppressClick = false; e.stopPropagation(); e.preventDefault(); }
+  else if (e.target.closest('.grip')){ e.stopPropagation(); e.preventDefault(); }
+}, true);
+favGrid.addEventListener('contextmenu', e => { if (favDrag) e.preventDefault(); });
+favGrid.addEventListener('pointerdown', e => {
+  if (favGrid.classList.contains('no-drag')) return;
+  const card = e.target.closest('.card');
+  if (!card || e.button !== 0 || e.target.closest('.fav-btn,.del-btn')) return;
+  const onGrip = !!e.target.closest('.grip');
+  favDrag = {card, id:e.pointerId, type:e.pointerType, sx:e.clientX, sy:e.clientY, active:false, timer:null};
+  if (onGrip){ e.preventDefault(); favStartDrag(e); }
+  else if (e.pointerType !== 'mouse'){
+    card.classList.add('pressing');
+    favDrag.timer = setTimeout(() => {
+      if (favDrag && !favDrag.active){ if (navigator.vibrate) try{ navigator.vibrate(15); }catch(_){} favStartDrag(favDrag.last || e); }
+    }, 320);
+  }
+});
+window.addEventListener('pointermove', e => {
+  if (!favDrag || e.pointerId !== favDrag.id) return;
+  favDrag.last = e;
+  if (!favDrag.active){
+    const dist = Math.hypot(e.clientX - favDrag.sx, e.clientY - favDrag.sy);
+    if (favDrag.type === 'mouse'){ if (dist > 6) favStartDrag(e); }
+    else if (dist > 8) favCancelPress();      // kasutaja kerib lehte
+    return;
+  }
+  favMoveDrag(e);
+});
+window.addEventListener('pointerup', e => { if (favDrag && e.pointerId === favDrag.id) favEndDrag(); });
+window.addEventListener('pointercancel', e => { if (favDrag && e.pointerId === favDrag.id) favEndDrag(); });
+window.addEventListener('touchmove', e => { if (favDrag && favDrag.active) e.preventDefault(); }, {passive:false});
+function favCancelPress(){
+  if (!favDrag) return;
+  clearTimeout(favDrag.timer);
+  favDrag.card.classList.remove('pressing');
+  favDrag = null;
+}
+function favStartDrag(e){
+  const card = favDrag.card;
+  clearTimeout(favDrag.timer);
+  card.classList.remove('pressing');
+  const r = card.getBoundingClientRect();
+  const ghost = card.cloneNode(true);
+  ghost.classList.remove('puzzle-pre','puzzle-in');
+  ghost.classList.add('drag-ghost');
+  ghost.removeAttribute('id');
+  ghost.style.width = r.width + 'px';
+  ghost.style.height = r.height + 'px';
+  ghost.style.left = r.left + 'px';
+  ghost.style.top = r.top + 'px';
+  document.body.appendChild(ghost);
+  card.classList.add('placeholder');
+  try{ card.setPointerCapture(favDrag.id); }catch(_){}
+  Object.assign(favDrag, {active:true, ghost, ox:e.clientX - r.left, oy:e.clientY - r.top});
+  document.body.classList.add('dragging');
+  favMoveDrag(e);
+}
+function favMoveDrag(e){
+  const {ghost, card} = favDrag;
+  ghost.style.left = (e.clientX - favDrag.ox) + 'px';
+  ghost.style.top  = (e.clientY - favDrag.oy) + 'px';
+  const edge = 70;
+  if (e.clientY < edge) window.scrollBy(0, -14);
+  else if (e.clientY > innerHeight - edge - 110) window.scrollBy(0, 14);   // pleieri riba on all
+  const el = document.elementFromPoint(e.clientX, e.clientY);
+  const over = el && el.closest('.card');
+  if (!over || over === card || over.parentNode !== favGrid) return;
+  const r = over.getBoundingClientRect();
+  const cr = card.getBoundingClientRect();
+  const sameRow = viewMode === 'cards' && Math.abs(r.top - cr.top) < r.height / 2;
+  const after = sameRow ? e.clientX > r.left + r.width / 2 : e.clientY > r.top + r.height / 2;
+  const ref = after ? over.nextSibling : over;
+  if (ref === card || ref === card.nextSibling) return;
+  favFlip(() => favGrid.insertBefore(card, ref));
+}
+function favEndDrag(){
+  const d = favDrag; favDrag = null;
+  clearTimeout(d.timer);
+  d.card.classList.remove('pressing');
+  if (!d.active) return;
+  favSuppressClick = true;
+  setTimeout(() => { favSuppressClick = false; }, 60);
+  const r = d.card.getBoundingClientRect();
+  d.ghost.classList.add('dropping');
+  d.ghost.style.left = r.left + 'px';
+  d.ghost.style.top = r.top + 'px';
+  setTimeout(() => {
+    d.ghost.remove();
+    d.card.classList.remove('placeholder');
+    document.body.classList.remove('dragging');
+    saveFavOrderFromDom();
+  }, 190);
+}
+/* klaviatuur: käepide fookuses + nooleklahvid */
+favGrid.addEventListener('keydown', e => {
+  const grip = e.target.closest('.grip');
+  if (!grip || favGrid.classList.contains('no-drag')) return;
+  const card = grip.closest('.card');
+  let ref;
+  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') ref = card.previousElementSibling;
+  else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') ref = card.nextElementSibling ? card.nextElementSibling.nextSibling : undefined;
+  else return;
+  e.preventDefault(); e.stopPropagation();
+  if (ref === undefined || (ref === null && (e.key === 'ArrowUp' || e.key === 'ArrowLeft'))) return;
+  const name = card.dataset.name;
+  favFlip(() => favGrid.insertBefore(card, ref));
+  saveFavOrderFromDom();
+  const g = [...favGrid.querySelectorAll('.card')].find(c => c.dataset.name === name);
+  if (g) g.querySelector('.grip').focus();
+});
+
 /* ================= KLAVIATUURIKIIRKLAHVID ================= */
 document.addEventListener('keydown', e => {
   if (e.ctrlKey || e.metaKey || e.altKey) return;
@@ -2309,6 +2595,8 @@ document.addEventListener('keydown', e => {
     togglePlay();
   } else if (e.key === 'r' || e.key === 'R'){
     diceBtn.click();
+  } else if (e.key === 'v' || e.key === 'V'){
+    setView(viewMode === 'cards' ? 'list' : 'cards');
   }
 });
 
