@@ -30,7 +30,7 @@
 <meta name="twitter:image" content="https://raadio.imresobnin.com/world-og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@500;600;700;800&family=Manrope:wght@300;600&family=Space+Grotesk:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@500;600;700;800&family=Caveat:wght@600;700&family=Manrope:wght@300;600&family=Space+Grotesk:wght@300;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --page-bg:#A9C94E;
@@ -994,6 +994,29 @@ body.ck-open{overflow:hidden}
 .ck-swap{animation:ckSwap .6s ease}
 @keyframes ckSwap{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.ck,.ck *{animation:none!important;transition:none!important}}
+
+/* ================= KASSETT-MASKOTT ================= */
+.hero-cas{display:block;margin:0 auto;width:min(320px,72vw);padding:0;border:0;background:none;cursor:pointer;perspective:700px;filter:drop-shadow(0 10px 0 rgba(36,27,4,.10));border-radius:16px}
+.hero-cas svg{display:block;width:100%;height:auto;overflow:visible}
+.hero-cas .cas-flip{display:block;transition:transform .8s cubic-bezier(.5,0,.3,1)}
+.hero-cas.flipping .cas-flip{transform:rotateY(180deg)}
+.hero-cas:focus-visible{outline:4px solid var(--leaf);outline-offset:6px}
+.hero-cas .cas-st{font-family:'Caveat',cursive;font-weight:700;fill:#1B2408}
+.hero-cas .cas-tr{font-family:'Caveat',cursive;font-weight:600;fill:#3c4a1a}
+.hero-cas .cas-side{font-family:'Baloo 2',cursive;font-weight:800;fill:#1B2408}
+.hero-cas .wiggle{animation:casWig .5s ease}
+@keyframes casWig{0%{opacity:0}100%{opacity:1}}
+.hero-cas:active .cas-flip{transform:scale(.97)}
+@media (max-width:480px){.hero-cas{width:min(250px,64vw)}}
+body.mascot-cas .hero-art,body.mascot-cas .greet-bubble{display:none}
+body.mascot-cas:not(.hide-bee):not(.hero-hidden) .hero-cas{display:block!important}
+/* maskoti valik seadetes */
+.set-row.seg-row{cursor:default}
+.seg{flex:none;display:flex;border:2.5px solid var(--ink);border-radius:999px;padding:2px;background:var(--cream)}
+.seg button{font:inherit;font-weight:800;font-size:.8rem;color:var(--ink);background:transparent;border:0;border-radius:999px;padding:5px 10px;cursor:pointer;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.seg button:focus-visible{outline:3px solid var(--leaf);outline-offset:2px}
+@media (max-width:520px){.set-row.seg-row{flex-wrap:wrap}.set-row.seg-row .seg{margin-left:50px}}
 </style>
 </head>
 <body>
@@ -1175,6 +1198,33 @@ body.ck-open{overflow:hidden}
         <text class="zzz z3" x="228" y="32" font-size="32">Z</text>
       </g>
     </svg>
+    <!-- kassett (valikuline maskott, Seaded → Maskott) -->
+    <button class="hero-cas" id="heroCas" type="button" aria-label="Cassette: play / pause" hidden>
+      <span class="cas-flip"><svg viewBox="0 0 200 128" aria-hidden="true">
+        <defs><clipPath id="casWin"><rect x="56" y="56" width="88" height="26" rx="13"/></clipPath></defs>
+        <rect x="3" y="3" width="194" height="122" rx="11" fill="#A9C94E" stroke="#1B2408" stroke-width="5"/>
+        <circle cx="13" cy="13" r="2.6" fill="#1B2408"/><circle cx="187" cy="13" r="2.6" fill="#1B2408"/>
+        <circle cx="13" cy="115" r="2.6" fill="#1B2408"/><circle cx="187" cy="115" r="2.6" fill="#1B2408"/>
+        <rect x="17" y="11" width="166" height="80" rx="6" fill="#F6F8E8" stroke="#1B2408" stroke-width="3"/>
+        <rect x="17" y="11" width="166" height="9" rx="4" fill="#E4573D"/><rect x="17" y="17" width="166" height="3" fill="#E4573D"/>
+        <text class="cas-side" x="27" y="42" font-size="15">A</text>
+        <line x1="40" y1="39" x2="170" y2="39" stroke="#1B2408" stroke-opacity=".18" stroke-width="1"/>
+        <line x1="40" y1="54" x2="170" y2="54" stroke="#1B2408" stroke-opacity=".18" stroke-width="1"/>
+        <text class="cas-st" id="casSt" x="104" y="36" text-anchor="middle" font-size="17">Mesiraadio</text>
+        <text class="cas-tr" id="casTr" x="104" y="52" text-anchor="middle" font-size="12">vali jaam</text>
+        <rect x="56" y="56" width="88" height="26" rx="13" fill="#1f2a0b" stroke="#1B2408" stroke-width="3"/>
+        <g clip-path="url(#casWin)">
+          <circle id="casPackL" cx="78" cy="69" r="21" fill="#7A4E1E"/>
+          <circle id="casPackR" cx="122" cy="69" r="9.5" fill="#7A4E1E"/>
+        </g>
+        <g transform="translate(78 69)"><g id="casHubL"><circle r="7.5" fill="#F6F8E8" stroke="#1B2408" stroke-width="2"/></g></g>
+        <g transform="translate(122 69)"><g id="casHubR"><circle r="7.5" fill="#F6F8E8" stroke="#1B2408" stroke-width="2"/></g></g>
+        <path d="M42 125 L52 101 L148 101 L158 125" fill="#8FAE38" stroke="#1B2408" stroke-width="3.5" stroke-linejoin="round"/>
+        <circle cx="66" cy="113" r="4" fill="#1B2408"/><circle cx="134" cy="113" r="4" fill="#1B2408"/>
+        <rect x="92" y="109" width="16" height="8" rx="2" fill="#1B2408"/>
+        <line x1="66" y1="118.5" x2="134" y2="118.5" stroke="#7A4E1E" stroke-width="2.5"/>
+      </svg></span>
+    </button>
     <div class="hero-title-row">
       <h1>Tune the whole planet</h1>
       <button class="hero-toggle" id="heroToggle" type="button" aria-label="Hide mascot" title="Hide mascot">
@@ -1267,7 +1317,8 @@ body.ck-open{overflow:hidden}
     </div>
     <div class="set-body">
       <div class="set-pane" data-pane="view">
-        <label class="set-row"><span class="ic">🌵</span><span class="t"><b>Cactus</b><small>The prickly mascot at the top</small></span><span class="sw"><input type="checkbox" data-hide="bee" checked><i></i></span></label>
+        <label class="set-row"><span class="ic">🌵</span><span class="t"><b>Show mascot</b><small>The big mascot at the top</small></span><span class="sw"><input type="checkbox" data-hide="bee" checked><i></i></span></label>
+        <div class="set-row seg-row"><span class="ic">🎭</span><span class="t"><b>Mascot</b><small>The cactus, or a cassette whose reels spin with the music</small></span><span class="seg" role="group" aria-label="Mascot"><button type="button" data-mascot="bee">🌵 Cactus</button><button type="button" data-mascot="cas">📼 Cassette</button></span></div>
         <label class="set-row"><span class="ic">✍️</span><span class="t"><b>Title and tagline</b><small>“Tune the whole planet” and the line below</small></span><span class="sw"><input type="checkbox" data-hide="herotext" checked><i></i></span></label>
         <label class="set-row"><span class="ic">🔎</span><span class="t"><b>Search and dice</b><small>When hidden, the r key still rolls the dice</small></span><span class="sw"><input type="checkbox" data-hide="search" checked><i></i></span></label>
         <label class="set-row"><span class="ic">🏷️</span><span class="t"><b>Genre buttons</b><small>Pop, Rock, Jazz… (hiding them shows all stations)</small></span><span class="sw"><input type="checkbox" data-hide="chips" checked><i></i></span></label>
@@ -3942,6 +3993,89 @@ document.addEventListener('keydown', e => {
   }
   if ((e.key === 'k' || e.key === 'K') && !document.querySelectorAll('.modal-back:not([hidden]),.hist-back:not([hidden])').length){ e.preventDefault(); openClock(); }
 });
+
+
+/* ================= KASSETT-MASKOTT ================= */
+/* Seaded → Maskott: mesilase asemel kassett. Rullid keerlevad, kui raadio mängib; jaama vahetusel
+   keritakse lint tagasi ja sildile tuleb uus nimi; 45 min mängimise järel pöördub kassett B-poolele. */
+const MASCOT_KEY = 'mesiraadio_world_mascot';
+const heroCas = document.getElementById('heroCas');
+const cas = { st: document.getElementById('casSt'), tr: document.getElementById('casTr'), side: heroCas.querySelector('.cas-side'),
+  packL: document.getElementById('casPackL'), packR: document.getElementById('casPackR'),
+  hubL: document.getElementById('casHubL'), hubR: document.getElementById('casHubR') };
+['casHubL', 'casHubR'].forEach(id => {
+  const g = document.getElementById(id);
+  for (let k = 0; k < 6; k++){
+    const t = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    t.setAttribute('x', -1.6); t.setAttribute('y', -7.4); t.setAttribute('width', 3.2); t.setAttribute('height', 3.4); t.setAttribute('rx', .8);
+    t.setAttribute('fill', '#1B2408'); t.setAttribute('transform', `rotate(${k * 60})`); g.append(t);
+  }
+});
+let mascot = 'bee';
+try{ if (localStorage.getItem(MASCOT_KEY) === 'cas') mascot = 'cas'; }catch(e){}
+const CAS_RMIN = 9.5, CAS_RMAX = 21, CAS_SIDE = 45 * 60;
+const casReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let casP = 0, casSpeed = 0, casMode = 'play', casSideL = 'A', casLast = 0, casRaf = 0, casRew = 1, casAL = 0, casAR = 0,
+    casShownSt = null, casShownTr = null, casStation = null;
+
+/* SVG tekstil pole ellipsit — lühendame, kuni mahub sildile */
+function casFit(el, txt, max){
+  el.textContent = txt;
+  if (!txt) return;
+  let t = txt;
+  while (t.length > 1 && el.getComputedTextLength() > max){ t = t.slice(0, -1); el.textContent = t.trimEnd() + '…'; }
+}
+function casLabel(anim){
+  const st = current || 'World Radio';
+  const tr = current ? ((!nowTrack.hidden && nowTrack.textContent.trim()) || '') : 'pick a station';
+  if (st === casShownSt && tr === casShownTr) return;
+  casShownSt = st; casShownTr = tr;
+  casFit(cas.st, st, 128); casFit(cas.tr, tr, 136);
+  if (anim) [cas.st, cas.tr].forEach(el => { el.classList.remove('wiggle'); void el.getBBox(); el.classList.add('wiggle'); });
+}
+function casFrame(now){
+  const dt = casLast ? Math.min(.1, (now - casLast) / 1000) : 0; casLast = now;
+  if (current !== casStation){
+    const had = casStation !== null; casStation = current;
+    if (had && current && casP > .002){ casRew = casP / 1.2; casMode = 'rew'; cas.st.textContent = '⏪'; cas.tr.textContent = ''; casShownSt = casShownTr = null; }
+  }
+  let target;
+  if (casMode === 'rew'){ target = -9; casP -= dt * casRew; if (casP <= 0){ casP = 0; casMode = 'play'; casLabel(true); } }
+  else { target = playing ? 1 : 0; casLabel(true); }
+  casSpeed += (target - casSpeed) * Math.min(1, dt * (casMode === 'rew' ? 10 : 3.2));
+  if (casMode === 'play' && playing){
+    casP += dt / CAS_SIDE;
+    if (casP >= 1){
+      casP = 0; casSideL = casSideL === 'A' ? 'B' : 'A';
+      heroCas.classList.add('flipping');
+      setTimeout(() => { cas.side.textContent = casSideL; }, 400);
+      setTimeout(() => heroCas.classList.remove('flipping'), 820);
+    }
+  }
+  const a = CAS_RMIN * CAS_RMIN, b = CAS_RMAX * CAS_RMAX;
+  const rL = Math.sqrt(a + (1 - casP) * (b - a)), rR = Math.sqrt(a + casP * (b - a));
+  const K = casReduce ? 0 : 1700;   // väike rull keerleb kiiremini, nagu päris kassetil
+  casAL = (casAL - casSpeed * K / rL * dt) % 360; casAR = (casAR - casSpeed * K / rR * dt) % 360;
+  cas.packL.setAttribute('r', rL.toFixed(2)); cas.packR.setAttribute('r', rR.toFixed(2));
+  cas.hubL.setAttribute('transform', `rotate(${casAL.toFixed(1)})`); cas.hubR.setAttribute('transform', `rotate(${casAR.toFixed(1)})`);
+  heroCas.setAttribute('aria-label', current ? 'Cassette: play / pause' : 'Cassette: pick a random station');
+  casRaf = requestAnimationFrame(casFrame);
+}
+function applyMascot(){
+  document.body.classList.toggle('mascot-cas', mascot === 'cas');
+  setBack.querySelectorAll('[data-mascot]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mascot === mascot));
+  cancelAnimationFrame(casRaf); casLast = 0;
+  if (mascot === 'cas'){ casStation = current; casLabel(false); casRaf = requestAnimationFrame(casFrame); }
+}
+setBack.querySelectorAll('[data-mascot]').forEach(b => b.addEventListener('click', () => {
+  mascot = b.dataset.mascot;
+  try{ localStorage.setItem(MASCOT_KEY, mascot); }catch(e){}
+  applyMascot();
+}));
+document.getElementById('setReset').addEventListener('click', () => { mascot = 'bee'; try{ localStorage.removeItem(MASCOT_KEY); }catch(e){} applyMascot(); });
+heroCas.addEventListener('click', () => { current ? togglePlay() : diceBtn.click(); });
+applyMascot();
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { casShownSt = null; if (mascot === 'cas') casLabel(false); });
 
 /* ================= KLAVIATUURIKIIRKLAHVID ================= */
 document.addEventListener('keydown', e => {
