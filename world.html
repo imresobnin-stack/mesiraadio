@@ -2355,7 +2355,7 @@ async function updateTrack(){
   const title = name ? await fetchTrack(name) : null;
   // vahepeal võis kanal vahetuda — vana vastus visatakse minema
   if (seq !== trackFetchSeq || name !== current) return;
-  const clean = title && title.trim();
+  const clean = title && fixMojibake(title.trim());
   nowTrack.hidden = !clean;
   nowTrack.textContent = clean || '';
   if (clean) logTrack(clean, name);
@@ -3355,16 +3355,36 @@ function loadHist(){
   try{ trackHist = JSON.parse(localStorage.getItem(HIST_KEY)) || []; }catch(e){ trackHist = memHist; }
   const cut = Date.now() - HIST_DAYS * 864e5;
   trackHist = trackHist.filter(i => i && i.t > cut && i.n && i.s).slice(-HIST_MAX);
+  trackHist.forEach(i => { i.n = fixMojibake(i.n); });   // vanad vale kodeeringuga kirjed korda
 }
 function saveHist(){
   memHist = trackHist;
   try{ localStorage.setItem(HIST_KEY, JSON.stringify(trackHist)); }catch(e){}
 }
+/* Vale kodeeringuga loonimed: UTF-8 baidid on loetud latin-1/cp1252 märkidena,
+   nt "Ã¶" → "ö", "Ã¤" → "ä", "â€™" → "’", "oÌ\u0081" → "ó". Proovime baidid tagasi UTF-8-ks dekodeerida. */
+const CP1252_REV = {0x20AC:0x80,0x201A:0x82,0x0192:0x83,0x201E:0x84,0x2026:0x85,0x2020:0x86,0x2021:0x87,0x02C6:0x88,0x2030:0x89,0x0160:0x8A,0x2039:0x8B,0x0152:0x8C,0x017D:0x8E,0x2018:0x91,0x2019:0x92,0x201C:0x93,0x201D:0x94,0x2022:0x95,0x2013:0x96,0x2014:0x97,0x02DC:0x98,0x2122:0x99,0x0161:0x9A,0x203A:0x9B,0x0153:0x9C,0x017E:0x9E,0x0178:0x9F};
+function fixMojibake(s){
+  if (!s || !/[Â-ô][\u0080-¿ŒœŠšŸŽžƒˆ˜–—‘-„†-•…‰‹›€™]/.test(s)) return s;
+  const bytes = [];
+  for (const ch of s){
+    const c = ch.codePointAt(0);
+    if (c < 0x100) bytes.push(c);
+    else if (CP1252_REV[c] !== undefined) bytes.push(CP1252_REV[c]);
+    else return s;                                   // sees on päris Unicode'i märke — ei puutu
+  }
+  try{
+    const out = new TextDecoder('utf-8', { fatal: true }).decode(new Uint8Array(bytes));
+    return out.normalize('NFC');
+  }catch(e){ return s; }
+}
+
 loadHist();
 /* jaama nimi, reklaamid, jinglid jms ei ole lood */
 function isTrackNoise(n, st){
   const t = n.trim().toLowerCase(), s = (st || '').toLowerCase();
   if (t.length < 4 || !/[a-zа-яäöüõšž0-9]/i.test(t)) return true;
+  if (/^(none|null|undefined|n\/a|unknown)$/.test(t)) return true;
   if (/^(reklaam|reklaamid|uudised|ilmateade|news|advert|advertisement|commercial|jingle|ad break|station id)\b/.test(t)) return true;
   const squash = x => x.replace(/[^a-z0-9а-яäöüõšž]/gi, '');
   if (s && (squash(t) === squash(s) || squash(t).startsWith(squash(s)) && !/\s[-–—]\s/.test(t))) return true;
