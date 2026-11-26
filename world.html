@@ -991,6 +991,16 @@ body.ck-open{overflow:hidden}
 .ck-info{position:absolute;left:2%;right:2%;top:76.5%;text-align:center;font-family:'Space Grotesk',sans-serif}
 .ck-st{display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:top;font-weight:500;font-size:calc(var(--d)*.026);color:#A9C94E;letter-spacing:.2em;text-transform:uppercase}
 .ck-tr{margin-top:.45em;font-weight:300;font-size:calc(var(--d)*.034);color:#d0d0d0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:1.2em}
+.ck-st{font-size:max(13px,calc(var(--d)*.026))}
+.ck-tr{font-size:max(16px,calc(var(--d)*.034))}
+/* telefon püsti: jaam ja lugu kella alla, suures kirjas (lugu kuni 2 reas) */
+@media (orientation:portrait) and (max-width:700px){
+  .ck-face{margin-top:-22vh}
+  .ck-hh,.ck-mm{font-size:calc(var(--d)*.23)}
+  .ck-info{top:calc(100% + 5vh);left:0;right:0}
+  .ck-st{font-size:16px;letter-spacing:.16em}
+  .ck-tr{font-size:22px;line-height:1.3;margin-top:.5em;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+}
 .ck-swap{animation:ckSwap .6s ease}
 @keyframes ckSwap{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.ck,.ck *{animation:none!important;transition:none!important}}
